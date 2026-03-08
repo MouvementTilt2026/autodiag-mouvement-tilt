@@ -122,6 +122,31 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                         </div>
                     </div>
 
+                    {/* Un Mouvement créé sur 3 constats */}
+                    <div className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 space-y-8">
+                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Un Mouvement créé sur 3 constats...</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div className="flex flex-col items-center text-center gap-4 p-4 bg-white rounded-2xl border border-slate-100">
+                                <div className="w-14 h-14 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center">
+                                    <Leaf size={28} />
+                                </div>
+                                <p className="text-sm font-bold text-[#1A2F2F]">7 limites planétaires franchies…</p>
+                            </div>
+                            <div className="flex flex-col items-center text-center gap-4 p-4 bg-white rounded-2xl border border-slate-100">
+                                <div className="w-14 h-14 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center">
+                                    <DollarSign size={28} />
+                                </div>
+                                <p className="text-sm font-bold text-[#1A2F2F]">3% des flux philanthropiques orientés vers des causes environnementales</p>
+                            </div>
+                            <div className="flex flex-col items-center text-center gap-4 p-4 bg-white rounded-2xl border border-slate-100">
+                                <div className="w-14 h-14 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center">
+                                    <Users size={28} />
+                                </div>
+                                <p className="text-sm font-bold text-[#1A2F2F]">La nécessité d'outiller et de redonner à l'écosystème associatif son pouvoir d'agir</p>
+                            </div>
+                        </div>
+                    </div>
+
                     {/* Vision & Mission */}
                     <div className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 space-y-8">
                         <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Notre vision & notre mission</h3>
@@ -143,6 +168,14 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                                 </p>
                             </div>
                         </div>
+                    </div>
+
+                    {/* Porté par un collectif */}
+                    <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 space-y-4">
+                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">...Porté par un collectif de philanthropes engagés</h3>
+                        <p className="text-sm text-slate-600 leading-relaxed">
+                            Le Mouvement Tilt est soutenu par un collectif de fondations et fonds engagés : Fondation RTE, SNCF Fondation, Fondation Francis Lefebvre, Fondation Groupe EDF, Fondation Caritas France, Fondation Zoein, Fondation Ceetrus, Fonds Derver, Fondation Crédit Mutuel, Fondation GRDF, Mobivia Foundation, CFF, DOmorrow, Fondation Crédit Coopératif, Decathlon Foundation, Fonds des Belles Causes, et bien d'autres.
+                        </p>
                     </div>
 
                     {/* Valeurs */}
