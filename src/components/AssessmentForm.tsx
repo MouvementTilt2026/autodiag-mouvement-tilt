@@ -130,11 +130,11 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                     <div className="px-6 md:px-8 pb-6 md:pb-8 space-y-8 animate-in slide-in-from-top-2 duration-300">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div className="space-y-4">
-                                <h4 className="font-bold text-[#BC5B2E] flex items-center gap-2">
+                                <h4 className="font-bold text-base text-[#BC5B2E] flex items-center gap-2">
                                     <span className="w-6 h-6 rounded-full bg-[#BC5B2E]/10 flex items-center justify-center text-xs">1</span>
                                     Gravité (G)
                                 </h4>
-                                <p className="text-xs text-slate-500 italic">Quel est l'impact potentiel du risque sur l'organisation ?</p>
+                                <p className="text-sm text-slate-500 italic">Quel est l'impact potentiel du risque sur l'organisation ?</p>
                                 <div className="space-y-2">
                                     {[
                                         { n: 1, l: 'Mineur', d: "L'impact est négligeable et sans conséquence sur la mission.", e: "Ajustement minime et local." },
