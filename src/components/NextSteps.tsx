@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
     Download, Share2, BookOpen, ExternalLink, ArrowRightCircle, ArrowRight,
-    CheckCircle2, Mail, Globe, MessageSquareHeart, FileText, PlusCircle, Users, Linkedin, MessageSquare
+    CheckCircle2, Mail, Globe, MessageSquareHeart, FileText, PlusCircle, Users, Linkedin, MessageSquare, Wrench
 } from 'lucide-react';
 import KanbanActionPlan from './KanbanActionPlan';
 import RiskMatrix from './RiskMatrix';
@@ -92,18 +92,19 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                         </a>
                     </div>
 
-                    <div className="bg-[#1A2F2F] p-6 md:p-8 rounded-3xl text-white flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div className="flex items-center gap-4 text-left">
-                            <div className="w-12 h-12 bg-[#C3FD97] rounded-2xl flex items-center justify-center shrink-0">
-                                <PlusCircle className="text-[#1A2F2F]" size={24} />
+                    <div className="bg-[#1A2F2F] text-white p-6 md:p-10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-8">
+                        <div className="flex items-start gap-4">
+                            <div className="w-12 h-12 rounded-2xl bg-[#C3FD97] flex items-center justify-center shrink-0">
+                                <Wrench className="text-[#1A2F2F]" />
                             </div>
-                            <p className="text-sm md:text-base leading-relaxed">
-                                Vous souhaitez également concevoir votre outil d'auto-diagnostic personnalisé ? Pour en savoir plus, <span className="font-bold">contactez-nous</span>.
-                            </p>
+                            <div className="space-y-1">
+                                <h4 className="font-bold text-xl">Concevoir votre outil sur-mesure</h4>
+                                <p className="text-sm text-slate-400">Vous souhaitez également concevoir votre outil d'auto-diagnostic personnalisé ? Pour en savoir plus, contactez-nous.</p>
+                            </div>
                         </div>
                         <a href="mailto:info@mouvement-tilt.com"
-                            className="px-8 py-4 bg-[#C3FD97] text-[#1A2F2F] rounded-xl font-bold text-sm hover:bg-[#B2DFB6] transition-all flex items-center gap-2 shrink-0">
-                            <Mail size={18} /> info@mouvement-tilt.com
+                            className="px-8 py-4 bg-[#C3FD97] text-[#1A2F2F] rounded-xl font-bold hover:bg-[#B2DFB6] transition-all flex items-center gap-2 shrink-0">
+                            <Mail size={18} /> Contactez-nous
                         </a>
                     </div>
                 </div>

@@ -7,7 +7,9 @@ import {
     Kanban, 
     ArrowRightCircle,
     Menu,
-    X
+    X,
+    Heart,
+    ExternalLink
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -67,16 +69,19 @@ const AppSidebar: React.FC<SidebarProps> = ({ currentStep, setStep }) => {
                 ))}
             </nav>
             
-            <div className="p-6 border-t border-white/10 bg-black/10">
+            <div className="p-6 border-t border-white/10 bg-black/10 space-y-3">
                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-[#9DB280]/20 flex items-center justify-center">
-                        <Menu size={14} className="text-[#9DB280]" />
+                    <div className="w-8 h-8 rounded-full bg-[#E18392]/20 flex items-center justify-center">
+                        <Heart size={14} className="text-[#E18392]" />
                     </div>
                     <div>
-                        <span className="text-[10px] text-white/40 block font-medium">Auto-diagnostic</span>
-                        <span className="text-[10px] text-[#C3FD97] block font-bold">v2.0.0 Stable</span>
+                        <span className="text-[10px] text-white/40 block font-medium">Auto-diagnostic Robust'Asso</span>
+                        <span className="text-[10px] text-[#C3FD97] block font-bold">Version 2026</span>
                     </div>
                  </div>
+                 <a href="https://www.mouvement-tilt.com" target="_blank" rel="noreferrer" className="flex items-center gap-2 text-[10px] text-white/40 hover:text-white/70 transition-colors">
+                    <ExternalLink size={10} /> Mentions légales
+                 </a>
             </div>
         </>
     );
