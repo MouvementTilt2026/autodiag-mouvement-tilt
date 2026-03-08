@@ -278,8 +278,8 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                     </div>
                                 </div>
 
-                <div className="space-y-10">
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-10">
+                <div className="space-y-6 md:space-y-10">
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-10">
                                         <div className="space-y-3 md:space-y-4">
                                             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-1">
                                                 <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">FRÉQUENCE (F)</label>
