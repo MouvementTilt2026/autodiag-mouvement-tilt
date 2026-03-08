@@ -208,7 +208,7 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
     {
         id: 'lev-25',
         theme: 'Économique',
-        category: 'Technologie',
+        category: 'Innovation, énergie et technologie',
         name: 'Participer à la recherche & l\'innovation',
         details: "Participer à la recherche et à l’innovation peut jouer un rôle majeur dans la décarbonation d’un secteur d’activité, qu’il soit associatif ou privé.\n\nExemple : le CIAM (Centre National des Arts en Mouvement), acteur culturel d’intérêt général, s’est associé en partenariat avec Capgemini Engineering, leader mondial du conseil en recherche et développement, pour étudier, modéliser et prototyper une solution concrète et industrialisable visant à remplacer le fioul comme principale source de chauffage des structures éphémères itinérantes.",
         isCollective: true
