@@ -4,6 +4,7 @@ import {
     CheckCircle2, Mail, Globe, MessageSquareHeart, FileText, PlusCircle, Users, Linkedin, MessageSquare
 } from 'lucide-react';
 import KanbanActionPlan from './KanbanActionPlan';
+import RiskMatrix from './RiskMatrix';
 import { RiskAssessment, ActionLeverAssessment } from '@/types';
 import loraineImg from '@/assets/loraine.png';
 import alizeImg from '@/assets/alize.png';
@@ -40,6 +41,7 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                         <button onClick={() => window.print()} className="w-full py-3 bg-primary text-primary-foreground rounded-xl font-bold text-xs hover:opacity-90 transition-all">
                             Exporter en PDF
                         </button>
+                        <p className="text-[10px] text-slate-400 mt-2">Inclut les matrices d'évaluation des risques et les matrices des leviers d'action.</p>
                     </div>
 
                     <div className="flex flex-col items-center text-center p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:shadow-lg transition-all group">
@@ -68,7 +70,7 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                             rel="noreferrer"
                             className="w-full py-3 bg-[#C3FD97] text-[#1A2F2F] rounded-xl font-bold text-xs hover:bg-[#B2DFB6] transition-all flex items-center justify-center gap-2"
                         >
-                            Voir les ressources <ExternalLink size={12} />
+                            Voir nos ressources <ExternalLink size={12} />
                         </a>
                     </div>
                 </div>
@@ -90,20 +92,17 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                         </a>
                     </div>
 
-                    <div className="bg-white p-6 md:p-10 rounded-3xl border border-slate-100 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm">
-                        <div className="flex items-start gap-4">
-                            <div className="w-12 h-12 rounded-2xl bg-[#C3FD97] flex items-center justify-center shrink-0">
-                                <PlusCircle className="text-[#1A2F2F]" />
-                            </div>
-                            <div className="space-y-1">
-                                <h4 className="font-bold text-lg md:text-xl text-[#1A2F2F]">Vous souhaitez également créer votre outil d'autodiag ?</h4>
-                                <p className="text-sm text-slate-500">Contactez-nous pour échanger sur vos besoins et projets.</p>
-                            </div>
+                    <div className="bg-gradient-to-br from-[#1A2F2F] to-[#2A4F4F] p-8 md:p-12 rounded-3xl text-white text-center space-y-6">
+                        <div className="w-16 h-16 bg-[#C3FD97] rounded-full flex items-center justify-center mx-auto">
+                            <PlusCircle className="text-[#1A2F2F]" size={32} />
                         </div>
+                        <h4 className="text-2xl md:text-3xl font-bold leading-tight">Vous aussi, créez votre outil d'autodiag sur-mesure !</h4>
+                        <p className="text-slate-300 max-w-lg mx-auto">Nous concevons des outils d'autodiagnostic personnalisés pour les acteurs de l'intérêt général. Contactez-nous pour en discuter.</p>
                         <a href="mailto:info@mouvement-tilt.com"
-                            className="px-8 py-4 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#2A4F4F] transition-all flex items-center gap-2 shrink-0">
-                            Contactez info@mouvement-tilt.com <Mail size={18} />
+                            className="inline-flex items-center gap-3 px-10 py-5 bg-[#C3FD97] text-[#1A2F2F] rounded-2xl font-bold text-lg hover:bg-[#B2DFB6] transition-all shadow-lg">
+                            <Mail size={22} /> Contactez-nous
                         </a>
+                        <p className="text-xs text-slate-400">info@mouvement-tilt.com</p>
                     </div>
                 </div>
 
@@ -176,6 +175,9 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                 </div>
 
                 <div className="hidden print:block mt-20 space-y-20">
+                    <div className="page-break-before">
+                        <RiskMatrix assessments={riskAssessments} />
+                    </div>
                     <div className="page-break-before">
                         <KanbanActionPlan assessments={actionLeverAssessments} onUpdate={() => {}} />
                     </div>

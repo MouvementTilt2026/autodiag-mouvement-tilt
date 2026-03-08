@@ -7,8 +7,9 @@ import KanbanActionPlan from '@/components/KanbanActionPlan';
 import NextSteps from '@/components/NextSteps';
 import { AppState, RiskAssessment, ActionLeverAssessment } from '@/types';
 import { RISK_CATALOG, ACTION_LEVERS_CATALOG, COLORS } from '@/constants';
-import { Download, Mail, Globe, ArrowRight, CheckCircle2, ShieldCheck, Info, TrendingUp, Users, Rocket, RefreshCw, Target, Compass, Heart, BookOpen, ExternalLink } from 'lucide-react';
+import { Download, Mail, Globe, ArrowRight, CheckCircle2, ShieldCheck, Info, TrendingUp, Users, Rocket, RefreshCw, Target, Compass, Heart, BookOpen, ExternalLink, Leaf, DollarSign, Brain } from 'lucide-react';
 import loraineImg from '@/assets/loraine.png';
+import logoTiltImg from '@/assets/logo-tilt.png';
 import alizeImg from '@/assets/alize.png';
 import heloiseImg from '@/assets/heloise.png';
 
@@ -114,12 +115,35 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                 {/* À propos du Mouvement Tilt */}
                 <div className="mt-24 pt-16 border-t border-slate-100 space-y-12">
                     <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-[#1A2F2F] rounded-2xl flex items-center justify-center text-[#C3FD97]">
-                            <Globe size={24} />
-                        </div>
+                        <img src={logoTiltImg} alt="Le Mouvement Tilt" className="w-14 h-14 rounded-2xl object-cover" />
                         <div>
                             <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F]">À propos du Mouvement Tilt</h2>
                             <p className="text-slate-500 font-medium">Ingénierie socio-environnementale au service de l'intérêt général</p>
+                        </div>
+                    </div>
+
+                    {/* Un Mouvement créé sur 3 constats */}
+                    <div className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 space-y-8">
+                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Un Mouvement créé sur 3 constats...</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div className="flex flex-col items-center text-center gap-4 p-4 bg-white rounded-2xl border border-slate-100">
+                                <div className="w-14 h-14 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center">
+                                    <Leaf size={28} />
+                                </div>
+                                <p className="text-sm font-bold text-[#1A2F2F]">7 limites planétaires franchies…</p>
+                            </div>
+                            <div className="flex flex-col items-center text-center gap-4 p-4 bg-white rounded-2xl border border-slate-100">
+                                <div className="w-14 h-14 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center">
+                                    <DollarSign size={28} />
+                                </div>
+                                <p className="text-sm font-bold text-[#1A2F2F]">3% des flux philanthropiques orientés vers des causes environnementales</p>
+                            </div>
+                            <div className="flex flex-col items-center text-center gap-4 p-4 bg-white rounded-2xl border border-slate-100">
+                                <div className="w-14 h-14 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center">
+                                    <Users size={28} />
+                                </div>
+                                <p className="text-sm font-bold text-[#1A2F2F]">La nécessité d'outiller et de redonner à l'écosystème associatif son pouvoir d'agir</p>
+                            </div>
                         </div>
                     </div>
 
@@ -146,6 +170,14 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                         </div>
                     </div>
 
+                    {/* Porté par un collectif */}
+                    <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 space-y-4">
+                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">...Porté par un collectif de philanthropes engagés</h3>
+                        <p className="text-sm text-slate-600 leading-relaxed">
+                            Le Mouvement Tilt est soutenu par un collectif de fondations et fonds engagés : Fondation RTE, SNCF Fondation, Fondation Francis Lefebvre, Fondation Groupe EDF, Fondation Caritas France, Fondation Zoein, Fondation Ceetrus, Fonds Derver, Fondation Crédit Mutuel, Fondation GRDF, Mobivia Foundation, CFF, DOmorrow, Fondation Crédit Coopératif, Decathlon Foundation, Fonds des Belles Causes, et bien d'autres.
+                        </p>
+                    </div>
+
                     {/* Valeurs */}
                     <div className="bg-[#E1E4D1]/30 p-6 md:p-8 rounded-3xl border border-[#9DB280]/20 space-y-6">
                         <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Nos valeurs qui constituent l'ADN du Mouvement Tilt</h3>
@@ -169,7 +201,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                     {/* Parcours - besoins fondamentaux */}
                     <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 space-y-6">
                         <h3 className="text-lg md:text-xl font-bold text-[#1A2F2F] leading-snug">
-                            Des parcours conçus pour renforcer le pouvoir d'agir des associations, en répondant à trois besoins fondamentaux...
+                            Nous proposons des parcours en hybride ou en ligne pour renforcer le pouvoir d'agir des associations, en répondant à trois besoins fondamentaux...
                         </h3>
                         <div className="space-y-6">
                             {[
@@ -237,7 +269,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                                     name: "Loraine Derville",
                                     role: "Fondatrice du Mouvement Tilt",
                                     linkedin: "https://www.linkedin.com/in/loraine-derville/?originalSubdomain=fr",
-                                    contactReason: "la contacter si vous avez des questions en tant que fondation",
+                                    contactReason: "la contacter si vous avez des questions en tant que fondation / fonds de dotation ou si vous souhaitez devenir partenaire (mécénat de compétences, relai médias, etc.)",
                                     image: loraineImg
                                 },
                                 {
