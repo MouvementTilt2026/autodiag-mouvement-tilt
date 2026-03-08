@@ -56,7 +56,7 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
     {
         id: 'lev-6',
         theme: 'Environnemental',
-        category: 'Technologie',
+        category: 'Innovation, énergie et technologie',
         name: 'Isoler les bâtiments',
         details: "L'isolation des bâtiments est un levier majeur de lutte contre le changement climatique. Elle permet d'agir à la fois sur son atténuation – réduction des émissions – et constitue une solution d'adaptation, offrant des conditions de vie moins pénibles comme en cas de forte chaleur.\n\nPar exemple, après son Bilan Carbone 2023, l’Association Pour l’Amitié (APA), association de colocations solidaires, a identifié les bâtiments prioritaires à rénover et s’est engagée à les financer en priorité.",
         isCollective: false
@@ -88,7 +88,7 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
     {
         id: 'lev-10',
         theme: 'Environnemental',
-        category: 'Technologie',
+        category: 'Innovation, énergie et technologie',
         name: 'Prolonger la durée de vie',
         details: "L'ADEME* identifie plusieurs leviers pour allonger la durée de vie d'un produit et en limiter les impacts :\n - accroître sa durabilité : meilleure qualité, réparabilité, compatibilité, capacité à évoluer \n - informer et promouvoir une consommation responsable : réponse à un besoin réel, entretien des produits, limitation des effets de mode\n - optimiser les usages\n - favoriser le réemploi.\n\n *ADEME : Agence de la transition écologique",
         isCollective: false
@@ -184,7 +184,7 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
     {
         id: 'lev-22',
         theme: 'Environnemental',
-        category: 'Technologie',
+        category: 'Innovation, énergie et technologie',
         name: 'Imiter la nature grâce au biomimétisme',
         details: "Le Biomimétisme c’est s’inspirer des formes, fonctions ou mécanismes du vivant pour créer des innovations durables.\n\nPar exemple, le Low-tech Lab est une association française dédiée à la recherche et à la documentation open-source sur les innovations low-tech. Elle valorise des solutions simples, accessibles et durables, en s'inspirant notamment du vivant. Notamment, le projet BioMiMetiC explore les liens entre low-tech et biomimétisme en recensant des initiatives, événements et ressources sur ce thème.",
         isCollective: false
@@ -208,7 +208,7 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
     {
         id: 'lev-25',
         theme: 'Économique',
-        category: 'Technologie',
+        category: 'Innovation, énergie et technologie',
         name: 'Participer à la recherche & l\'innovation',
         details: "Participer à la recherche et à l’innovation peut jouer un rôle majeur dans la décarbonation d’un secteur d’activité, qu’il soit associatif ou privé.\n\nExemple : le CIAM (Centre National des Arts en Mouvement), acteur culturel d’intérêt général, s’est associé en partenariat avec Capgemini Engineering, leader mondial du conseil en recherche et développement, pour étudier, modéliser et prototyper une solution concrète et industrialisable visant à remplacer le fioul comme principale source de chauffage des structures éphémères itinérantes.",
         isCollective: true
@@ -216,7 +216,7 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
     {
         id: 'lev-26',
         theme: 'Environnemental, Économique',
-        category: 'Technologie',
+        category: 'Innovation, énergie et technologie',
         name: 'Recourir aux énergies renouvelables',
         details: "En complément d'une démarche de sobriété et d’efficacité énergétique, produire sa propre énergie renouvelable peut permettre non seulement de réduire l’empreinte carbone de l’organisation (c’est le cas notamment de la pompe à chaleur), mais aussi de renforcer son autonomie énergétique.",
         isCollective: false
@@ -224,7 +224,7 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
     {
         id: 'lev-27',
         theme: 'Environnemental',
-        category: 'Technologie',
+        category: 'Innovation, énergie et technologie',
         name: 'Recycler ou valoriser énergétiquement',
         details: "Recycler : Processus par lequel un matériau ou un produit en fin de vie est réintroduit dans un cycle de production afin de créer de nouveaux produits, réduisant ainsi l’usage de ressources naturelles.\n\nValoriser énergétiquement : Transformation d’un déchet ou d’un matériau en énergie utilisable (chaleur, électricité, biogaz), lorsque le recyclage n’est pas possible ou moins efficace.",
         isCollective: false
@@ -312,7 +312,7 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
     {
         id: 'lev-38',
         theme: 'Environnemental, Économique',
-        category: 'Technologie',
+        category: 'Innovation, énergie et technologie',
         name: 'Intégrer des coopératives d\'énergie renouvelable',
         details: "Une coopérative d’énergie renouvelable est une structure collective où des citoyens, des organisations ou des collectivités se regroupent pour produire, consommer ou gérer ensemble de l’énergie renouvelable (solaire, éolien, biomasse, hydraulique…)\n\nLe principe clé : chaque membre est à la fois acteur et bénéficiaire, et les décisions sont généralement prises de manière démocratique (un membre = une voix).",
         isCollective: true

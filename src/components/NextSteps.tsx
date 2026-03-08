@@ -37,7 +37,7 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                         </div>
                          <h3 className="font-bold text-[#1A2F2F] mb-3">Téléchargez vos résultats</h3>
                         <p className="text-xs text-slate-500 mb-6 flex-1">Exportez vos tableaux de bord et matrices des leviers d'actions en PDF.</p>
-                        <button onClick={() => window.print()} className="w-full py-3 bg-[#1A2F2F] text-white rounded-xl font-bold text-xs hover:bg-[#2A4F4F] transition-all">
+                        <button onClick={() => window.print()} className="w-full py-3 bg-primary text-primary-foreground rounded-xl font-bold text-xs hover:opacity-90 transition-all">
                             Exporter en PDF
                         </button>
                     </div>
@@ -48,9 +48,12 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                         </div>
                         <h3 className="font-bold text-[#1A2F2F] mb-3">Échangez avec vos financeurs et vos instances</h3>
                         <p className="text-xs text-slate-500 mb-6 flex-1">Utilisez ce diagnostic comme base de dialogue sur votre robustesse et vos besoins.</p>
-                        <button className="w-full py-3 bg-[#9DB280] text-white rounded-xl font-bold text-xs hover:opacity-90 transition-all">
-                            Partager le rapport
-                        </button>
+                        <a 
+                            href={`mailto:?subject=${encodeURIComponent("Rapport Robust'Asso - Auto-diagnostic")}&body=${encodeURIComponent("Bonjour,\n\nVeuillez trouver ci-joint notre rapport d'auto-diagnostic Robust'Asso.\n\nCe rapport contient :\n- Les tableaux de bord des risques\n- Les matrices des leviers d'action\n\nPour télécharger le PDF, ouvrez l'outil et cliquez sur « Exporter en PDF ».\n\nCordialement")}`}
+                            className="w-full py-3 bg-secondary text-white rounded-xl font-bold text-xs hover:opacity-90 transition-all flex items-center justify-center gap-2"
+                        >
+                            <Mail size={14} /> Partager le rapport
+                        </a>
                     </div>
 
                     <div className="flex flex-col items-center text-center p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:shadow-lg transition-all group">
@@ -122,7 +125,7 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                                 name: "Loraine Derville",
                                 role: "Fondatrice du Mouvement Tilt",
                                 linkedin: "https://www.linkedin.com/in/loraine-derville/?originalSubdomain=fr",
-                                contactReason: "la contacter si vous avez des questions en tant que fondation",
+                                contactReason: "la contacter si vous avez des questions en tant que fondation / fonds de dotation ou si vous souhaitez devenir partenaire (mécénat de compétences, relai médias, etc.)",
                                 image: loraineImg
                             },
                             {

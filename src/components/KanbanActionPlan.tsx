@@ -3,7 +3,8 @@ import { ACTION_LEVERS_CATALOG, COLORS } from '@/constants';
 import { ActionLeverAssessment } from '@/types';
 import { 
     Kanban as KanbanIcon, ArrowRight, Info, Download, CheckCircle2, XCircle, PlayCircle, AlertCircle, 
-    Zap, Clock, Target, ShieldAlert, Printer, Trash2, ChevronDown, ChevronUp, MinusCircle
+    Zap, Clock, Target, ShieldAlert, Printer, Trash2, ChevronDown, ChevronUp, MinusCircle,
+    Landmark, Briefcase, Lightbulb
 } from 'lucide-react';
 import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
 
@@ -12,6 +13,21 @@ interface KanbanActionPlanProps {
     onUpdate: (id: string, field: 'status' | 'importance' | 'urgency', value: any) => void;
     onNext?: () => void;
 }
+
+const LeverDetails: React.FC<{ details: string }> = ({ details }) => {
+    const [expanded, setExpanded] = React.useState(false);
+    const isLong = details.length > 120;
+    return (
+        <div className="text-[11px] text-slate-500 leading-relaxed">
+            <span className={expanded ? '' : 'line-clamp-2'}>{details}</span>
+            {isLong && (
+                <button onClick={() => setExpanded(!expanded)} className="text-[#9DB280] font-bold ml-1 hover:underline">
+                    {expanded ? 'Réduire' : 'Lire plus'}
+                </button>
+            )}
+        </div>
+    );
+};
 
 const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpdate, onNext }) => {
     const [openCategories, setOpenCategories] = React.useState<Set<string>>(new Set());
@@ -83,12 +99,22 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
             </div>
 
             {/* Info box */}
-            <div className="bg-[#E1E4D1]/30 p-4 md:p-6 rounded-2xl border border-[#9DB280]/20 no-print">
-                <div className="flex items-start gap-3">
-                    <Info className="text-[#9DB280] shrink-0 mt-1" size={20} />
-                    <p className="text-sm text-slate-600 leading-relaxed">
-                        Évaluez chaque levier d'action ci-dessous, puis retrouvez les <strong>grilles d'analyse visuelle</strong> (état des lieux, plan d'action et matrice d'Eisenhower) en bas de cette page.
-                    </p>
+            <div className="space-y-4 no-print">
+                <div className="bg-[#E1E4D1]/30 p-4 md:p-6 rounded-2xl border border-[#9DB280]/20">
+                    <div className="flex items-start gap-3">
+                        <Info className="text-[#9DB280] shrink-0 mt-1" size={20} />
+                        <p className="text-sm text-slate-600 leading-relaxed">
+                            Évaluez chaque levier d'action ci-dessous, puis retrouvez les <strong>grilles d'analyse visuelle</strong> (état des lieux, plan d'action et matrice d'Eisenhower) en bas de cette page.
+                        </p>
+                    </div>
+                </div>
+                <div className="bg-accent/20 p-4 md:p-6 rounded-2xl border border-accent/30">
+                    <div className="flex items-start gap-3">
+                        <Lightbulb className="text-[#D09639] shrink-0 mt-1" size={20} />
+                        <p className="text-sm text-slate-600 leading-relaxed">
+                            Chaque levier d'action est proposé avec <strong>un exemple concret</strong> pour vous aider à mieux comprendre comment le mettre en œuvre dans votre association.
+                        </p>
+                    </div>
                 </div>
             </div>
 
@@ -101,7 +127,9 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                         <div key={cat} className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
                             <button onClick={() => toggleCategory(cat)} className="w-full p-5 md:p-6 flex items-center justify-between gap-3 hover:bg-slate-50 transition-colors">
                                 <div className="flex items-center gap-3">
-                                    <ShieldAlert className="text-[#BC5B2E]" size={20} />
+                                    {cat === 'Modèle & gouvernance' ? <Landmark className="text-[#BC5B2E]" size={20} /> :
+                                     cat === 'Pratiques opérationnelles et managériales' ? <Briefcase className="text-[#9DB280]" size={20} /> :
+                                     <Lightbulb className="text-[#D09639]" size={20} />}
                                     <h3 className="text-base md:text-lg font-bold text-[#1A2F2F]">{cat}</h3>
                                     <span className="text-[10px] font-bold px-2 py-1 bg-slate-100 text-slate-500 rounded-full">{leversInCat.length} leviers</span>
                                 </div>
@@ -118,7 +146,7 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                                                     <span className="font-bold text-slate-300 text-xs shrink-0 mt-1">{index + 1}.</span>
                                                     <div className="flex-1">
                                                         <div className="font-bold text-[#1A2F2F] text-sm mb-1">{lever.name}</div>
-                                                        <div className="text-[11px] text-slate-500 leading-relaxed line-clamp-2">{lever.details}</div>
+                                                        <LeverDetails details={lever.details} />
                                                     </div>
                                                 </div>
                                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

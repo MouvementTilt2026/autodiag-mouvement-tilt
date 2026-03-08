@@ -129,6 +129,36 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     <LayoutDashboard className="text-[#9DB280]" /> Tableaux de bord des risques
                 </h2>
 
+                {/* Info box - Comprendre la matrice (above matrices) */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                    <div className="bg-[#E1E4D1]/30 p-6 rounded-3xl border border-[#9DB280]/20">
+                        <h3 className="text-lg font-bold text-[#1A2F2F] mb-4 flex items-center gap-2">
+                            <Info size={18} className="text-[#9DB280]" /> Comprendre la matrice
+                        </h3>
+                        <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
+                            <p>La matrice croise la <strong>Gravité</strong> (axe vertical) et la <strong>Fréquence</strong> (axe horizontal).</p>
+                            <p>Chaque point représente un risque identifié. Sa <strong>couleur</strong> indique sa criticité finale (incluant votre vulnérabilité) :</p>
+                            <ul className="list-disc pl-5 space-y-1">
+                                <li><span className="font-bold text-[#9DB280]">Vert</span> : risque maîtrisé ou faible impact.</li>
+                                <li><span className="font-bold text-[#D09639]">Orange</span> : risque à surveiller, action annuelle.</li>
+                                <li><span className="font-bold text-[#BC5B2E]">Rouge</span> : risque critique, action prioritaire.</li>
+                            </ul>
+                            <p>La <strong>taille du point</strong> reflète votre vulnérabilité : plus le point est gros, plus vous êtes vulnérable face à ce risque.</p>
+                        </div>
+                    </div>
+                    <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                        <h5 className="text-sm font-bold text-[#1A2F2F] mb-4 uppercase tracking-wider">Lexique des risques positionnés</h5>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 max-h-[400px] overflow-y-auto custom-scrollbar pr-2">
+                            {riskWithNumbers.map(r => (
+                                <div key={r.id} className="flex items-start gap-2 text-sm leading-tight py-1 border-b border-slate-200/50 last:border-0">
+                                    <span className="font-bold text-[#1A2F2F] shrink-0 w-4">{r.number}.</span>
+                                    <span className="text-slate-600">{r.name}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
                 {/* 3 Matrices */}
                 <div className="space-y-16 mb-16">
                     {[
@@ -170,37 +200,6 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                 <div className="flex items-center gap-1"><div className="w-5 h-5 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Vulnérable (3)</span></div>
                                 <div className="flex items-center gap-1"><div className="w-6 h-6 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Critique (4)</span></div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Info box */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-                    <div className="bg-[#E1E4D1]/30 p-6 rounded-3xl border border-[#9DB280]/20">
-                        <h3 className="text-lg font-bold text-[#1A2F2F] mb-4 flex items-center gap-2">
-                            <Info size={18} className="text-[#9DB280]" /> Comprendre la matrice
-                        </h3>
-                        <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
-                            <p>La matrice croise la <strong>Gravité</strong> (axe vertical) et la <strong>Fréquence</strong> (axe horizontal).</p>
-                            <p>Chaque point représente un risque identifié. Sa <strong>couleur</strong> indique sa criticité finale (incluant votre vulnérabilité) :</p>
-                            <ul className="list-disc pl-5 space-y-1">
-                                <li><span className="font-bold text-[#9DB280]">Vert</span> : risque maîtrisé ou faible impact.</li>
-                                <li><span className="font-bold text-[#D09639]">Orange</span> : risque à surveiller, action annuelle.</li>
-                                <li><span className="font-bold text-[#BC5B2E]">Rouge</span> : risque critique, action prioritaire.</li>
-                            </ul>
-                            <p>La <strong>taille du point</strong> reflète votre vulnérabilité : plus le point est gros, plus vous êtes vulnérable face à ce risque.</p>
-                        </div>
-                    </div>
-
-                    <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-                        <h5 className="text-sm font-bold text-[#1A2F2F] mb-4 uppercase tracking-wider">Lexique des risques positionnés</h5>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 max-h-[400px] overflow-y-auto custom-scrollbar pr-2">
-                            {riskWithNumbers.map(r => (
-                                <div key={r.id} className="flex items-start gap-2 text-sm leading-tight py-1 border-b border-slate-200/50 last:border-0">
-                                    <span className="font-bold text-[#1A2F2F] shrink-0 w-4">{r.number}.</span>
-                                    <span className="text-slate-600">{r.name}</span>
-                                </div>
-                            ))}
                         </div>
                     </div>
                 </div>
