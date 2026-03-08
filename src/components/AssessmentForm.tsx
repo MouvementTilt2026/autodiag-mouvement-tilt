@@ -143,9 +143,9 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                         { n: 4, l: 'Critique', d: "L'impact menace la pérennité, la légalité ou la crédibilité.", e: "" },
                                     ].map(item => (
                                         <div key={item.n} className="p-3 rounded-xl bg-white border border-slate-100">
-                                            <span className="text-xs font-bold text-[#1A2F2F]">{item.n} ({item.l})</span>
-                                            <p className="text-xs text-slate-600 leading-tight">{item.d}</p>
-                                            {item.e && <p className="text-[10px] text-slate-400 mt-1 italic">Ex: {item.e}</p>}
+                                            <span className="text-sm font-bold text-[#1A2F2F]">{item.n} ({item.l})</span>
+                                            <p className="text-sm text-slate-600 leading-tight">{item.d}</p>
+                                            {item.e && <p className="text-xs text-slate-400 mt-1 italic">Ex: {item.e}</p>}
                                         </div>
                                     ))}
                                 </div>
