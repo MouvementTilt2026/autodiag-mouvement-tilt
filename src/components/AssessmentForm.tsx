@@ -12,6 +12,10 @@ interface AssessmentFormProps {
 const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, onNavigate }) => {
     const [activeCategory, setActiveCategory] = useState<RiskCategory>(Object.values(RiskCategory)[0]);
     const [lexiqueOpen, setLexiqueOpen] = useState(false);
+    const [perimetreOrga, setPerimetreOrga] = useState<string>('');
+    const [perimetreGeo, setPerimetreGeo] = useState<string>('');
+    const [perimetreEval, setPerimetreEval] = useState<string>('');
+    const [perimetreOpen, setPerimetreOpen] = useState(false);
 
     const categories = Object.values(RiskCategory);
     const currentCatIndex = categories.indexOf(activeCategory);
