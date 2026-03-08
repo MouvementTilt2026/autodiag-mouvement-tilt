@@ -7,8 +7,9 @@ import KanbanActionPlan from '@/components/KanbanActionPlan';
 import NextSteps from '@/components/NextSteps';
 import { AppState, RiskAssessment, ActionLeverAssessment } from '@/types';
 import { RISK_CATALOG, ACTION_LEVERS_CATALOG, COLORS } from '@/constants';
-import { Download, Mail, Globe, ArrowRight, CheckCircle2, ShieldCheck, Info, TrendingUp, Users, Rocket, RefreshCw, Target, Compass, Heart, BookOpen, ExternalLink } from 'lucide-react';
+import { Download, Mail, Globe, ArrowRight, CheckCircle2, ShieldCheck, Info, TrendingUp, Users, Rocket, RefreshCw, Target, Compass, Heart, BookOpen, ExternalLink, Leaf, DollarSign, Brain } from 'lucide-react';
 import loraineImg from '@/assets/loraine.png';
+import logoTiltImg from '@/assets/logo-tilt.png';
 import alizeImg from '@/assets/alize.png';
 import heloiseImg from '@/assets/heloise.png';
 
