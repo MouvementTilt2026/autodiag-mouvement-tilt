@@ -328,7 +328,7 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                                 <h5 className="text-sm font-bold text-[#1A2F2F] mb-4 uppercase tracking-wider">Lexique des leviers positionnés</h5>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
                                     {assessedLevers.map(l => (
-                                        <div key={l.id} className="flex items-start gap-3 text-[11px] leading-tight">
+                                        <div key={l.id} className="flex items-start gap-3 text-sm leading-tight">
                                             <span className="font-bold text-[#1A2F2F] w-4 shrink-0">{l.number}.</span>
                                             <span className="text-slate-600">{l.name}</span>
                                         </div>

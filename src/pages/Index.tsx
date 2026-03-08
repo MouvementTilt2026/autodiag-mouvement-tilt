@@ -43,7 +43,11 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                             </li>
                             <li className="flex items-start gap-2">
                                 <CheckCircle2 className="text-[#C3FD97] mt-1 shrink-0" size={18} />
-                                <span>Identifier les besoins prioritaires.</span>
+                                <span>Favoriser l'identification des besoins prioritaires.</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <CheckCircle2 className="text-[#C3FD97] mt-1 shrink-0" size={18} />
+                                <span>Contribuer au pouvoir d'agir des acteurs de l'intérêt général.</span>
                             </li>
                         </ul>
                     </div>
