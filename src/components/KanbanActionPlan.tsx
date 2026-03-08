@@ -14,6 +14,21 @@ interface KanbanActionPlanProps {
     onNext?: () => void;
 }
 
+const LeverDetails: React.FC<{ details: string }> = ({ details }) => {
+    const [expanded, setExpanded] = React.useState(false);
+    const isLong = details.length > 120;
+    return (
+        <div className="text-[11px] text-slate-500 leading-relaxed">
+            <span className={expanded ? '' : 'line-clamp-2'}>{details}</span>
+            {isLong && (
+                <button onClick={() => setExpanded(!expanded)} className="text-[#9DB280] font-bold ml-1 hover:underline">
+                    {expanded ? 'Réduire' : 'Lire plus'}
+                </button>
+            )}
+        </div>
+    );
+};
+
 const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpdate, onNext }) => {
     const [openCategories, setOpenCategories] = React.useState<Set<string>>(new Set());
     
