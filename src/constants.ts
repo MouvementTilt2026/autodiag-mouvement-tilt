@@ -88,7 +88,7 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
     {
         id: 'lev-10',
         theme: 'Environnemental',
-        category: 'Technologie',
+        category: 'Innovation, énergie et technologie',
         name: 'Prolonger la durée de vie',
         details: "L'ADEME* identifie plusieurs leviers pour allonger la durée de vie d'un produit et en limiter les impacts :\n - accroître sa durabilité : meilleure qualité, réparabilité, compatibilité, capacité à évoluer \n - informer et promouvoir une consommation responsable : réponse à un besoin réel, entretien des produits, limitation des effets de mode\n - optimiser les usages\n - favoriser le réemploi.\n\n *ADEME : Agence de la transition écologique",
         isCollective: false
