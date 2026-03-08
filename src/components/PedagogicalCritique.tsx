@@ -134,9 +134,9 @@ const PedagogicalCritique: React.FC<PedagogicalCritiqueProps> = ({ onNext }) => 
                                 <CheckCircle2 size={18} /> Avantages
                             </h4>
                             <ul className="space-y-2 text-sm text-slate-600">
-                                <li>• Rapidité de mise en œuvre</li>
-                                <li>• Vision transverse (Risques, RSO, Action)</li>
-                                <li>• Support de discussion pour vos instances</li>
+                                <li>• Accessibilité et analyse complète</li>
+                                <li>• Vision transverse</li>
+                                <li>• Support de discussion pour vos instances et avec vos partenaires</li>
                             </ul>
                         </div>
                         <div className="space-y-4">
