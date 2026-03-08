@@ -7,7 +7,9 @@ import {
     Kanban, 
     ArrowRightCircle,
     Menu,
-    X
+    X,
+    Heart,
+    ExternalLink
 } from 'lucide-react';
 
 interface SidebarProps {
