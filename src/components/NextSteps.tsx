@@ -4,6 +4,7 @@ import {
     CheckCircle2, Mail, Globe, MessageSquareHeart, FileText, PlusCircle, Users, Linkedin, MessageSquare
 } from 'lucide-react';
 import KanbanActionPlan from './KanbanActionPlan';
+import RiskMatrix from './RiskMatrix';
 import { RiskAssessment, ActionLeverAssessment } from '@/types';
 import loraineImg from '@/assets/loraine.png';
 import alizeImg from '@/assets/alize.png';
