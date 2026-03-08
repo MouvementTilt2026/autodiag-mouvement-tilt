@@ -260,11 +260,11 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                     </div>
                                 </div>
 
-                                <div className="space-y-10">
-                                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-10">
-                                        <div className="space-y-4">
+                <div className="space-y-10">
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-10">
+                                        <div className="space-y-3 md:space-y-4">
                                             <div className="flex justify-between items-end gap-2">
-                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">FRÉQUENCE (F)</label>
+                                                <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">FRÉQUENCE (F)</label>
                                                 <span className="text-xs md:text-sm font-bold text-[#1A2F2F] text-right">{getProbabilityLabel(assessment.probability)}</span>
                                             </div>
                                             <div className="relative pt-2">
