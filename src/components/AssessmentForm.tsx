@@ -276,7 +276,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                         <div className="space-y-3">
                             <h4 className="font-bold text-base text-[#BC5B2E] flex items-center gap-2">
                                 <span className="w-6 h-6 rounded-full bg-[#BC5B2E]/10 flex items-center justify-center text-xs">1</span>
-                                Périmètre Organisationnel (La Structure)
+                                Périmètre organisationnel
                             </h4>
                             <p className="text-sm text-slate-500 italic">Définit qui est concerné au sein de l'organisation.</p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -305,7 +305,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                         <div className="space-y-3">
                             <h4 className="font-bold text-base text-[#D09639] flex items-center gap-2">
                                 <span className="w-6 h-6 rounded-full bg-[#D09639]/10 flex items-center justify-center text-xs">2</span>
-                                Périmètre Géographique (L'Ancrage)
+                                Périmètre géographique
                             </h4>
                             <p className="text-sm text-slate-500 italic">Définit où se situe l'impact ou la menace.</p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
@@ -334,7 +334,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                         <div className="space-y-3">
                             <h4 className="font-bold text-base text-[#9DB280] flex items-center gap-2">
                                 <span className="w-6 h-6 rounded-full bg-[#9DB280]/10 flex items-center justify-center text-xs">3</span>
-                                Périmètre d'Évaluation (La Robustesse)
+                                Périmètre de concertation
                             </h4>
                             <p className="text-sm text-slate-500 italic">Définit la méthode et la légitimité du diagnostic.</p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
