@@ -280,41 +280,39 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
 
                 <div className="space-y-6 md:space-y-10">
                                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-10">
-                                        <div className="space-y-3 md:space-y-4">
-                                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-1">
+                                        <div className="space-y-2 md:space-y-4 bg-slate-50 md:bg-transparent p-3 md:p-0 rounded-xl">
+                                            <div className="flex justify-between items-center gap-1">
                                                 <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">FRÉQUENCE (F)</label>
-                                                <span className="text-sm font-bold text-[#1A2F2F]">{getProbabilityLabel(assessment.probability)}</span>
+                                                <span className="text-xs md:text-sm font-bold text-[#1A2F2F]">{getProbabilityLabel(assessment.probability)}</span>
                                             </div>
-                                            <div className="relative pt-2">
-                                                <input
-                                                    type="range"
-                                                    min="1"
-                                                    max="4"
-                                                    step="1"
-                                                    value={assessment.probability}
-                                                    onChange={(e) => handleChange(risk.id, 'probability', parseInt(e.target.value))}
-                                                    className="w-full h-3 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#D09639]"
-                                                    style={{ touchAction: 'none' }}
-                                                />
-                                                <div className="flex justify-between mt-2 px-1">
-                                                    {[1, 2, 3, 4].map(v => (
-                                                        <button
-                                                            key={v}
-                                                            onClick={() => handleChange(risk.id, 'probability', v)}
-                                                            className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                                                                assessment.probability === v
-                                                                    ? 'bg-[#D09639] text-white scale-110'
-                                                                    : 'bg-slate-100 text-slate-400 hover:bg-slate-200'
-                                                            }`}
-                                                        >
-                                                            {v}
-                                                        </button>
-                                                    ))}
-                                                </div>
-                                                <p className="mt-3 text-xs text-slate-600 italic leading-relaxed min-h-[2.5rem]">
-                                                    {LEVEL_DETAILS.frequency[assessment.probability as keyof typeof LEVEL_DETAILS.frequency].desc}
-                                                </p>
+                                            <input
+                                                type="range"
+                                                min="1"
+                                                max="4"
+                                                step="1"
+                                                value={assessment.probability}
+                                                onChange={(e) => handleChange(risk.id, 'probability', parseInt(e.target.value))}
+                                                className="w-full h-3 bg-slate-200 md:bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#D09639] hidden md:block"
+                                                style={{ touchAction: 'none' }}
+                                            />
+                                            <div className="flex justify-between px-1">
+                                                {[1, 2, 3, 4].map(v => (
+                                                    <button
+                                                        key={v}
+                                                        onClick={() => handleChange(risk.id, 'probability', v)}
+                                                        className={`w-8 h-8 md:w-8 md:h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                                                            assessment.probability === v
+                                                                ? 'bg-[#D09639] text-white scale-110'
+                                                                : 'bg-white md:bg-slate-100 text-slate-400 hover:bg-slate-200 border border-slate-200 md:border-0'
+                                                        }`}
+                                                    >
+                                                        {v}
+                                                    </button>
+                                                ))}
                                             </div>
+                                            <p className="hidden md:block mt-1 text-xs text-slate-600 italic leading-relaxed min-h-[2.5rem]">
+                                                {LEVEL_DETAILS.frequency[assessment.probability as keyof typeof LEVEL_DETAILS.frequency].desc}
+                                            </p>
                                         </div>
 
                                         <div className="space-y-3 md:space-y-4">
