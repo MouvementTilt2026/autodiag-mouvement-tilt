@@ -251,7 +251,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                         <div key={risk.id} className="bg-white rounded-2xl md:rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow">
                             <div className="p-3 md:p-8">
                                 <div className="flex flex-col md:flex-row justify-between items-start gap-2 md:gap-4 mb-4 md:mb-8">
-                                    <div className="space-y-3">
+                                    <div className="space-y-2 md:space-y-3">
                                         <div className="flex flex-wrap items-center gap-2">
                                             <span className="w-8 h-8 rounded-full bg-[#1A2F2F] text-white flex items-center justify-center text-xs font-bold shrink-0">
                                                 {globalIndex}
