@@ -104,13 +104,56 @@
     background-color: white !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    font-size: 11pt;
   }
   .page-break {
     page-break-before: always;
   }
   @page {
     size: A4;
-    margin: 15mm;
+    margin: 18mm 15mm;
+  }
+
+  /* Prevent content from being cut */
+  .bg-white,
+  .bg-slate-50,
+  .rounded-3xl,
+  .rounded-2xl,
+  section,
+  .space-y-4 > div,
+  .space-y-6 > div,
+  .space-y-8 > div,
+  .grid > div {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Ensure content fits A4 width */
+  main {
+    margin-left: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .max-w-4xl,
+  .max-w-6xl,
+  .max-w-7xl {
+    max-width: 100% !important;
+  }
+
+  /* Print footer */
+  .print-footer {
+    display: block !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  /* Allow clean breaks between paragraphs */
+  p {
+    orphans: 3;
+    widows: 3;
   }
 }
 

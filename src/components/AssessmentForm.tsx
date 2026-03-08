@@ -130,11 +130,11 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                     <div className="px-6 md:px-8 pb-6 md:pb-8 space-y-8 animate-in slide-in-from-top-2 duration-300">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div className="space-y-4">
-                                <h4 className="font-bold text-[#BC5B2E] flex items-center gap-2">
+                                <h4 className="font-bold text-base text-[#BC5B2E] flex items-center gap-2">
                                     <span className="w-6 h-6 rounded-full bg-[#BC5B2E]/10 flex items-center justify-center text-xs">1</span>
                                     Gravité (G)
                                 </h4>
-                                <p className="text-xs text-slate-500 italic">Quel est l'impact potentiel du risque sur l'organisation ?</p>
+                                <p className="text-sm text-slate-500 italic">Quel est l'impact potentiel du risque sur l'organisation ?</p>
                                 <div className="space-y-2">
                                     {[
                                         { n: 1, l: 'Mineur', d: "L'impact est négligeable et sans conséquence sur la mission.", e: "Ajustement minime et local." },
@@ -143,20 +143,20 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                         { n: 4, l: 'Critique', d: "L'impact menace la pérennité, la légalité ou la crédibilité.", e: "" },
                                     ].map(item => (
                                         <div key={item.n} className="p-3 rounded-xl bg-white border border-slate-100">
-                                            <span className="text-xs font-bold text-[#1A2F2F]">{item.n} ({item.l})</span>
-                                            <p className="text-xs text-slate-600 leading-tight">{item.d}</p>
-                                            {item.e && <p className="text-[10px] text-slate-400 mt-1 italic">Ex: {item.e}</p>}
+                                            <span className="text-sm font-bold text-[#1A2F2F]">{item.n} ({item.l})</span>
+                                            <p className="text-sm text-slate-600 leading-tight">{item.d}</p>
+                                            {item.e && <p className="text-xs text-slate-400 mt-1 italic">Ex: {item.e}</p>}
                                         </div>
                                     ))}
                                 </div>
                             </div>
 
                             <div className="space-y-4">
-                                <h4 className="font-bold text-[#D09639] flex items-center gap-2">
+                                <h4 className="font-bold text-base text-[#D09639] flex items-center gap-2">
                                     <span className="w-6 h-6 rounded-full bg-[#D09639]/10 flex items-center justify-center text-xs">2</span>
                                     Fréquence (F)
                                 </h4>
-                                <p className="text-xs text-slate-500 italic">Quelle est la probabilité que le risque se produise ?</p>
+                                <p className="text-sm text-slate-500 italic">Quelle est la probabilité que le risque se produise ?</p>
                                 <div className="space-y-2">
                                     {[
                                         { n: 1, l: 'Très improbable', d: "Risque qui n'est jamais survenu et difficile à imaginer.", e: "Moins d'une fois tous les 5 ans." },
@@ -165,20 +165,20 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                         { n: 4, l: 'Très fréquent', d: "Risque quasi-systématique (récurrent non résolu).", e: "Survient plusieurs fois par an." },
                                     ].map(item => (
                                         <div key={item.n} className="p-3 rounded-xl bg-white border border-slate-100">
-                                            <span className="text-xs font-bold text-[#1A2F2F]">{item.n} ({item.l})</span>
-                                            <p className="text-xs text-slate-600 leading-tight">{item.d}</p>
-                                            {item.e && <p className="text-[10px] text-slate-400 mt-1 italic">Ex: {item.e}</p>}
+                                            <span className="text-sm font-bold text-[#1A2F2F]">{item.n} ({item.l})</span>
+                                            <p className="text-sm text-slate-600 leading-tight">{item.d}</p>
+                                            {item.e && <p className="text-xs text-slate-400 mt-1 italic">Ex: {item.e}</p>}
                                         </div>
                                     ))}
                                 </div>
                             </div>
 
                             <div className="space-y-4">
-                                <h4 className="font-bold text-[#9DB280] flex items-center gap-2">
+                                <h4 className="font-bold text-base text-[#9DB280] flex items-center gap-2">
                                     <span className="w-6 h-6 rounded-full bg-[#9DB280]/10 flex items-center justify-center text-xs">3</span>
                                     Vulnérabilité (V)
                                 </h4>
-                                <p className="text-xs text-slate-500 italic">Quel est votre niveau de vulnérabilité face à ce risque ?</p>
+                                <p className="text-sm text-slate-500 italic">Quel est votre niveau de vulnérabilité face à ce risque ?</p>
                                 <div className="space-y-2">
                                     {[
                                         { n: 1, l: 'Sécurisé', d: "Actions proactives, contrôle total, amélioration continue.", e: "Tableaux de bord, rapports d'audit, plans mis à jour." },
@@ -187,9 +187,9 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                         { n: 4, l: 'Critique', d: "Aucune action. Risque maximal ou subi.", e: "Absence de process, de budget ou de responsable." },
                                     ].map(item => (
                                         <div key={item.n} className="p-3 rounded-xl bg-white border border-slate-100">
-                                            <span className="text-xs font-bold text-[#1A2F2F]">{item.n} ({item.l})</span>
-                                            <p className="text-xs text-slate-600 leading-tight">{item.d}</p>
-                                            {item.e && <p className="text-[10px] text-slate-400 mt-1 italic">Ex: {item.e}</p>}
+                                            <span className="text-sm font-bold text-[#1A2F2F]">{item.n} ({item.l})</span>
+                                            <p className="text-sm text-slate-600 leading-tight">{item.d}</p>
+                                            {item.e && <p className="text-xs text-slate-400 mt-1 italic">Ex: {item.e}</p>}
                                         </div>
                                     ))}
                                 </div>
@@ -260,11 +260,11 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                     </div>
                                 </div>
 
-                                <div className="space-y-10">
-                                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-10">
-                                        <div className="space-y-4">
+                <div className="space-y-10">
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-10">
+                                        <div className="space-y-3 md:space-y-4">
                                             <div className="flex justify-between items-end gap-2">
-                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">FRÉQUENCE (F)</label>
+                                                <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">FRÉQUENCE (F)</label>
                                                 <span className="text-xs md:text-sm font-bold text-[#1A2F2F] text-right">{getProbabilityLabel(assessment.probability)}</span>
                                             </div>
                                             <div className="relative pt-2">
@@ -288,9 +288,9 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                             </div>
                                         </div>
 
-                                        <div className="space-y-4">
+                                        <div className="space-y-3 md:space-y-4">
                                             <div className="flex justify-between items-end gap-2">
-                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">GRAVITÉ (G)</label>
+                                                <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">GRAVITÉ (G)</label>
                                                 <span className="text-xs md:text-sm font-bold text-[#1A2F2F] text-right">{getImpactLabel(assessment.impact)}</span>
                                             </div>
                                             <div className="relative pt-2">
@@ -314,9 +314,9 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                             </div>
                                         </div>
 
-                                        <div className="space-y-4">
+                                        <div className="space-y-3 md:space-y-4">
                                             <div className="flex justify-between items-end gap-2">
-                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">VULNÉRABILITÉ (V)</label>
+                                                <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">VULNÉRABILITÉ (V)</label>
                                                 <span className="text-xs md:text-sm font-bold text-[#1A2F2F] text-right">{getVulnerabilityLabel(assessment.maturity)}</span>
                                             </div>
                                             <div className="relative pt-2">

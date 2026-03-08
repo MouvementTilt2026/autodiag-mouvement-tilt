@@ -35,8 +35,8 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                         <div className="w-14 h-14 bg-[#1A2F2F] text-white rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                             <Download size={24} />
                         </div>
-                        <h3 className="font-bold text-[#1A2F2F] mb-3">Téléchargez vos résultats</h3>
-                        <p className="text-xs text-slate-500 mb-6 flex-1">Conservez une trace de votre diagnostic au format PDF.</p>
+                         <h3 className="font-bold text-[#1A2F2F] mb-3">Téléchargez vos résultats</h3>
+                        <p className="text-xs text-slate-500 mb-6 flex-1">Exportez vos tableaux de bord et matrices des leviers d'actions en PDF.</p>
                         <button onClick={() => window.print()} className="w-full py-3 bg-[#1A2F2F] text-white rounded-xl font-bold text-xs hover:bg-[#2A4F4F] transition-all">
                             Exporter en PDF
                         </button>
@@ -57,7 +57,7 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                         <div className="w-14 h-14 bg-[#C3FD97] text-[#1A2F2F] rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                             <BookOpen size={24} />
                         </div>
-                        <h3 className="font-bold text-[#1A2F2F] mb-3">Creusez les ressources</h3>
+                        <h3 className="font-bold text-[#1A2F2F] mb-3">Creusez les ressources et les accompagnements</h3>
                         <p className="text-xs text-slate-500 mb-6 flex-1">Accédez à notre bibliothèque de ressources et accompagnements disponibles.</p>
                         <a 
                             href="https://mouvement-tilt.notion.site/1ebd73de1d148080bbb4cb98c2916ca5?v=1ecd73de1d1480d8a635000cf803dd3e" 

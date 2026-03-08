@@ -196,7 +196,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                         <h5 className="text-sm font-bold text-[#1A2F2F] mb-4 uppercase tracking-wider">Lexique des risques positionnés</h5>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 max-h-[400px] overflow-y-auto custom-scrollbar pr-2">
                             {riskWithNumbers.map(r => (
-                                <div key={r.id} className="flex items-start gap-2 text-[10px] leading-tight py-1 border-b border-slate-200/50 last:border-0">
+                                <div key={r.id} className="flex items-start gap-2 text-sm leading-tight py-1 border-b border-slate-200/50 last:border-0">
                                     <span className="font-bold text-[#1A2F2F] shrink-0 w-4">{r.number}.</span>
                                     <span className="text-slate-600">{r.name}</span>
                                 </div>
