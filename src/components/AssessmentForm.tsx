@@ -300,9 +300,9 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                         </div>
 
                                         <div className="space-y-3 md:space-y-4">
-                                            <div className="flex justify-between items-end gap-2">
+                                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-1">
                                                 <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">GRAVITÉ (G)</label>
-                                                <span className="text-xs md:text-sm font-bold text-[#1A2F2F] text-right">{getImpactLabel(assessment.impact)}</span>
+                                                <span className="text-sm font-bold text-[#1A2F2F]">{getImpactLabel(assessment.impact)}</span>
                                             </div>
                                             <div className="relative pt-2">
                                                 <input
@@ -312,14 +312,25 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                                     step="1"
                                                     value={assessment.impact}
                                                     onChange={(e) => handleChange(risk.id, 'impact', parseInt(e.target.value))}
-                                                    className="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#BC5B2E]"
+                                                    className="w-full h-3 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#BC5B2E]"
+                                                    style={{ touchAction: 'none' }}
                                                 />
                                                 <div className="flex justify-between mt-2 px-1">
                                                     {[1, 2, 3, 4].map(v => (
-                                                        <span key={v} className="text-[10px] font-bold text-slate-300">{v}</span>
+                                                        <button
+                                                            key={v}
+                                                            onClick={() => handleChange(risk.id, 'impact', v)}
+                                                            className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                                                                assessment.impact === v
+                                                                    ? 'bg-[#BC5B2E] text-white scale-110'
+                                                                    : 'bg-slate-100 text-slate-400 hover:bg-slate-200'
+                                                            }`}
+                                                        >
+                                                            {v}
+                                                        </button>
                                                     ))}
                                                 </div>
-                                                <p className="mt-3 text-xs text-slate-600 italic leading-relaxed min-h-[3rem]">
+                                                <p className="mt-3 text-xs text-slate-600 italic leading-relaxed min-h-[2.5rem]">
                                                     {LEVEL_DETAILS.gravity[assessment.impact as keyof typeof LEVEL_DETAILS.gravity].desc}
                                                 </p>
                                             </div>
