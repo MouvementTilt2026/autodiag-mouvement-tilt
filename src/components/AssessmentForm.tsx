@@ -314,9 +314,9 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                             </div>
                                         </div>
 
-                                        <div className="space-y-4">
+                                        <div className="space-y-3 md:space-y-4">
                                             <div className="flex justify-between items-end gap-2">
-                                                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">VULNÉRABILITÉ (V)</label>
+                                                <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">VULNÉRABILITÉ (V)</label>
                                                 <span className="text-xs md:text-sm font-bold text-[#1A2F2F] text-right">{getVulnerabilityLabel(assessment.maturity)}</span>
                                             </div>
                                             <div className="relative pt-2">
