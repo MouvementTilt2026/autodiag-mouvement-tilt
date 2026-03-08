@@ -70,7 +70,7 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                             rel="noreferrer"
                             className="w-full py-3 bg-[#C3FD97] text-[#1A2F2F] rounded-xl font-bold text-xs hover:bg-[#B2DFB6] transition-all flex items-center justify-center gap-2"
                         >
-                            Voir les ressources <ExternalLink size={12} />
+                            Voir nos ressources <ExternalLink size={12} />
                         </a>
                     </div>
                 </div>
