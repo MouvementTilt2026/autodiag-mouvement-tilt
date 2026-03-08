@@ -119,6 +119,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                         </div>
                         <span className="text-xs font-bold text-slate-400 shrink-0">{currentCatIndex + 1}/{categories.length}</span>
                     </div>
+                    <p className="text-[10px] text-slate-400 mt-1 text-center">Barre de progression</p>
                 </div>
             </div>
 
