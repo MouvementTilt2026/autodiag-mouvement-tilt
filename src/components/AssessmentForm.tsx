@@ -225,6 +225,14 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                 <p className="text-[10px] text-slate-400 mt-4 italic">Plage de criticité : le score se situe entre 1 (risque minimal) et 64 (risque maximal).</p>
                             </div>
                         </div>
+
+                        <div className="bg-[#D09639]/10 p-4 md:p-6 rounded-2xl border border-[#D09639]/30 flex items-start gap-3">
+                            <AlertTriangle className="text-[#D09639] shrink-0 mt-0.5" size={20} />
+                            <div className="space-y-1">
+                                <p className="text-sm font-bold text-[#1A2F2F]">Attention : si vous n'évaluez pas certains risques, ils apparaîtront par défaut en 1 et ils seront quand même présents dans les tableaux de bord.</p>
+                                <p className="text-sm text-slate-600">→ Nous vous conseillons d'analyser tous les risques afin d'avoir une évaluation globale et des tableaux de bord pertinents.</p>
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>
