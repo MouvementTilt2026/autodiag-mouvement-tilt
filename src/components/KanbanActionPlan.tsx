@@ -131,7 +131,7 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                                                     <span className="font-bold text-slate-300 text-xs shrink-0 mt-1">{index + 1}.</span>
                                                     <div className="flex-1">
                                                         <div className="font-bold text-[#1A2F2F] text-sm mb-1">{lever.name}</div>
-                                                        <div className="text-[11px] text-slate-500 leading-relaxed line-clamp-2">{lever.details}</div>
+                                                        <LeverDetails details={lever.details} />
                                                     </div>
                                                 </div>
                                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

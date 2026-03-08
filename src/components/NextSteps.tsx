@@ -48,9 +48,12 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                         </div>
                         <h3 className="font-bold text-[#1A2F2F] mb-3">Échangez avec vos financeurs et vos instances</h3>
                         <p className="text-xs text-slate-500 mb-6 flex-1">Utilisez ce diagnostic comme base de dialogue sur votre robustesse et vos besoins.</p>
-                        <button className="w-full py-3 bg-[#9DB280] text-white rounded-xl font-bold text-xs hover:opacity-90 transition-all">
-                            Partager le rapport
-                        </button>
+                        <a 
+                            href={`mailto:?subject=${encodeURIComponent("Rapport Robust'Asso - Auto-diagnostic")}&body=${encodeURIComponent("Bonjour,\n\nVeuillez trouver ci-joint notre rapport d'auto-diagnostic Robust'Asso.\n\nCe rapport contient :\n- Les tableaux de bord des risques\n- Les matrices des leviers d'action\n\nPour télécharger le PDF, ouvrez l'outil et cliquez sur « Exporter en PDF ».\n\nCordialement")}`}
+                            className="w-full py-3 bg-secondary text-white rounded-xl font-bold text-xs hover:opacity-90 transition-all flex items-center justify-center gap-2"
+                        >
+                            <Mail size={14} /> Partager le rapport
+                        </a>
                     </div>
 
                     <div className="flex flex-col items-center text-center p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:shadow-lg transition-all group">
