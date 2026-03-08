@@ -165,20 +165,20 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                         { n: 4, l: 'Très fréquent', d: "Risque quasi-systématique (récurrent non résolu).", e: "Survient plusieurs fois par an." },
                                     ].map(item => (
                                         <div key={item.n} className="p-3 rounded-xl bg-white border border-slate-100">
-                                            <span className="text-xs font-bold text-[#1A2F2F]">{item.n} ({item.l})</span>
-                                            <p className="text-xs text-slate-600 leading-tight">{item.d}</p>
-                                            {item.e && <p className="text-[10px] text-slate-400 mt-1 italic">Ex: {item.e}</p>}
+                                            <span className="text-sm font-bold text-[#1A2F2F]">{item.n} ({item.l})</span>
+                                            <p className="text-sm text-slate-600 leading-tight">{item.d}</p>
+                                            {item.e && <p className="text-xs text-slate-400 mt-1 italic">Ex: {item.e}</p>}
                                         </div>
                                     ))}
                                 </div>
                             </div>
 
                             <div className="space-y-4">
-                                <h4 className="font-bold text-[#9DB280] flex items-center gap-2">
+                                <h4 className="font-bold text-base text-[#9DB280] flex items-center gap-2">
                                     <span className="w-6 h-6 rounded-full bg-[#9DB280]/10 flex items-center justify-center text-xs">3</span>
                                     Vulnérabilité (V)
                                 </h4>
-                                <p className="text-xs text-slate-500 italic">Quel est votre niveau de vulnérabilité face à ce risque ?</p>
+                                <p className="text-sm text-slate-500 italic">Quel est votre niveau de vulnérabilité face à ce risque ?</p>
                                 <div className="space-y-2">
                                     {[
                                         { n: 1, l: 'Sécurisé', d: "Actions proactives, contrôle total, amélioration continue.", e: "Tableaux de bord, rapports d'audit, plans mis à jour." },
