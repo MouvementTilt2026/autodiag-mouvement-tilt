@@ -224,7 +224,7 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
     {
         id: 'lev-27',
         theme: 'Environnemental',
-        category: 'Technologie',
+        category: 'Innovation, énergie et technologie',
         name: 'Recycler ou valoriser énergétiquement',
         details: "Recycler : Processus par lequel un matériau ou un produit en fin de vie est réintroduit dans un cycle de production afin de créer de nouveaux produits, réduisant ainsi l’usage de ressources naturelles.\n\nValoriser énergétiquement : Transformation d’un déchet ou d’un matériau en énergie utilisable (chaleur, électricité, biogaz), lorsque le recyclage n’est pas possible ou moins efficace.",
         isCollective: false
