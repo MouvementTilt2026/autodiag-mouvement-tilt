@@ -48,7 +48,7 @@ export interface ActionLever {
 
 export interface ActionLeverAssessment {
     leverId: string;
-    status: 'keep' | 'stop' | 'start' | 'none';
+    status: 'keep' | 'stop' | 'start' | 'none' | 'na';
     importance: number;
     urgency: number;
 }

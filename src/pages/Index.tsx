@@ -7,7 +7,10 @@ import KanbanActionPlan from '@/components/KanbanActionPlan';
 import NextSteps from '@/components/NextSteps';
 import { AppState, RiskAssessment, ActionLeverAssessment } from '@/types';
 import { RISK_CATALOG, ACTION_LEVERS_CATALOG, COLORS } from '@/constants';
-import { Download, Mail, Globe, ArrowRight, CheckCircle2, ShieldCheck, Info, TrendingUp, Users } from 'lucide-react';
+import { Download, Mail, Globe, ArrowRight, CheckCircle2, ShieldCheck, Info, TrendingUp, Users, Rocket, RefreshCw, Target, Compass, Heart, BookOpen, ExternalLink } from 'lucide-react';
+import loraineImg from '@/assets/loraine.png';
+import alizeImg from '@/assets/alize.png';
+import heloiseImg from '@/assets/heloise.png';
 
 const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
     <div className="max-w-4xl mx-auto p-4 md:p-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -104,76 +107,186 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                     </button>
                 </div>
 
+                {/* À propos du Mouvement Tilt */}
                 <div className="mt-24 pt-16 border-t border-slate-100 space-y-12">
                     <div className="flex items-center gap-4">
                         <div className="w-12 h-12 bg-[#1A2F2F] rounded-2xl flex items-center justify-center text-[#C3FD97]">
-                            <Users size={24} />
+                            <Globe size={24} />
                         </div>
                         <div>
-                            <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F]">L'équipe Tilt</h2>
-                            <p className="text-slate-500 font-medium">Les visages derrière Robust'Asso</p>
+                            <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F]">À propos du Mouvement Tilt</h2>
+                            <p className="text-slate-500 font-medium">Ingénierie socio-environnementale au service de l'intérêt général</p>
                         </div>
                     </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {[
-                            {
-                                name: "Loraine Derville",
-                                role: "Fondatrice du Mouvement Tilt",
-                                linkedin: "https://www.linkedin.com/in/loraine-derville/?originalSubdomain=fr",
-                                contactReason: "la contacter si vous avez des questions en tant que fondation",
-                                image: "https://picsum.photos/seed/loraine/400/400"
-                            },
-                            {
-                                name: "Alizé Danchaud",
-                                role: "Responsable du programme",
-                                linkedin: "https://www.linkedin.com/in/aliz%C3%A9-danchaud-282509115/",
-                                contactReason: "la contacter si vous avez des questions en tant qu'association et sur les contenus de cet outil d'autodiag",
-                                image: "https://picsum.photos/seed/alize/400/400"
-                            },
-                            {
-                                name: "Héloïse Martin",
-                                role: "Consultante et formatrice",
-                                linkedin: "https://www.linkedin.com/in/heloise-martin/",
-                                contactReason: "la contacter si vous avez des questions sur l'ingénierie et la conception d'outil d'autodiag personnalisé",
-                                image: "https://picsum.photos/seed/heloise/400/400"
-                            }
-                        ].map((member, index) => (
-                            <div key={index} className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col">
-                                <div className="aspect-square relative overflow-hidden">
-                                    <img 
-                                        src={member.image} 
-                                        alt={member.name}
-                                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100"
-                                        referrerPolicy="no-referrer"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A2F2F]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                                        <a 
-                                            href={member.linkedin}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="w-full py-3 bg-[#C3FD97] text-[#1A2F2F] rounded-xl font-bold flex items-center justify-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
-                                        >
-                                            <ArrowRight size={18} /> Profil LinkedIn
-                                        </a>
+
+                    {/* Vision & Mission */}
+                    <div className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 space-y-8">
+                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Notre vision & notre mission</h3>
+                        <div className="space-y-6">
+                            <div className="flex items-start gap-4">
+                                <div className="w-12 h-12 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center shrink-0">
+                                    <Rocket size={24} />
+                                </div>
+                                <p className="text-slate-600 leading-relaxed">
+                                    Promouvoir un modèle d'engagement systémique, où la dimension environnementale devient l'affaire de tous les acteurs et de toutes les causes de l'intérêt général, <strong className="text-[#1A2F2F]">en alliant respect des limites planétaires et réponses aux défis sociaux</strong>.
+                                </p>
+                            </div>
+                            <div className="flex items-start gap-4">
+                                <div className="w-12 h-12 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center shrink-0">
+                                    <RefreshCw size={24} />
+                                </div>
+                                <p className="text-slate-600 leading-relaxed">
+                                    Activer le pouvoir d'agir des associations pour répondre aux grands enjeux de notre temps et <strong className="text-[#1A2F2F]">favoriser la soutenabilité et la robustesse des acteurs de l'intérêt général</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Valeurs */}
+                    <div className="bg-[#E1E4D1]/30 p-6 md:p-8 rounded-3xl border border-[#9DB280]/20 space-y-6">
+                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Nos valeurs qui constituent l'ADN du Mouvement Tilt</h3>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                            {[
+                                { label: 'Gratuité', icon: Heart },
+                                { label: 'Open Source', icon: BookOpen },
+                                { label: 'Recherche-Action', icon: Target },
+                                { label: 'Communauté apprenante', icon: Users },
+                            ].map((val, i) => (
+                                <div key={i} className="flex flex-col items-center text-center gap-3">
+                                    <div className="w-14 h-14 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center">
+                                        <val.icon size={28} />
+                                    </div>
+                                    <span className="text-sm font-bold text-[#1A2F2F]">{val.label}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Parcours - besoins fondamentaux */}
+                    <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 space-y-6">
+                        <h3 className="text-lg md:text-xl font-bold text-[#1A2F2F] leading-snug">
+                            Des parcours conçus pour renforcer le pouvoir d'agir des associations, en répondant à trois besoins fondamentaux...
+                        </h3>
+                        <div className="space-y-6">
+                            {[
+                                {
+                                    title: 'Autonomie',
+                                    desc: "Se sentir en capacité de prendre des décisions et de décider par soi-même.",
+                                    example: "Appliquer et évaluer des méthodes et outils clés en main et open-source pour piloter sa propre transition écologique.",
+                                    icon: Compass,
+                                },
+                                {
+                                    title: 'Compétences',
+                                    desc: "Se sentir compétent et monter en compétences dans ses missions.",
+                                    example: "Avoir de nouvelles connaissances et soft skills grâce à des formations et méthodes adaptées à la transition écologique du secteur associatif.",
+                                    icon: Target,
+                                },
+                                {
+                                    title: 'Relations sociales',
+                                    desc: "Se sentir connecté avec les autres et soutenu dans sa démarche.",
+                                    example: "S'entraider et apprendre entre pairs pendant les cohortes et à travers la communauté d'alumni.",
+                                    icon: Users,
+                                },
+                            ].map((item, i) => (
+                                <div key={i} className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                                    <div className="w-10 h-10 rounded-xl bg-[#9DB280] text-white flex items-center justify-center shrink-0 mt-1">
+                                        <item.icon size={20} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-[#1A2F2F] mb-1">{item.title}</h4>
+                                        <p className="text-sm text-slate-600 mb-1">{item.desc}</p>
+                                        <p className="text-xs text-slate-400 italic">Exemple : {item.example}</p>
                                     </div>
                                 </div>
-                                <div className="p-6 flex-1 flex flex-col space-y-3">
-                                    <div>
-                                        <h3 className="text-lg font-bold text-[#1A2F2F] mb-1">{member.name}</h3>
-                                        <p className="text-[#9DB280] font-bold text-[10px] uppercase tracking-widest">{member.role}</p>
+                            ))}
+                        </div>
+                        <p className="text-[10px] text-slate-400 italic">Théorie de l'autodétermination (Deci, 1980 ; Deci et Ryan, 1980, 1985).</p>
+                    </div>
+
+                    {/* Bouton vers le site */}
+                    <div className="flex justify-center">
+                        <a 
+                            href="https://www.mouvement-tilt.com" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="px-8 py-4 bg-[#1A2F2F] text-white rounded-2xl font-bold text-lg hover:bg-[#2A4F4F] transition-all flex items-center gap-3 shadow-lg"
+                        >
+                            Découvrir le Mouvement Tilt <ExternalLink size={20} />
+                        </a>
+                    </div>
+
+                    {/* Équipe */}
+                    <div className="space-y-8 pt-8 border-t border-slate-100">
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 bg-[#1A2F2F] rounded-2xl flex items-center justify-center text-[#C3FD97]">
+                                <Users size={24} />
+                            </div>
+                            <div>
+                                <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">L'équipe Tilt</h3>
+                                <p className="text-slate-500 font-medium">Les visages derrière Robust'Asso</p>
+                            </div>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            {[
+                                {
+                                    name: "Loraine Derville",
+                                    role: "Fondatrice du Mouvement Tilt",
+                                    linkedin: "https://www.linkedin.com/in/loraine-derville/?originalSubdomain=fr",
+                                    contactReason: "la contacter si vous avez des questions en tant que fondation",
+                                    image: loraineImg
+                                },
+                                {
+                                    name: "Alizé Danchaud",
+                                    role: "Responsable du programme",
+                                    linkedin: "https://www.linkedin.com/in/aliz%C3%A9-danchaud-282509115/",
+                                    contactReason: "la contacter si vous avez des questions en tant qu'association et sur les contenus de cet outil d'autodiag",
+                                    image: alizeImg
+                                },
+                                {
+                                    name: "Héloïse Martin",
+                                    role: "Consultante et formatrice",
+                                    linkedin: "https://www.linkedin.com/in/heloise-martin/",
+                                    contactReason: "la contacter si vous avez des questions sur l'ingénierie et la conception d'outil d'autodiag personnalisé",
+                                    image: heloiseImg
+                                }
+                            ].map((member, index) => (
+                                <div key={index} className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col">
+                                    <div className="aspect-square relative overflow-hidden">
+                                        <img 
+                                            src={member.image} 
+                                            alt={member.name}
+                                            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#1A2F2F]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                            <a 
+                                                href={member.linkedin}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-full py-3 bg-[#C3FD97] text-[#1A2F2F] rounded-xl font-bold flex items-center justify-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
+                                            >
+                                                <ArrowRight size={18} /> Profil LinkedIn
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 mt-auto">
-                                        <div className="flex gap-3 items-start">
-                                            <ArrowRight size={16} className="text-[#BC5B2E] shrink-0 mt-1" />
-                                            <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                                                {member.contactReason}
-                                            </p>
+                                    <div className="p-6 flex-1 flex flex-col space-y-3">
+                                        <div>
+                                            <h4 className="text-lg font-bold text-[#1A2F2F] mb-1">{member.name}</h4>
+                                            <p className="text-[#9DB280] font-bold text-[10px] uppercase tracking-widest">{member.role}</p>
+                                        </div>
+                                        <p className="text-[10px] text-slate-400 italic">Crédit photo : Marylou Mauricio</p>
+                                        <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 mt-auto">
+                                            <div className="flex gap-3 items-start">
+                                                <ArrowRight size={16} className="text-[#BC5B2E] shrink-0 mt-1" />
+                                                <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                                                    {member.contactReason}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -251,20 +364,11 @@ const Index: React.FC = () => {
                     {state.step === 'intro' && <Intro onStart={(step) => handleNavigate(step || 'critique')} />}
                     {state.step === 'critique' && <PedagogicalCritique onNext={() => handleNavigate('risks')} />}
                     {state.step === 'risks' && (
-                        <div className="space-y-8">
-                            <AssessmentForm 
-                                assessments={state.assessments} 
-                                onUpdate={handleUpdateAssessment} 
-                            />
-                            <div className="flex justify-end max-w-5xl mx-auto">
-                                <button 
-                                    onClick={() => handleNavigate('risk_dashboard')}
-                                    className="px-8 py-4 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#2A4F4F] transition-all flex items-center gap-2"
-                                >
-                                    Voir les tableaux de bord <ArrowRight size={18} />
-                                </button>
-                            </div>
-                        </div>
+                        <AssessmentForm 
+                            assessments={state.assessments} 
+                            onUpdate={handleUpdateAssessment}
+                            onNavigate={handleNavigate}
+                        />
                     )}
                     {state.step === 'risk_dashboard' && (
                         <RiskMatrix assessments={state.assessments} onNext={() => handleNavigate('kanban')} />
