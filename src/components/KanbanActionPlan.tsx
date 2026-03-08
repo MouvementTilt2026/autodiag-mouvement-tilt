@@ -84,12 +84,22 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
             </div>
 
             {/* Info box */}
-            <div className="bg-[#E1E4D1]/30 p-4 md:p-6 rounded-2xl border border-[#9DB280]/20 no-print">
-                <div className="flex items-start gap-3">
-                    <Info className="text-[#9DB280] shrink-0 mt-1" size={20} />
-                    <p className="text-sm text-slate-600 leading-relaxed">
-                        Évaluez chaque levier d'action ci-dessous, puis retrouvez les <strong>grilles d'analyse visuelle</strong> (état des lieux, plan d'action et matrice d'Eisenhower) en bas de cette page.
-                    </p>
+            <div className="space-y-4 no-print">
+                <div className="bg-[#E1E4D1]/30 p-4 md:p-6 rounded-2xl border border-[#9DB280]/20">
+                    <div className="flex items-start gap-3">
+                        <Info className="text-[#9DB280] shrink-0 mt-1" size={20} />
+                        <p className="text-sm text-slate-600 leading-relaxed">
+                            Évaluez chaque levier d'action ci-dessous, puis retrouvez les <strong>grilles d'analyse visuelle</strong> (état des lieux, plan d'action et matrice d'Eisenhower) en bas de cette page.
+                        </p>
+                    </div>
+                </div>
+                <div className="bg-accent/20 p-4 md:p-6 rounded-2xl border border-accent/30">
+                    <div className="flex items-start gap-3">
+                        <Lightbulb className="text-[#D09639] shrink-0 mt-1" size={20} />
+                        <p className="text-sm text-slate-600 leading-relaxed">
+                            Chaque levier d'action est proposé avec <strong>un exemple concret</strong> pour vous aider à mieux comprendre comment le mettre en œuvre dans votre association.
+                        </p>
+                    </div>
                 </div>
             </div>
 
