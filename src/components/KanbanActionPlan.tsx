@@ -3,7 +3,8 @@ import { ACTION_LEVERS_CATALOG, COLORS } from '@/constants';
 import { ActionLeverAssessment } from '@/types';
 import { 
     Kanban as KanbanIcon, ArrowRight, Info, Download, CheckCircle2, XCircle, PlayCircle, AlertCircle, 
-    Zap, Clock, Target, ShieldAlert, Printer, Trash2, ChevronDown, ChevronUp, MinusCircle
+    Zap, Clock, Target, ShieldAlert, Printer, Trash2, ChevronDown, ChevronUp, MinusCircle,
+    Landmark, Briefcase, Lightbulb
 } from 'lucide-react';
 import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
 
