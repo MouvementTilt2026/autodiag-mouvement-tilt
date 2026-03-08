@@ -386,12 +386,12 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                         </div>
                                     </div>
 
-                                    <div className="flex flex-col items-center pt-6 border-t border-slate-50">
-                                        <div className="bg-[#E1E4D1]/50 p-4 md:p-6 rounded-2xl border border-[#9DB280]/20 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-inner w-full">
+                                    <div className="flex flex-col items-center pt-4 md:pt-6 border-t border-slate-50">
+                                        <div className="bg-[#E1E4D1]/50 p-3 md:p-6 rounded-xl md:rounded-2xl border border-[#9DB280]/20 flex flex-col sm:flex-row items-center justify-between gap-3 md:gap-4 shadow-inner w-full">
                                             <div className="flex flex-col items-center sm:items-start">
                                                 <span className="text-[10px] font-bold text-[#1A2F2F]/40 uppercase tracking-widest mb-1">Score de criticité (G x F x V)</span>
                                                 <div className="flex items-baseline gap-2">
-                                                    <span className="text-[#1A2F2F] font-black text-3xl">{riskScore}</span>
+                                                    <span className="text-[#1A2F2F] font-black text-2xl md:text-3xl">{riskScore}</span>
                                                     <span className="text-xs text-slate-400 font-bold">/ 64</span>
                                                 </div>
                                             </div>
