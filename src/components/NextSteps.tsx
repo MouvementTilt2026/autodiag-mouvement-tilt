@@ -122,7 +122,7 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                                 name: "Loraine Derville",
                                 role: "Fondatrice du Mouvement Tilt",
                                 linkedin: "https://www.linkedin.com/in/loraine-derville/?originalSubdomain=fr",
-                                contactReason: "la contacter si vous avez des questions en tant que fondation",
+                                contactReason: "la contacter si vous avez des questions en tant que fondation / fonds de dotation ou si vous souhaitez devenir partenaire (mécénat de compétences, relai médias, etc.)",
                                 image: loraineImg
                             },
                             {
