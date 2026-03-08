@@ -216,7 +216,7 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
     {
         id: 'lev-26',
         theme: 'Environnemental, Économique',
-        category: 'Technologie',
+        category: 'Innovation, énergie et technologie',
         name: 'Recourir aux énergies renouvelables',
         details: "En complément d'une démarche de sobriété et d’efficacité énergétique, produire sa propre énergie renouvelable peut permettre non seulement de réduire l’empreinte carbone de l’organisation (c’est le cas notamment de la pompe à chaleur), mais aussi de renforcer son autonomie énergétique.",
         isCollective: false
