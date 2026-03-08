@@ -56,7 +56,7 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
     {
         id: 'lev-6',
         theme: 'Environnemental',
-        category: 'Technologie',
+        category: 'Innovation, énergie et technologie',
         name: 'Isoler les bâtiments',
         details: "L'isolation des bâtiments est un levier majeur de lutte contre le changement climatique. Elle permet d'agir à la fois sur son atténuation – réduction des émissions – et constitue une solution d'adaptation, offrant des conditions de vie moins pénibles comme en cas de forte chaleur.\n\nPar exemple, après son Bilan Carbone 2023, l’Association Pour l’Amitié (APA), association de colocations solidaires, a identifié les bâtiments prioritaires à rénover et s’est engagée à les financer en priorité.",
         isCollective: false
