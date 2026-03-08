@@ -112,7 +112,9 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                         <div key={cat} className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
                             <button onClick={() => toggleCategory(cat)} className="w-full p-5 md:p-6 flex items-center justify-between gap-3 hover:bg-slate-50 transition-colors">
                                 <div className="flex items-center gap-3">
-                                    <ShieldAlert className="text-[#BC5B2E]" size={20} />
+                                    {cat === 'Modèle & gouvernance' ? <Landmark className="text-[#BC5B2E]" size={20} /> :
+                                     cat === 'Pratiques opérationnelles et managériales' ? <Briefcase className="text-[#9DB280]" size={20} /> :
+                                     <Lightbulb className="text-[#D09639]" size={20} />}
                                     <h3 className="text-base md:text-lg font-bold text-[#1A2F2F]">{cat}</h3>
                                     <span className="text-[10px] font-bold px-2 py-1 bg-slate-100 text-slate-500 rounded-full">{leversInCat.length} leviers</span>
                                 </div>
