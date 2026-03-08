@@ -119,7 +119,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                         </div>
                         <span className="text-xs font-bold text-slate-400 shrink-0">{currentCatIndex + 1}/{categories.length}</span>
                     </div>
-                    <p className="text-[10px] text-slate-400 mt-1 text-center">Barre de progression</p>
+                    <p className="text-[10px] text-slate-400 mt-1">Barre de progression</p>
                 </div>
             </div>
 
@@ -235,6 +235,18 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                             <div className="space-y-1">
                                 <p className="text-sm font-bold text-[#1A2F2F]">Attention : si vous n'évaluez pas certains risques, ils apparaîtront par défaut en 1 et ils seront quand même présents dans les tableaux de bord.</p>
                                 <p className="text-sm text-slate-600">→ Nous vous conseillons d'analyser tous les risques afin d'avoir une évaluation globale et des tableaux de bord pertinents.</p>
+                            </div>
+                        </div>
+
+                        <div className="bg-[#1A2F2F]/5 p-4 md:p-6 rounded-2xl border border-[#1A2F2F]/10 flex items-start gap-3">
+                            <Info className="text-[#1A2F2F] shrink-0 mt-0.5" size={20} />
+                            <div className="space-y-2">
+                                <p className="text-sm font-bold text-[#1A2F2F]">Conseils :</p>
+                                <ol className="text-sm text-slate-600 space-y-1 list-decimal list-inside">
+                                    <li>Identifiez le périmètre de votre évaluation (échelle territoriale, niveau d'activité, etc.)</li>
+                                    <li>Faites cette évaluation sur ordinateur pour visualiser facilement les échelles de risques.</li>
+                                    <li>Évaluez à plusieurs afin de croiser les regards.</li>
+                                </ol>
                             </div>
                         </div>
                     </div>
