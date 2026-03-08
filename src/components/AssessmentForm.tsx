@@ -305,7 +305,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                         <div className="space-y-3">
                             <h4 className="font-bold text-base text-[#D09639] flex items-center gap-2">
                                 <span className="w-6 h-6 rounded-full bg-[#D09639]/10 flex items-center justify-center text-xs">2</span>
-                                Périmètre Géographique (L'Ancrage)
+                                Périmètre géographique
                             </h4>
                             <p className="text-sm text-slate-500 italic">Définit où se situe l'impact ou la menace.</p>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
