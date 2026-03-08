@@ -92,14 +92,14 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                         </a>
                     </div>
 
-                    <div className="bg-[#1A2F2F] text-white p-6 md:p-10 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div className="bg-white text-[#1A2F2F] p-6 md:p-10 rounded-3xl border-2 border-[#C3FD97] flex flex-col md:flex-row items-center justify-between gap-8">
                         <div className="flex items-start gap-4">
                             <div className="w-12 h-12 rounded-2xl bg-[#C3FD97] flex items-center justify-center shrink-0">
                                 <Wrench className="text-[#1A2F2F]" />
                             </div>
                             <div className="space-y-1">
                                 <h4 className="font-bold text-xl">Concevoir votre outil sur-mesure</h4>
-                                <p className="text-sm text-slate-400">Vous souhaitez également concevoir votre outil d'auto-diagnostic personnalisé ? Pour en savoir plus, contactez-nous.</p>
+                                <p className="text-sm text-slate-500">Vous souhaitez également concevoir votre outil d'auto-diagnostic personnalisé ? Pour en savoir plus, contactez-nous.</p>
                             </div>
                         </div>
                         <a href="mailto:info@mouvement-tilt.com"
