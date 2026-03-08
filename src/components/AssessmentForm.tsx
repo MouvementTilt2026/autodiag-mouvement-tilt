@@ -130,7 +130,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                 >
                     <div className="flex items-center gap-3">
                         <Info className="text-[#BC5B2E]" size={24} />
-                        <h3 className="text-xl font-bold text-[#1A2F2F]">Lexique d'évaluation</h3>
+                        <h3 className="text-xl font-bold text-[#1A2F2F]">À lire : lexique d'évaluation</h3>
                     </div>
                     {lexiqueOpen ? <ChevronUp size={24} className="text-slate-400" /> : <ChevronDown size={24} className="text-slate-400" />}
                 </button>
