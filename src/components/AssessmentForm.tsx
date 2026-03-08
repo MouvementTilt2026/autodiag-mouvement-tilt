@@ -315,41 +315,39 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                             </p>
                                         </div>
 
-                                        <div className="space-y-3 md:space-y-4">
-                                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-1">
+                                        <div className="space-y-2 md:space-y-4 bg-slate-50 md:bg-transparent p-3 md:p-0 rounded-xl">
+                                            <div className="flex justify-between items-center gap-1">
                                                 <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">GRAVITÉ (G)</label>
-                                                <span className="text-sm font-bold text-[#1A2F2F]">{getImpactLabel(assessment.impact)}</span>
+                                                <span className="text-xs md:text-sm font-bold text-[#1A2F2F]">{getImpactLabel(assessment.impact)}</span>
                                             </div>
-                                            <div className="relative pt-2">
-                                                <input
-                                                    type="range"
-                                                    min="1"
-                                                    max="4"
-                                                    step="1"
-                                                    value={assessment.impact}
-                                                    onChange={(e) => handleChange(risk.id, 'impact', parseInt(e.target.value))}
-                                                    className="w-full h-3 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#BC5B2E]"
-                                                    style={{ touchAction: 'none' }}
-                                                />
-                                                <div className="flex justify-between mt-2 px-1">
-                                                    {[1, 2, 3, 4].map(v => (
-                                                        <button
-                                                            key={v}
-                                                            onClick={() => handleChange(risk.id, 'impact', v)}
-                                                            className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                                                                assessment.impact === v
-                                                                    ? 'bg-[#BC5B2E] text-white scale-110'
-                                                                    : 'bg-slate-100 text-slate-400 hover:bg-slate-200'
-                                                            }`}
-                                                        >
-                                                            {v}
-                                                        </button>
-                                                    ))}
-                                                </div>
-                                                <p className="mt-3 text-xs text-slate-600 italic leading-relaxed min-h-[2.5rem]">
-                                                    {LEVEL_DETAILS.gravity[assessment.impact as keyof typeof LEVEL_DETAILS.gravity].desc}
-                                                </p>
+                                            <input
+                                                type="range"
+                                                min="1"
+                                                max="4"
+                                                step="1"
+                                                value={assessment.impact}
+                                                onChange={(e) => handleChange(risk.id, 'impact', parseInt(e.target.value))}
+                                                className="w-full h-3 bg-slate-200 md:bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#BC5B2E] hidden md:block"
+                                                style={{ touchAction: 'none' }}
+                                            />
+                                            <div className="flex justify-between px-1">
+                                                {[1, 2, 3, 4].map(v => (
+                                                    <button
+                                                        key={v}
+                                                        onClick={() => handleChange(risk.id, 'impact', v)}
+                                                        className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                                                            assessment.impact === v
+                                                                ? 'bg-[#BC5B2E] text-white scale-110'
+                                                                : 'bg-white md:bg-slate-100 text-slate-400 hover:bg-slate-200 border border-slate-200 md:border-0'
+                                                        }`}
+                                                    >
+                                                        {v}
+                                                    </button>
+                                                ))}
                                             </div>
+                                            <p className="hidden md:block mt-1 text-xs text-slate-600 italic leading-relaxed min-h-[2.5rem]">
+                                                {LEVEL_DETAILS.gravity[assessment.impact as keyof typeof LEVEL_DETAILS.gravity].desc}
+                                            </p>
                                         </div>
 
                                         <div className="space-y-3 md:space-y-4">
