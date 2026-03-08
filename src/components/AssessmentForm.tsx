@@ -95,7 +95,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                 </div>
 
                 <div className="relative group">
-                    <div className="flex items-center gap-2 overflow-x-auto pb-4 no-scrollbar scroll-smooth">
+                    <div className="flex items-center gap-2 overflow-x-auto pb-4 scroll-smooth" style={{ scrollbarWidth: 'thin', scrollbarColor: '#BC5B2E20 transparent' }}>
                         {categories.map((cat) => (
                             <button
                                 key={cat}
@@ -109,6 +109,12 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                 {cat}
                             </button>
                         ))}
+                    </div>
+                    <div className="h-1 bg-slate-100 rounded-full mt-1">
+                        <div 
+                            className="h-1 bg-[#BC5B2E] rounded-full transition-all duration-300"
+                            style={{ width: `${((currentCatIndex + 1) / categories.length) * 100}%` }}
+                        />
                     </div>
                 </div>
             </div>
