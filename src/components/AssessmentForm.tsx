@@ -152,11 +152,11 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                             </div>
 
                             <div className="space-y-4">
-                                <h4 className="font-bold text-[#D09639] flex items-center gap-2">
+                                <h4 className="font-bold text-base text-[#D09639] flex items-center gap-2">
                                     <span className="w-6 h-6 rounded-full bg-[#D09639]/10 flex items-center justify-center text-xs">2</span>
                                     Fréquence (F)
                                 </h4>
-                                <p className="text-xs text-slate-500 italic">Quelle est la probabilité que le risque se produise ?</p>
+                                <p className="text-sm text-slate-500 italic">Quelle est la probabilité que le risque se produise ?</p>
                                 <div className="space-y-2">
                                     {[
                                         { n: 1, l: 'Très improbable', d: "Risque qui n'est jamais survenu et difficile à imaginer.", e: "Moins d'une fois tous les 5 ans." },
