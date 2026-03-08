@@ -110,11 +110,14 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                             </button>
                         ))}
                     </div>
-                    <div className="h-1 bg-slate-100 rounded-full mt-1">
-                        <div 
-                            className="h-1 bg-[#BC5B2E] rounded-full transition-all duration-300"
-                            style={{ width: `${((currentCatIndex + 1) / categories.length) * 100}%` }}
-                        />
+                    <div className="flex items-center gap-3 mt-3">
+                        <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
+                            <div 
+                                className="h-2 bg-[#BC5B2E] rounded-full transition-all duration-300"
+                                style={{ width: `${((currentCatIndex + 1) / categories.length) * 100}%` }}
+                            />
+                        </div>
+                        <span className="text-xs font-bold text-slate-400 shrink-0">{currentCatIndex + 1}/{categories.length}</span>
                     </div>
                 </div>
             </div>
@@ -127,7 +130,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                 >
                     <div className="flex items-center gap-3">
                         <Info className="text-[#BC5B2E]" size={24} />
-                        <h3 className="text-xl font-bold text-[#1A2F2F]">Lexique d'évaluation</h3>
+                        <h3 className="text-xl font-bold text-[#1A2F2F]">À lire : lexique d'évaluation</h3>
                     </div>
                     {lexiqueOpen ? <ChevronUp size={24} className="text-slate-400" /> : <ChevronDown size={24} className="text-slate-400" />}
                 </button>
