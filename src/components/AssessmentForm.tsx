@@ -263,8 +263,8 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                                 <Globe size={12} /> {risk.theme}
                                             </span>
                                         </div>
-                                        <h3 className="text-lg md:text-2xl font-bold text-[#1A2F2F]">{risk.name}</h3>
-                                        {risk.description && <p className="text-slate-500 text-sm leading-relaxed">{risk.description}</p>}
+                                        <h3 className="text-base md:text-2xl font-bold text-[#1A2F2F]">{risk.name}</h3>
+                                        {risk.description && <p className="text-slate-500 text-xs md:text-sm leading-relaxed">{risk.description}</p>}
                                     </div>
                                     <div className="flex items-center gap-2 shrink-0">
                                         {risk.odds && risk.odds.length > 0 && (
