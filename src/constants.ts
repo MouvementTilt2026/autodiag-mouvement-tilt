@@ -184,7 +184,7 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
     {
         id: 'lev-22',
         theme: 'Environnemental',
-        category: 'Technologie',
+        category: 'Innovation, énergie et technologie',
         name: 'Imiter la nature grâce au biomimétisme',
         details: "Le Biomimétisme c’est s’inspirer des formes, fonctions ou mécanismes du vivant pour créer des innovations durables.\n\nPar exemple, le Low-tech Lab est une association française dédiée à la recherche et à la documentation open-source sur les innovations low-tech. Elle valorise des solutions simples, accessibles et durables, en s'inspirant notamment du vivant. Notamment, le projet BioMiMetiC explore les liens entre low-tech et biomimétisme en recensant des initiatives, événements et ressources sur ce thème.",
         isCollective: false
