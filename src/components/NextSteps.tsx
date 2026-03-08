@@ -41,6 +41,7 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                         <button onClick={() => window.print()} className="w-full py-3 bg-primary text-primary-foreground rounded-xl font-bold text-xs hover:opacity-90 transition-all">
                             Exporter en PDF
                         </button>
+                        <p className="text-[10px] text-slate-400 mt-2">Inclut les matrices d'évaluation des risques et les matrices des leviers d'action.</p>
                     </div>
 
                     <div className="flex flex-col items-center text-center p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:shadow-lg transition-all group">
