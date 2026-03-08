@@ -350,41 +350,39 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                             </p>
                                         </div>
 
-                                        <div className="space-y-3 md:space-y-4">
-                                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-1">
+                                        <div className="space-y-2 md:space-y-4 bg-slate-50 md:bg-transparent p-3 md:p-0 rounded-xl">
+                                            <div className="flex justify-between items-center gap-1">
                                                 <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">VULNÉRABILITÉ (V)</label>
-                                                <span className="text-sm font-bold text-[#1A2F2F]">{getVulnerabilityLabel(assessment.maturity)}</span>
+                                                <span className="text-xs md:text-sm font-bold text-[#1A2F2F]">{getVulnerabilityLabel(assessment.maturity)}</span>
                                             </div>
-                                            <div className="relative pt-2">
-                                                <input
-                                                    type="range"
-                                                    min="1"
-                                                    max="4"
-                                                    step="1"
-                                                    value={assessment.maturity}
-                                                    onChange={(e) => handleChange(risk.id, 'maturity', parseInt(e.target.value))}
-                                                    className="w-full h-3 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#9DB280]"
-                                                    style={{ touchAction: 'none' }}
-                                                />
-                                                <div className="flex justify-between mt-2 px-1">
-                                                    {[1, 2, 3, 4].map(v => (
-                                                        <button
-                                                            key={v}
-                                                            onClick={() => handleChange(risk.id, 'maturity', v)}
-                                                            className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
-                                                                assessment.maturity === v
-                                                                    ? 'bg-[#9DB280] text-white scale-110'
-                                                                    : 'bg-slate-100 text-slate-400 hover:bg-slate-200'
-                                                            }`}
-                                                        >
-                                                            {v}
-                                                        </button>
-                                                    ))}
-                                                </div>
-                                                <p className="mt-3 text-xs text-slate-600 italic leading-relaxed min-h-[2.5rem]">
-                                                    {LEVEL_DETAILS.vulnerability[assessment.maturity as keyof typeof LEVEL_DETAILS.vulnerability].desc}
-                                                </p>
+                                            <input
+                                                type="range"
+                                                min="1"
+                                                max="4"
+                                                step="1"
+                                                value={assessment.maturity}
+                                                onChange={(e) => handleChange(risk.id, 'maturity', parseInt(e.target.value))}
+                                                className="w-full h-3 bg-slate-200 md:bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#9DB280] hidden md:block"
+                                                style={{ touchAction: 'none' }}
+                                            />
+                                            <div className="flex justify-between px-1">
+                                                {[1, 2, 3, 4].map(v => (
+                                                    <button
+                                                        key={v}
+                                                        onClick={() => handleChange(risk.id, 'maturity', v)}
+                                                        className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                                                            assessment.maturity === v
+                                                                ? 'bg-[#9DB280] text-white scale-110'
+                                                                : 'bg-white md:bg-slate-100 text-slate-400 hover:bg-slate-200 border border-slate-200 md:border-0'
+                                                        }`}
+                                                    >
+                                                        {v}
+                                                    </button>
+                                                ))}
                                             </div>
+                                            <p className="hidden md:block mt-1 text-xs text-slate-600 italic leading-relaxed min-h-[2.5rem]">
+                                                {LEVEL_DETAILS.vulnerability[assessment.maturity as keyof typeof LEVEL_DETAILS.vulnerability].desc}
+                                            </p>
                                         </div>
                                     </div>
 
