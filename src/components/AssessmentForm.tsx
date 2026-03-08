@@ -12,6 +12,10 @@ interface AssessmentFormProps {
 const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, onNavigate }) => {
     const [activeCategory, setActiveCategory] = useState<RiskCategory>(Object.values(RiskCategory)[0]);
     const [lexiqueOpen, setLexiqueOpen] = useState(false);
+    const [perimetreOrga, setPerimetreOrga] = useState<string>('');
+    const [perimetreGeo, setPerimetreGeo] = useState<string>('');
+    const [perimetreEval, setPerimetreEval] = useState<string>('');
+    const [perimetreOpen, setPerimetreOpen] = useState(false);
 
     const categories = Object.values(RiskCategory);
     const currentCatIndex = categories.indexOf(activeCategory);
@@ -247,6 +251,111 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                     <li>Faites cette évaluation sur ordinateur pour visualiser facilement les échelles de risques.</li>
                                     <li>Évaluez à plusieurs afin de croiser les regards.</li>
                                 </ol>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Périmètre d'évaluation */}
+            <div className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+                <button 
+                    onClick={() => setPerimetreOpen(!perimetreOpen)}
+                    className="w-full p-6 md:p-8 flex items-center justify-between gap-3 hover:bg-slate-50 transition-colors"
+                >
+                    <div className="flex items-center gap-3">
+                        <Globe className="text-[#9DB280]" size={24} />
+                        <h3 className="text-xl font-bold text-[#1A2F2F]">Définir le périmètre de votre évaluation</h3>
+                    </div>
+                    {perimetreOpen ? <ChevronUp size={24} className="text-slate-400" /> : <ChevronDown size={24} className="text-slate-400" />}
+                </button>
+                
+                {perimetreOpen && (
+                    <div className="px-6 md:px-8 pb-6 md:pb-8 space-y-6 animate-in slide-in-from-top-2 duration-300">
+                        {/* 1. Périmètre Organisationnel */}
+                        <div className="space-y-3">
+                            <h4 className="font-bold text-base text-[#BC5B2E] flex items-center gap-2">
+                                <span className="w-6 h-6 rounded-full bg-[#BC5B2E]/10 flex items-center justify-center text-xs">1</span>
+                                Périmètre Organisationnel (La Structure)
+                            </h4>
+                            <p className="text-sm text-slate-500 italic">Définit qui est concerné au sein de l'organisation.</p>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                {[
+                                    { value: 'global', label: 'Global / Institutionnel', desc: "L'association dans son ensemble, son image, sa pérennité." },
+                                    { value: 'poles', label: 'Pôles / Directions', desc: "Les départements spécifiques : Finance, RH, Technique, Communication." },
+                                    { value: 'unites', label: 'Unités / Équipes', desc: "Le terrain, les bénévoles et les salariés au quotidien." },
+                                ].map(item => (
+                                    <button
+                                        key={item.value}
+                                        onClick={() => setPerimetreOrga(perimetreOrga === item.value ? '' : item.value)}
+                                        className={`p-4 rounded-2xl border-2 text-left transition-all ${
+                                            perimetreOrga === item.value
+                                                ? 'border-[#BC5B2E] bg-[#BC5B2E]/5 shadow-sm'
+                                                : 'border-slate-100 hover:border-slate-200'
+                                        }`}
+                                    >
+                                        <span className="text-sm font-bold text-[#1A2F2F] block mb-1">{item.label}</span>
+                                        <p className="text-xs text-slate-500 leading-tight">{item.desc}</p>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* 2. Périmètre Géographique */}
+                        <div className="space-y-3">
+                            <h4 className="font-bold text-base text-[#D09639] flex items-center gap-2">
+                                <span className="w-6 h-6 rounded-full bg-[#D09639]/10 flex items-center justify-center text-xs">2</span>
+                                Périmètre Géographique (L'Ancrage)
+                            </h4>
+                            <p className="text-sm text-slate-500 italic">Définit où se situe l'impact ou la menace.</p>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                {[
+                                    { value: 'local', label: 'Local & Régional', desc: "L'antenne, le bâtiment spécifique, la ville d'implantation." },
+                                    { value: 'national', label: 'National', desc: "Le cadre législatif français, les subventions d'État, les réseaux nationaux." },
+                                    { value: 'international', label: 'Européen & International', desc: "Les normes de l'UE, les enjeux climatiques globaux, les crises d'approvisionnement." },
+                                ].map(item => (
+                                    <button
+                                        key={item.value}
+                                        onClick={() => setPerimetreGeo(perimetreGeo === item.value ? '' : item.value)}
+                                        className={`p-4 rounded-2xl border-2 text-left transition-all ${
+                                            perimetreGeo === item.value
+                                                ? 'border-[#D09639] bg-[#D09639]/5 shadow-sm'
+                                                : 'border-slate-100 hover:border-slate-200'
+                                        }`}
+                                    >
+                                        <span className="text-sm font-bold text-[#1A2F2F] block mb-1">{item.label}</span>
+                                        <p className="text-xs text-slate-500 leading-tight">{item.desc}</p>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* 3. Périmètre d'Évaluation */}
+                        <div className="space-y-3">
+                            <h4 className="font-bold text-base text-[#9DB280] flex items-center gap-2">
+                                <span className="w-6 h-6 rounded-full bg-[#9DB280]/10 flex items-center justify-center text-xs">3</span>
+                                Périmètre d'Évaluation (La Robustesse)
+                            </h4>
+                            <p className="text-sm text-slate-500 italic">Définit la méthode et la légitimité du diagnostic.</p>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                {[
+                                    { value: 'individuelle', label: 'Évaluation individuelle', desc: "\"J'ai fait l'évaluation seul(e)\" — Vision d'expert ou de terrain, rapide mais potentiellement subjective." },
+                                    { value: 'collaborative', label: 'Évaluation collaborative', desc: "\"J'ai fait l'évaluation avec des collègues\" — Regards croisés entre pairs pour limiter les angles morts." },
+                                    { value: 'elargie', label: 'Évaluation élargie', desc: "\"J'ai fait l'évaluation avec mon équipe, ma gouvernance, etc.\" — Consensus stratégique impliquant décideurs et parties prenantes." },
+                                ].map(item => (
+                                    <button
+                                        key={item.value}
+                                        onClick={() => setPerimetreEval(perimetreEval === item.value ? '' : item.value)}
+                                        className={`p-4 rounded-2xl border-2 text-left transition-all ${
+                                            perimetreEval === item.value
+                                                ? 'border-[#9DB280] bg-[#9DB280]/5 shadow-sm'
+                                                : 'border-slate-100 hover:border-slate-200'
+                                        }`}
+                                    >
+                                        <span className="text-sm font-bold text-[#1A2F2F] block mb-1">{item.label}</span>
+                                        <p className="text-xs text-slate-500 leading-tight">{item.desc}</p>
+                                    </button>
+                                ))}
                             </div>
                         </div>
                     </div>
