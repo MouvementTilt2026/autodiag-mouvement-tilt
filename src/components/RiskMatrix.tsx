@@ -148,11 +148,23 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     </div>
                     <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
                         <h5 className="text-sm font-bold text-[#1A2F2F] mb-4 uppercase tracking-wider">Lexique des risques positionnés</h5>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 max-h-[400px] overflow-y-auto custom-scrollbar pr-2">
-                            {riskWithNumbers.map(r => (
-                                <div key={r.id} className="flex items-start gap-2 text-sm leading-tight py-1 border-b border-slate-200/50 last:border-0">
-                                    <span className="font-bold text-[#1A2F2F] shrink-0 w-4">{r.number}.</span>
-                                    <span className="text-slate-600">{r.name}</span>
+                        <div className="space-y-6">
+                            {[
+                                { title: "Risques environnementaux", risks: envRisks },
+                                { title: "Risques internes", subtitle: "RH, RP, Technologique", risks: internalRisks },
+                                { title: "Risques externes", subtitle: "Financement, Réglementaire, Politique, Bénéficiaires", risks: externalRisks },
+                            ].map((group, idx) => (
+                                <div key={idx}>
+                                    <h6 className="text-xs font-bold text-[#9DB280] uppercase tracking-widest mb-2">{group.title}</h6>
+                                    {group.subtitle && <p className="text-[10px] text-slate-400 mb-2">{group.subtitle}</p>}
+                                    <div className="space-y-1">
+                                        {group.risks.map(r => (
+                                            <div key={r.id} className="flex items-start gap-2 text-sm leading-tight py-1 border-b border-slate-200/50 last:border-0">
+                                                <span className="font-bold text-[#1A2F2F] shrink-0 w-5">{r.number}.</span>
+                                                <span className="text-slate-600">{r.name}</span>
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             ))}
                         </div>

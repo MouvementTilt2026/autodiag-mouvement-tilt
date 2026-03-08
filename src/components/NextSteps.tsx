@@ -176,6 +176,9 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
 
                 <div className="hidden print:block mt-20 space-y-20">
                     <div className="page-break-before">
+                        <RiskMatrix assessments={riskAssessments} />
+                    </div>
+                    <div className="page-break-before">
                         <KanbanActionPlan assessments={actionLeverAssessments} onUpdate={() => {}} />
                     </div>
                 </div>
