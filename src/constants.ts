@@ -312,7 +312,7 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
     {
         id: 'lev-38',
         theme: 'Environnemental, Économique',
-        category: 'Technologie',
+        category: 'Innovation, énergie et technologie',
         name: 'Intégrer des coopératives d\'énergie renouvelable',
         details: "Une coopérative d’énergie renouvelable est une structure collective où des citoyens, des organisations ou des collectivités se regroupent pour produire, consommer ou gérer ensemble de l’énergie renouvelable (solaire, éolien, biomasse, hydraulique…)\n\nLe principe clé : chaque membre est à la fois acteur et bénéficiaire, et les décisions sont généralement prises de manière démocratique (un membre = une voix).",
         isCollective: true
