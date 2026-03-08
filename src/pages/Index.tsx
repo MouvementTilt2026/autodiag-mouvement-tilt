@@ -115,7 +115,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                 {/* À propos du Mouvement Tilt */}
                 <div className="mt-24 pt-16 border-t border-slate-100 space-y-12">
                     <div className="flex items-center gap-4">
-                        <img src={logoTiltImg} alt="Le Mouvement Tilt" className="w-14 h-14 rounded-2xl object-cover" />
+                        <img src={logoTiltImg} alt="Le Mouvement Tilt" className="h-14 w-auto object-contain" />
                         <div>
                             <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F]">À propos du Mouvement Tilt</h2>
                             <p className="text-slate-500 font-medium">Ingénierie socio-environnementale au service de l'intérêt général</p>
