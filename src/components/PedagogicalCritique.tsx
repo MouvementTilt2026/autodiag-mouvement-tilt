@@ -144,9 +144,9 @@ const PedagogicalCritique: React.FC<PedagogicalCritiqueProps> = ({ onNext }) => 
                                 <XCircle size={18} /> Limites
                             </h4>
                             <ul className="space-y-2 text-sm text-slate-600">
-                                <li>• Subjectivité inhérente à l'auto-évaluation</li>
-                                <li>• Ne remplace pas un audit expert approfondi</li>
-                                <li>• Nécessite une réelle volonté de transparence interne</li>
+                                <li>• Subjectivité inhérente à l'auto-évaluation et vision à un instant t, d'où la présence de la date sur les PDF</li>
+                                <li>• Ne remplace pas un audit expert approfondi et un accompagnement spécifique</li>
+                                <li>• Nécessite une connaissance et/ou une transparence interne</li>
                             </ul>
                         </div>
                     </div>
