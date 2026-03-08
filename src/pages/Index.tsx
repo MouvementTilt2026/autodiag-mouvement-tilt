@@ -201,7 +201,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                     {/* Parcours - besoins fondamentaux */}
                     <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 space-y-6">
                         <h3 className="text-lg md:text-xl font-bold text-[#1A2F2F] leading-snug">
-                            Des parcours conçus pour renforcer le pouvoir d'agir des associations, en répondant à trois besoins fondamentaux...
+                            Nous proposons des parcours en hybride ou en ligne pour renforcer le pouvoir d'agir des associations, en répondant à trois besoins fondamentaux...
                         </h3>
                         <div className="space-y-6">
                             {[
