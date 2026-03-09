@@ -163,10 +163,10 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                                                             className="text-xs font-bold p-2.5 border border-slate-200 rounded-lg bg-white text-[#1A2F2F] w-full"
                                                         >
                                                             <option value="none">Choisir un état...</option>
-                                                            <option value="keep">Ce que je fais et qui fonctionne</option>
-                                                            <option value="stop">Ce que je fais et qui ne fonctionne pas</option>
-                                                            <option value="start">Ce que je vais faire</option>
-                                                            <option value="na">Non concerné</option>
+                                                            <option value="keep">Action réalisée et fonctionnelle</option>
+                                                            <option value="stop">Action réalisée mais non fonctionnelle</option>
+                                                            <option value="start">Action à faire</option>
+                                                            <option value="na">Non concerné par cette action</option>
                                                         </select>
                                                     </div>
                                                     <div>
