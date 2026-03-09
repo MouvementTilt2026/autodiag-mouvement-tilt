@@ -41,10 +41,10 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
 
     const getStatusLabel = (status: string) => {
         switch (status) {
-            case 'keep': return 'Ce que je fais et qui fonctionne';
-            case 'stop': return 'Ce que je fais et qui ne fonctionne pas';
-            case 'start': return 'Ce que je vais faire';
-            case 'na': return 'Non concerné';
+            case 'keep': return 'Action réalisée et fonctionnelle';
+            case 'stop': return 'Action réalisée mais non fonctionnelle';
+            case 'start': return 'Action à faire';
+            case 'na': return 'Non concerné par cette action';
             default: return 'Non évalué';
         }
     };
