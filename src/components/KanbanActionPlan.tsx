@@ -385,14 +385,6 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                                     ))}
                                 </div>
                             </div>
-                            <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-                                <h5 className="font-bold text-[#1A2F2F] mb-3 flex items-center gap-2">
-                                    <Info size={18} className="text-[#9DB280]" /> Conseil de lecture
-                                </h5>
-                                <p className="text-xs text-slate-500 leading-relaxed">
-                                    La matrice d'Eisenhower vous aide à arbitrer entre ce qui contribue à votre mission de long terme (Importance) et ce qui nécessite une réaction immédiate (Urgence).
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
