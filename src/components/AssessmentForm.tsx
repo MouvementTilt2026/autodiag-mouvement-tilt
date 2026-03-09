@@ -336,7 +336,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                 <span className="w-6 h-6 rounded-full bg-[#9DB280]/10 flex items-center justify-center text-xs">3</span>
                                 Périmètre de concertation
                             </h4>
-                            <p className="text-sm text-slate-500 italic">Définit la méthode et la légitimité du diagnostic.</p>
+                            
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                 {[
                                     { value: 'individuelle', label: 'Évaluation individuelle', desc: "\"J'ai fait l'évaluation seul(e)\" — Vision d'expert ou de terrain, rapide mais potentiellement subjective." },
