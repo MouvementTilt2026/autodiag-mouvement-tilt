@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { RISK_CATALOG, COLORS } from '@/constants';
 import { RiskAssessment, RiskTheme, RiskCategory, AppState } from '@/types';
-import { AlertTriangle, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Globe, Info, MessageSquare, ShieldCheck, TrendingUp, Zap, ArrowRight } from 'lucide-react';
+import { AlertTriangle, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Globe, Info, MessageSquare, ShieldCheck, TrendingUp, Zap, ArrowRight, Download } from 'lucide-react';
 
 interface AssessmentFormProps {
     assessments: Record<string, RiskAssessment>;
@@ -90,12 +90,26 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
         }
     };
 
+    const handleExpandAndPrint = () => {
+        setLexiqueOpen(true);
+        setPerimetreOpen(true);
+        setTimeout(() => window.print(), 300);
+    };
+
     return (
         <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
-                <div className="mb-8">
-                    <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] mb-2">Étape 1 : évaluation des risques</h2>
-                    <p className="text-slate-500 text-sm md:text-base">Évaluez chaque risque selon sa fréquence, sa gravité et votre niveau de vulnérabilité.</p>
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                    <div>
+                        <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] mb-2">Étape 1 : évaluation des risques</h2>
+                        <p className="text-slate-500 text-sm md:text-base">Évaluez chaque risque selon sa fréquence, sa gravité et votre niveau de vulnérabilité.</p>
+                    </div>
+                    <button 
+                        onClick={handleExpandAndPrint}
+                        className="flex items-center gap-2 px-6 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0"
+                    >
+                        <Download size={18} /> Télécharger en PDF
+                    </button>
                 </div>
 
                 <div className="relative group">
@@ -278,7 +292,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                 <span className="w-6 h-6 rounded-full bg-[#BC5B2E]/10 flex items-center justify-center text-xs">1</span>
                                 Périmètre organisationnel
                             </h4>
-                            <p className="text-sm text-slate-500 italic">Définit qui est concerné au sein de l'organisation.</p>
+                            
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                 {[
                                     { value: 'global', label: 'Global / Institutionnel', desc: "L'association dans son ensemble, son image, sa pérennité." },
@@ -307,7 +321,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                 <span className="w-6 h-6 rounded-full bg-[#D09639]/10 flex items-center justify-center text-xs">2</span>
                                 Périmètre géographique
                             </h4>
-                            <p className="text-sm text-slate-500 italic">Définit où se situe l'impact ou la menace.</p>
+                            
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                 {[
                                     { value: 'local', label: 'Local & Régional', desc: "L'antenne, le bâtiment spécifique, la ville d'implantation." },
@@ -336,7 +350,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                 <span className="w-6 h-6 rounded-full bg-[#9DB280]/10 flex items-center justify-center text-xs">3</span>
                                 Périmètre de concertation
                             </h4>
-                            <p className="text-sm text-slate-500 italic">Définit la méthode et la légitimité du diagnostic.</p>
+                            
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                 {[
                                     { value: 'individuelle', label: 'Évaluation individuelle', desc: "\"J'ai fait l'évaluation seul(e)\" — Vision d'expert ou de terrain, rapide mais potentiellement subjective." },

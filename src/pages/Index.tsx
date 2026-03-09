@@ -21,13 +21,13 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                 <h1 className="text-4xl md:text-5xl font-bold text-[#1A2F2F] mb-6 tracking-tight">Robust'Asso</h1>
                 <p className="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed">
                     Bienvenue dans l'outil d'auto-diagnostic du <span className="font-semibold text-[#1A2F2F]">Mouvement Tilt</span>. 
-                    Cet outil est conçu pour aider les associations et fondations à diagnostiquer leur robustesse via un outil facile et accessible.
+                    Cet outil est conçu pour aider les associations à diagnostiquer leur robustesse et les fondations à outiller les associations, de manière accessible et autonome.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12">
                     <div className="space-y-4">
                         <h2 className="text-xl md:text-2xl font-bold text-[#1A2F2F] flex items-center gap-2">
-                            <Info className="text-[#9DB280]" /> Le Mouvement Tilt
+                            <Info className="text-[#335353]" /> Le Mouvement Tilt
                         </h2>
                         <p className="text-slate-600 leading-relaxed">
                             Le Mouvement Tilt accompagne les acteurs de l'intérêt général dans leur transformation pour un impact durable et une résilience accrue. Nous croyons en une ingénierie socio-environnementale au service du bien commun.
@@ -35,19 +35,19 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                     </div>
                     <div className="space-y-4">
                         <h2 className="text-xl md:text-2xl font-bold text-[#1A2F2F] flex items-center gap-2">
-                            <ShieldCheck className="text-[#9DB280]" /> Pourquoi ce diagnostic ?
+                            <ShieldCheck className="text-[#335353]" /> Pourquoi ce diagnostic ?
                         </h2>
                         <ul className="space-y-2 text-slate-600">
                             <li className="flex items-start gap-2">
-                                <CheckCircle2 className="text-[#C3FD97] mt-1 shrink-0" size={18} />
+                                <CheckCircle2 className="text-[#9DB280] mt-1 shrink-0" size={18} />
                                 <span>Diagnostiquer la robustesse de votre structure.</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <CheckCircle2 className="text-[#C3FD97] mt-1 shrink-0" size={18} />
+                                <CheckCircle2 className="text-[#9DB280] mt-1 shrink-0" size={18} />
                                 <span>Favoriser l'identification des besoins prioritaires.</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <CheckCircle2 className="text-[#C3FD97] mt-1 shrink-0" size={18} />
+                                <CheckCircle2 className="text-[#9DB280] mt-1 shrink-0" size={18} />
                                 <span>Contribuer au pouvoir d'agir des acteurs de l'intérêt général.</span>
                             </li>
                         </ul>
@@ -84,7 +84,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                             <h3 className="text-lg font-bold text-[#1A2F2F] mb-3 flex items-center gap-2">
-                                <TrendingUp className="text-[#9DB280]" size={20} /> Parcours progressif
+                                <TrendingUp className="text-[#335353]" size={20} /> Parcours progressif
                             </h3>
                             <p className="text-sm text-slate-600 leading-relaxed">
                                 Ce diagnostic a été pensé comme un parcours progressif pour vous guider de l'analyse des risques à l'action. 
@@ -93,7 +93,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                         </div>
                         <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                             <h3 className="text-lg font-bold text-[#1A2F2F] mb-3 flex items-center gap-2">
-                                <ShieldCheck className="text-[#9DB280]" size={20} /> Éthique & RGPD
+                                <ShieldCheck className="text-[#335353]" size={20} /> Éthique & RGPD
                             </h3>
                             <p className="text-sm text-slate-600 leading-relaxed">
                                 Dans une démarche éthique et de conformité RGPD, vos données ne sont pas stockées sur nos serveurs. 
@@ -170,13 +170,6 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                         </div>
                     </div>
 
-                    {/* Porté par un collectif */}
-                    <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 space-y-4">
-                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">...Porté par un collectif de philanthropes engagés</h3>
-                        <p className="text-sm text-slate-600 leading-relaxed">
-                            Le Mouvement Tilt est soutenu par un collectif de fondations et fonds engagés : Fondation RTE, SNCF Fondation, Fondation Francis Lefebvre, Fondation Groupe EDF, Fondation Caritas France, Fondation Zoein, Fondation Ceetrus, Fonds Derver, Fondation Crédit Mutuel, Fondation GRDF, Mobivia Foundation, CFF, DOmorrow, Fondation Crédit Coopératif, Decathlon Foundation, Fonds des Belles Causes, et bien d'autres.
-                        </p>
-                    </div>
 
                     {/* Valeurs */}
                     <div className="bg-[#E1E4D1]/30 p-6 md:p-8 rounded-3xl border border-[#9DB280]/20 space-y-6">
@@ -198,45 +191,27 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                         </div>
                     </div>
 
-                    {/* Parcours - besoins fondamentaux */}
+                    {/* Nos accompagnements */}
                     <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 space-y-6">
-                        <h3 className="text-lg md:text-xl font-bold text-[#1A2F2F] leading-snug">
-                            Nous proposons des parcours en hybride ou en ligne pour renforcer le pouvoir d'agir des associations, en répondant à trois besoins fondamentaux...
-                        </h3>
-                        <div className="space-y-6">
+                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Nos accompagnements</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {[
-                                {
-                                    title: 'Autonomie',
-                                    desc: "Se sentir en capacité de prendre des décisions et de décider par soi-même.",
-                                    example: "Appliquer et évaluer des méthodes et outils clés en main et open-source pour piloter sa propre transition écologique.",
-                                    icon: Compass,
-                                },
-                                {
-                                    title: 'Compétences',
-                                    desc: "Se sentir compétent et monter en compétences dans ses missions.",
-                                    example: "Avoir de nouvelles connaissances et soft skills grâce à des formations et méthodes adaptées à la transition écologique du secteur associatif.",
-                                    icon: Target,
-                                },
-                                {
-                                    title: 'Relations sociales',
-                                    desc: "Se sentir connecté avec les autres et soutenu dans sa démarche.",
-                                    example: "S'entraider et apprendre entre pairs pendant les cohortes et à travers la communauté d'alumni.",
-                                    icon: Users,
-                                },
+                                { title: 'Tilt Odyssée', desc: 'Parcours de formation et d\'accompagnement en hybride', icon: Compass },
+                                { title: 'Tilt\'Envol', desc: 'Parcours de formation et d\'accompagnement en ligne', icon: Rocket },
+                                { title: 'Journées Déclic', desc: 'Journées de sensibilisation aux enjeux socio-environnementaux', icon: Leaf },
+                                { title: 'Tilt for good', desc: 'Journées et parcours sur-mesure', icon: Target },
                             ].map((item, i) => (
-                                <div key={i} className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                                    <div className="w-10 h-10 rounded-xl bg-[#9DB280] text-white flex items-center justify-center shrink-0 mt-1">
+                                <div key={i} className="flex items-start gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                                    <div className="w-10 h-10 rounded-xl bg-[#335353] text-[#C3FD97] flex items-center justify-center shrink-0 mt-0.5">
                                         <item.icon size={20} />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-[#1A2F2F] mb-1">{item.title}</h4>
-                                        <p className="text-sm text-slate-600 mb-1">{item.desc}</p>
-                                        <p className="text-xs text-slate-400 italic">Exemple : {item.example}</p>
+                                        <h4 className="font-bold text-[#1A2F2F] text-base mb-1">{item.title}</h4>
+                                        <p className="text-sm text-slate-600">{item.desc}</p>
                                     </div>
                                 </div>
                             ))}
                         </div>
-                        <p className="text-[10px] text-slate-400 italic">Théorie de l'autodétermination (Deci, 1980 ; Deci et Ryan, 1980, 1985).</p>
                     </div>
 
                     {/* Bouton vers le site */}

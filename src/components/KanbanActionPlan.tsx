@@ -32,14 +32,19 @@ const LeverDetails: React.FC<{ details: string }> = ({ details }) => {
 const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpdate, onNext }) => {
     const [openCategories, setOpenCategories] = React.useState<Set<string>>(new Set());
     
-    const handleDownloadPDF = () => { window.print(); };
+    const handleDownloadPDF = () => {
+        // Open all categories before printing
+        const allCats = new Set(ACTION_LEVERS_CATALOG.map(l => l.category));
+        setOpenCategories(allCats);
+        setTimeout(() => window.print(), 300);
+    };
 
     const getStatusLabel = (status: string) => {
         switch (status) {
-            case 'keep': return 'Ce que je fais et qui fonctionne';
-            case 'stop': return 'Ce que je fais et qui ne fonctionne pas';
-            case 'start': return 'Ce que je vais faire';
-            case 'na': return 'Non concerné';
+            case 'keep': return 'Action réalisée et fonctionnelle';
+            case 'stop': return 'Action réalisée mais non fonctionnelle';
+            case 'start': return 'Action à faire';
+            case 'na': return 'Non concerné par cette action';
             default: return 'Non évalué';
         }
     };
@@ -158,10 +163,10 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                                                             className="text-xs font-bold p-2.5 border border-slate-200 rounded-lg bg-white text-[#1A2F2F] w-full"
                                                         >
                                                             <option value="none">Choisir un état...</option>
-                                                            <option value="keep">Ce que je fais et qui fonctionne</option>
-                                                            <option value="stop">Ce que je fais et qui ne fonctionne pas</option>
-                                                            <option value="start">Ce que je vais faire</option>
-                                                            <option value="na">Non concerné</option>
+                                                            <option value="keep">Action réalisée et fonctionnelle</option>
+                                                            <option value="stop">Action réalisée mais non fonctionnelle</option>
+                                                            <option value="start">Action à faire</option>
+                                                            <option value="na">Non concerné par cette action</option>
                                                         </select>
                                                     </div>
                                                     <div>
@@ -215,10 +220,10 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                         {[
-                            { id: 'keep', label: 'Ce que je fais et qui fonctionne', color: 'border-emerald-200', bg: 'bg-emerald-50/30', icon: CheckCircle2, iconColor: 'text-emerald-500' },
-                            { id: 'stop', label: 'Ce que je fais et qui ne fonctionne pas', color: 'border-red-200', bg: 'bg-red-50/30', icon: XCircle, iconColor: 'text-red-500' },
-                            { id: 'start', label: 'Ce que je vais faire', color: 'border-blue-200', bg: 'bg-blue-50/30', icon: PlayCircle, iconColor: 'text-blue-500' },
-                            { id: 'na', label: 'Non concerné', color: 'border-slate-200', bg: 'bg-slate-50/30', icon: MinusCircle, iconColor: 'text-slate-400' }
+                            { id: 'keep', label: 'Action réalisée et fonctionnelle', color: 'border-emerald-200', bg: 'bg-emerald-50/30', icon: CheckCircle2, iconColor: 'text-emerald-500' },
+                            { id: 'stop', label: 'Action réalisée mais non fonctionnelle', color: 'border-red-200', bg: 'bg-red-50/30', icon: XCircle, iconColor: 'text-red-500' },
+                            { id: 'start', label: 'Action à faire', color: 'border-blue-200', bg: 'bg-blue-50/30', icon: PlayCircle, iconColor: 'text-blue-500' },
+                            { id: 'na', label: 'Non concerné par cette action', color: 'border-slate-200', bg: 'bg-slate-50/30', icon: MinusCircle, iconColor: 'text-slate-400' }
                         ].map(col => {
                             const items = ACTION_LEVERS_CATALOG
                                 .map((l, i) => ({ ...l, number: i + 1, assessment: assessments[l.id] }))
@@ -380,14 +385,6 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                                     ))}
                                 </div>
                             </div>
-                            <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-                                <h5 className="font-bold text-[#1A2F2F] mb-3 flex items-center gap-2">
-                                    <Info size={18} className="text-[#9DB280]" /> Conseil de lecture
-                                </h5>
-                                <p className="text-xs text-slate-500 leading-relaxed">
-                                    La matrice d'Eisenhower vous aide à arbitrer entre ce qui contribue à votre mission de long terme (Importance) et ce qui nécessite une réaction immédiate (Urgence).
-                                </p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -401,7 +398,7 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                         </div>
                         <div className="space-y-1">
                             <h4 className="font-bold text-xl">Diagnostic terminé</h4>
-                            <p className="text-sm text-slate-400">Vous avez complété l'ensemble des étapes. Découvrez vos résultats finaux.</p>
+                            <p className="text-sm text-slate-400">Vous avez complété l'ensemble des étapes : bravo pour ce temps accordé aux enjeux socio-environnementaux !</p>
                         </div>
                     </div>
                     {onNext && (
