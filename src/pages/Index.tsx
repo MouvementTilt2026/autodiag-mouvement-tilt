@@ -191,45 +191,27 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                         </div>
                     </div>
 
-                    {/* Parcours - besoins fondamentaux */}
+                    {/* Nos accompagnements */}
                     <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 space-y-6">
-                        <h3 className="text-lg md:text-xl font-bold text-[#1A2F2F] leading-snug">
-                            Nous proposons des parcours en hybride ou en ligne pour renforcer le pouvoir d'agir des associations, en répondant à trois besoins fondamentaux...
-                        </h3>
-                        <div className="space-y-6">
+                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Nos accompagnements</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {[
-                                {
-                                    title: 'Autonomie',
-                                    desc: "Se sentir en capacité de prendre des décisions et de décider par soi-même.",
-                                    example: "Appliquer et évaluer des méthodes et outils clés en main et open-source pour piloter sa propre transition écologique.",
-                                    icon: Compass,
-                                },
-                                {
-                                    title: 'Compétences',
-                                    desc: "Se sentir compétent et monter en compétences dans ses missions.",
-                                    example: "Avoir de nouvelles connaissances et soft skills grâce à des formations et méthodes adaptées à la transition écologique du secteur associatif.",
-                                    icon: Target,
-                                },
-                                {
-                                    title: 'Relations sociales',
-                                    desc: "Se sentir connecté avec les autres et soutenu dans sa démarche.",
-                                    example: "S'entraider et apprendre entre pairs pendant les cohortes et à travers la communauté d'alumni.",
-                                    icon: Users,
-                                },
+                                { title: 'Tilt Odyssée', desc: 'Parcours de formation et d\'accompagnement en hybride', icon: Compass },
+                                { title: 'Tilt\'Envol', desc: 'Parcours de formation et d\'accompagnement en ligne', icon: Rocket },
+                                { title: 'Journées Déclic', desc: 'Journées de sensibilisation aux enjeux socio-environnementaux', icon: Leaf },
+                                { title: 'Tilt for good', desc: 'Journées et parcours sur-mesure', icon: Target },
                             ].map((item, i) => (
-                                <div key={i} className="flex items-start gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                                    <div className="w-10 h-10 rounded-xl bg-[#9DB280] text-white flex items-center justify-center shrink-0 mt-1">
+                                <div key={i} className="flex items-start gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                                    <div className="w-10 h-10 rounded-xl bg-[#335353] text-[#C3FD97] flex items-center justify-center shrink-0 mt-0.5">
                                         <item.icon size={20} />
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-[#1A2F2F] mb-1">{item.title}</h4>
-                                        <p className="text-sm text-slate-600 mb-1">{item.desc}</p>
-                                        <p className="text-xs text-slate-400 italic">Exemple : {item.example}</p>
+                                        <h4 className="font-bold text-[#1A2F2F] text-base mb-1">{item.title}</h4>
+                                        <p className="text-sm text-slate-600">{item.desc}</p>
                                     </div>
                                 </div>
                             ))}
                         </div>
-                        <p className="text-[10px] text-slate-400 italic">Théorie de l'autodétermination (Deci, 1980 ; Deci et Ryan, 1980, 1985).</p>
                     </div>
 
                     {/* Bouton vers le site */}
