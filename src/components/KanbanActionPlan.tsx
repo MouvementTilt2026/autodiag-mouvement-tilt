@@ -220,10 +220,10 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                         {[
-                            { id: 'keep', label: 'Ce que je fais et qui fonctionne', color: 'border-emerald-200', bg: 'bg-emerald-50/30', icon: CheckCircle2, iconColor: 'text-emerald-500' },
-                            { id: 'stop', label: 'Ce que je fais et qui ne fonctionne pas', color: 'border-red-200', bg: 'bg-red-50/30', icon: XCircle, iconColor: 'text-red-500' },
-                            { id: 'start', label: 'Ce que je vais faire', color: 'border-blue-200', bg: 'bg-blue-50/30', icon: PlayCircle, iconColor: 'text-blue-500' },
-                            { id: 'na', label: 'Non concerné', color: 'border-slate-200', bg: 'bg-slate-50/30', icon: MinusCircle, iconColor: 'text-slate-400' }
+                            { id: 'keep', label: 'Action réalisée et fonctionnelle', color: 'border-emerald-200', bg: 'bg-emerald-50/30', icon: CheckCircle2, iconColor: 'text-emerald-500' },
+                            { id: 'stop', label: 'Action réalisée mais non fonctionnelle', color: 'border-red-200', bg: 'bg-red-50/30', icon: XCircle, iconColor: 'text-red-500' },
+                            { id: 'start', label: 'Action à faire', color: 'border-blue-200', bg: 'bg-blue-50/30', icon: PlayCircle, iconColor: 'text-blue-500' },
+                            { id: 'na', label: 'Non concerné par cette action', color: 'border-slate-200', bg: 'bg-slate-50/30', icon: MinusCircle, iconColor: 'text-slate-400' }
                         ].map(col => {
                             const items = ACTION_LEVERS_CATALOG
                                 .map((l, i) => ({ ...l, number: i + 1, assessment: assessments[l.id] }))
