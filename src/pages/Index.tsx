@@ -39,7 +39,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                         </h2>
                         <ul className="space-y-2 text-slate-600">
                             <li className="flex items-start gap-2">
-                                <CheckCircle2 className="text-[#C3FD97] mt-1 shrink-0" size={18} />
+                                <CheckCircle2 className="text-[#9DB280] mt-1 shrink-0" size={18} />
                                 <span>Diagnostiquer la robustesse de votre structure.</span>
                             </li>
                             <li className="flex items-start gap-2">
