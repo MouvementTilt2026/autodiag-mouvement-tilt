@@ -170,13 +170,6 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                         </div>
                     </div>
 
-                    {/* Porté par un collectif */}
-                    <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 space-y-4">
-                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">...Porté par un collectif de philanthropes engagés</h3>
-                        <p className="text-sm text-slate-600 leading-relaxed">
-                            Le Mouvement Tilt est soutenu par un collectif de fondations et fonds engagés : Fondation RTE, SNCF Fondation, Fondation Francis Lefebvre, Fondation Groupe EDF, Fondation Caritas France, Fondation Zoein, Fondation Ceetrus, Fonds Derver, Fondation Crédit Mutuel, Fondation GRDF, Mobivia Foundation, CFF, DOmorrow, Fondation Crédit Coopératif, Decathlon Foundation, Fonds des Belles Causes, et bien d'autres.
-                        </p>
-                    </div>
 
                     {/* Valeurs */}
                     <div className="bg-[#E1E4D1]/30 p-6 md:p-8 rounded-3xl border border-[#9DB280]/20 space-y-6">
