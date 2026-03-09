@@ -398,7 +398,7 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                         </div>
                         <div className="space-y-1">
                             <h4 className="font-bold text-xl">Diagnostic terminé</h4>
-                            <p className="text-sm text-slate-400">Vous avez complété l'ensemble des étapes. Découvrez vos résultats finaux.</p>
+                            <p className="text-sm text-slate-400">Vous avez complété l'ensemble des étapes : bravo pour ce temps accordé aux enjeux socio-environnementaux !</p>
                         </div>
                     </div>
                     {onNext && (
