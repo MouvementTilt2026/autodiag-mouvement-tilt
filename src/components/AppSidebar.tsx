@@ -9,7 +9,9 @@ import {
     Menu,
     X,
     Heart,
-    ExternalLink
+    ExternalLink,
+    Info,
+    ShieldAlert
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -21,8 +23,8 @@ const AppSidebar: React.FC<SidebarProps> = ({ currentStep, setStep }) => {
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
     const navItems = [
-        { id: 'intro', label: 'Intro', icon: Home },
-        { id: 'critique', label: 'Auto-critique', icon: AlertCircle },
+        { id: 'intro', label: 'A propos', icon: Info },
+        { id: 'critique', label: 'Avant de commencer', icon: ShieldAlert },
         { id: 'risks', label: 'Évaluation risques', icon: ClipboardList },
         { id: 'risk_dashboard', label: 'Tableaux de bord', icon: LayoutDashboard },
         { id: 'kanban', label: "Leviers d'action", icon: Kanban },
