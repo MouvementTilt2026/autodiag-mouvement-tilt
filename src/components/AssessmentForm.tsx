@@ -278,7 +278,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                 <span className="w-6 h-6 rounded-full bg-[#BC5B2E]/10 flex items-center justify-center text-xs">1</span>
                                 Périmètre organisationnel
                             </h4>
-                            <p className="text-sm text-slate-500 italic">Définit qui est concerné au sein de l'organisation.</p>
+                            
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                 {[
                                     { value: 'global', label: 'Global / Institutionnel', desc: "L'association dans son ensemble, son image, sa pérennité." },
