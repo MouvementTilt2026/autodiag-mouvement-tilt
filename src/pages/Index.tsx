@@ -93,7 +93,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                         </div>
                         <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                             <h3 className="text-lg font-bold text-[#1A2F2F] mb-3 flex items-center gap-2">
-                                <ShieldCheck className="text-[#9DB280]" size={20} /> Éthique & RGPD
+                                <ShieldCheck className="text-[#335353]" size={20} /> Éthique & RGPD
                             </h3>
                             <p className="text-sm text-slate-600 leading-relaxed">
                                 Dans une démarche éthique et de conformité RGPD, vos données ne sont pas stockées sur nos serveurs. 
