@@ -35,7 +35,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                     </div>
                     <div className="space-y-4">
                         <h2 className="text-xl md:text-2xl font-bold text-[#1A2F2F] flex items-center gap-2">
-                            <ShieldCheck className="text-[#9DB280]" /> Pourquoi ce diagnostic ?
+                            <ShieldCheck className="text-[#335353]" /> Pourquoi ce diagnostic ?
                         </h2>
                         <ul className="space-y-2 text-slate-600">
                             <li className="flex items-start gap-2">
