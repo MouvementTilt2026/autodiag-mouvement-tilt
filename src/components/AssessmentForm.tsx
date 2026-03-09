@@ -90,12 +90,26 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
         }
     };
 
+    const handleExpandAndPrint = () => {
+        setLexiqueOpen(true);
+        setPerimetreOpen(true);
+        setTimeout(() => window.print(), 300);
+    };
+
     return (
         <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
-                <div className="mb-8">
-                    <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] mb-2">Étape 1 : évaluation des risques</h2>
-                    <p className="text-slate-500 text-sm md:text-base">Évaluez chaque risque selon sa fréquence, sa gravité et votre niveau de vulnérabilité.</p>
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                    <div>
+                        <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] mb-2">Étape 1 : évaluation des risques</h2>
+                        <p className="text-slate-500 text-sm md:text-base">Évaluez chaque risque selon sa fréquence, sa gravité et votre niveau de vulnérabilité.</p>
+                    </div>
+                    <button 
+                        onClick={handleExpandAndPrint}
+                        className="flex items-center gap-2 px-6 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0"
+                    >
+                        <Download size={18} /> Télécharger en PDF
+                    </button>
                 </div>
 
                 <div className="relative group">
