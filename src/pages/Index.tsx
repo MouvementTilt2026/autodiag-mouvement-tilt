@@ -21,7 +21,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                 <h1 className="text-4xl md:text-5xl font-bold text-[#1A2F2F] mb-6 tracking-tight">Robust'Asso</h1>
                 <p className="text-lg md:text-xl text-slate-600 mb-10 leading-relaxed">
                     Bienvenue dans l'outil d'auto-diagnostic du <span className="font-semibold text-[#1A2F2F]">Mouvement Tilt</span>. 
-                    Cet outil est conçu pour aider les associations et fondations à diagnostiquer leur robustesse via un outil facile et accessible.
+                    Cet outil est conçu pour aider les associations à diagnostiquer leur robustesse et les fondations à outiller les associations, de manière accessible et autonome.
                 </p>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12">
