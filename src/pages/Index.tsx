@@ -27,7 +27,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-12">
                     <div className="space-y-4">
                         <h2 className="text-xl md:text-2xl font-bold text-[#1A2F2F] flex items-center gap-2">
-                            <Info className="text-[#9DB280]" /> Le Mouvement Tilt
+                            <Info className="text-[#335353]" /> Le Mouvement Tilt
                         </h2>
                         <p className="text-slate-600 leading-relaxed">
                             Le Mouvement Tilt accompagne les acteurs de l'intérêt général dans leur transformation pour un impact durable et une résilience accrue. Nous croyons en une ingénierie socio-environnementale au service du bien commun.
