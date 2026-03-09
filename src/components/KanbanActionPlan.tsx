@@ -32,7 +32,12 @@ const LeverDetails: React.FC<{ details: string }> = ({ details }) => {
 const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpdate, onNext }) => {
     const [openCategories, setOpenCategories] = React.useState<Set<string>>(new Set());
     
-    const handleDownloadPDF = () => { window.print(); };
+    const handleDownloadPDF = () => {
+        // Open all categories before printing
+        const allCats = new Set(ACTION_LEVERS_CATALOG.map(l => l.category));
+        setOpenCategories(allCats);
+        setTimeout(() => window.print(), 300);
+    };
 
     const getStatusLabel = (status: string) => {
         switch (status) {
