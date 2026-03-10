@@ -186,7 +186,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                         { title: "Matrice 2 : Risques internes", subtitle: "(RH, RP, Technologique)", risks: internalRisks },
                         { title: "Matrice 3 : Risques externes", subtitle: "(Financement, Réglementaire, Politique, Bénéficiaires)", risks: externalRisks },
                     ].map((matrix, idx) => (
-                        <div key={idx} className="space-y-6">
+                        <div key={idx} className="space-y-6" style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
                             <div className="text-center">
                                 <h3 className="text-lg md:text-xl font-bold text-[#1A2F2F] mb-1">{matrix.title}</h3>
                                 {matrix.subtitle && <p className="text-sm text-slate-500">{matrix.subtitle}</p>}
