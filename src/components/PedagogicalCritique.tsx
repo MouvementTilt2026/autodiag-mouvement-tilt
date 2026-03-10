@@ -165,7 +165,7 @@ const PedagogicalCritique: React.FC<PedagogicalCritiqueProps> = ({ onNext }) => 
                                 </div>
                                 <div className="space-y-4">
                                     <h4 className="font-bold text-base text-[#BC5B2E] flex items-center gap-2">
-                                        <XCircle size={20} /> Limites
+                                        <AlertTriangle size={20} /> Limites
                                     </h4>
                                     <ul className="space-y-3 text-sm text-slate-600">
                                         <li className="flex items-start gap-2"><XCircle size={16} className="text-[#BC5B2E] shrink-0 mt-0.5" /> Subjectivité inhérente à l'auto-évaluation et vision à un instant t, d'où la présence de la date sur les PDF</li>
