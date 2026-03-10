@@ -125,9 +125,17 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
     return (
         <div className="max-w-6xl mx-auto space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-slate-100">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] mb-10 flex items-center gap-3">
-                    <LayoutDashboard className="text-[#9DB280]" /> Tableaux de bord des risques
-                </h2>
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+                    <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] flex items-center gap-3">
+                        <LayoutDashboard className="text-[#9DB280]" /> Tableaux de bord des risques
+                    </h2>
+                    <button 
+                        onClick={() => window.print()}
+                        className="flex items-center gap-2 px-6 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0 no-print"
+                    >
+                        <Download size={18} /> Télécharger en PDF
+                    </button>
+                </div>
 
                 {/* Info box - Comprendre la matrice (above matrices) */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
