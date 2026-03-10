@@ -93,8 +93,8 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
         <div className="max-w-7xl mx-auto space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 no-print">
                 <div>
-                    <h2 className="text-2xl md:text-4xl font-black text-[#1A2F2F] mb-2 flex items-center gap-3">
-                        <KanbanIcon className="text-[#9DB280]" size={32} /> Leviers d'action
+                    <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] mb-2 flex items-center gap-3">
+                        <KanbanIcon className="text-[#9DB280]" size={32} /> Étape 2 : évaluation des leviers d'action
                     </h2>
                     <p className="text-slate-500 text-sm md:text-lg">Évaluez et priorisez vos actions pour une transition robuste.</p>
                 </div>
@@ -205,12 +205,12 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
             {/* Visual analysis */}
             <div className="space-y-16 pt-8">
                 <div className="text-center no-print">
-                    <h3 className="text-2xl md:text-3xl font-black text-[#1A2F2F] mb-2 uppercase tracking-tight">Analyse visuelle</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] mb-2">Étape 2 : analyse visuelle des leviers d'action</h3>
                     <p className="text-slate-500">Visualisez votre stratégie d'action à travers deux matrices complémentaires.</p>
                 </div>
 
                 {/* État des lieux */}
-                <div className="space-y-8">
+                <div className="space-y-8" style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
                     <div className="flex items-center gap-3 px-4">
                         <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600">
                             <KanbanIcon size={24} />
@@ -306,7 +306,7 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                 </div>
 
                 {/* Eisenhower */}
-                <div className="space-y-8">
+                <div className="space-y-8" style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
                     <div className="flex items-center gap-3 px-4">
                         <div className="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center text-red-600">
                             <Zap size={24} />

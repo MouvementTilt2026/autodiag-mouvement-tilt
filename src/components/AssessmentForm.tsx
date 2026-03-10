@@ -149,7 +149,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                 >
                     <div className="flex items-center gap-3">
                         <Info className="text-[#BC5B2E]" size={24} />
-                        <h3 className="text-xl font-bold text-[#1A2F2F]">À lire : lexique d'évaluation</h3>
+                        <h3 className="text-xl font-bold text-[#1A2F2F]">À lire : lexique d'évaluation et méthodologie</h3>
                     </div>
                     {lexiqueOpen ? <ChevronUp size={24} className="text-slate-400" /> : <ChevronDown size={24} className="text-slate-400" />}
                 </button>
@@ -256,6 +256,14 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                             </div>
                         </div>
 
+                        <div className="bg-[#335353]/10 p-4 md:p-6 rounded-2xl border border-[#335353]/20 flex items-start gap-3">
+                            <Download className="text-[#335353] shrink-0 mt-0.5" size={20} />
+                            <div className="space-y-1">
+                                <p className="text-sm font-bold text-[#1A2F2F]">Méthodologie PDF</p>
+                                <p className="text-sm text-slate-600">Vous pouvez enregistrer un PDF par onglet de risque, le bouton "télécharger le PDF" étant associé à la page affichée sur votre écran.</p>
+                            </div>
+                        </div>
+
                         <div className="bg-[#1A2F2F]/5 p-4 md:p-6 rounded-2xl border border-[#1A2F2F]/10 flex items-start gap-3">
                             <Info className="text-[#1A2F2F] shrink-0 mt-0.5" size={20} />
                             <div className="space-y-2">
@@ -295,9 +303,9 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                             
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                 {[
-                                    { value: 'global', label: 'Global / Institutionnel', desc: "L'association dans son ensemble, son image, sa pérennité." },
-                                     { value: 'poles', label: 'Pôle spécifique pérenne', desc: "Les départements spécifiques : Finance, RH, Technique, Communication." },
-                                     { value: 'unites', label: 'Projet ou activité spécifique', desc: "Liés à des équipes temporaires." },
+                                    { value: 'global', label: 'Global / Institutionnel', desc: "L'association dans son ensemble." },
+                                     { value: 'poles', label: 'Pôle spécifique pérenne', desc: "Un de vos départements spécifique." },
+                                     { value: 'unites', label: 'Projet ou activité spécifique', desc: "Lié à une équipe projet." },
                                 ].map(item => (
                                     <button
                                         key={item.value}
@@ -324,7 +332,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                             
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                 {[
-                                    { value: 'local', label: 'Local & Régional', desc: "L'antenne, le bâtiment spécifique, la ville d'implantation." },
+                                    { value: 'local', label: 'Local & Régional', desc: "Une de vos antennes ou une implantation spécifique." },
                                      { value: 'national', label: 'National', desc: "Le siège et ses différentes antennes." },
                                      { value: 'international', label: 'Européen & International', desc: "Évaluation plus difficile à réaliser, nous vous conseillons de faire plusieurs évaluations par échelle nationale." },
                                 ].map(item => (

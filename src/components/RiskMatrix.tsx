@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { RISK_CATALOG, COLORS } from '@/constants';
 import { RiskAssessment, RiskTheme, RiskCategory } from '@/types';
-import { AlertTriangle, ArrowRight, Target, TrendingUp, Zap, ShieldCheck, Info, LayoutDashboard, BarChart3, PieChart as PieChartIcon, Activity } from 'lucide-react';
+import { AlertTriangle, ArrowRight, Target, TrendingUp, Zap, ShieldCheck, Info, LayoutDashboard, BarChart3, PieChart as PieChartIcon, Activity, Download } from 'lucide-react';
 import { 
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, 
     PieChart, Pie, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar
@@ -125,9 +125,17 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
     return (
         <div className="max-w-6xl mx-auto space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-slate-100">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] mb-10 flex items-center gap-3">
-                    <LayoutDashboard className="text-[#9DB280]" /> Tableaux de bord des risques
-                </h2>
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
+                    <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] flex items-center gap-3">
+                        <LayoutDashboard className="text-[#9DB280]" /> Tableaux de bord des risques
+                    </h2>
+                    <button 
+                        onClick={() => window.print()}
+                        className="flex items-center gap-2 px-6 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0 no-print"
+                    >
+                        <Download size={18} /> Télécharger en PDF
+                    </button>
+                </div>
 
                 {/* Info box - Comprendre la matrice (above matrices) */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
@@ -178,7 +186,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                         { title: "Matrice 2 : Risques internes", subtitle: "(RH, RP, Technologique)", risks: internalRisks },
                         { title: "Matrice 3 : Risques externes", subtitle: "(Financement, Réglementaire, Politique, Bénéficiaires)", risks: externalRisks },
                     ].map((matrix, idx) => (
-                        <div key={idx} className="space-y-6">
+                        <div key={idx} className="space-y-6" style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
                             <div className="text-center">
                                 <h3 className="text-lg md:text-xl font-bold text-[#1A2F2F] mb-1">{matrix.title}</h3>
                                 {matrix.subtitle && <p className="text-sm text-slate-500">{matrix.subtitle}</p>}

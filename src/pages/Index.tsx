@@ -59,11 +59,11 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                         <h2 className="text-xl md:text-2xl font-bold text-[#1A2F2F] mb-6">Les étapes du parcours</h2>
                         <div className="grid grid-cols-1 gap-3">
                             {[
-                                { step: "1", bold: "Pré-requis à l'analyse", rest: " via l'onglet auto-critique", id: 'critique' },
+                                { step: "1", bold: "Pré-requis à l'analyse", rest: ' via l\'onglet "Avant de commencer"', id: 'critique' },
                                 { step: "2", bold: "Evaluation des risques", rest: " socio-environnementaux et de la maturité de votre organisation", id: 'risks' },
                                 { step: "3", bold: "Tableaux de bord", rest: " d'analyse de vos risques et de votre maturité", id: 'risk_dashboard' },
-                                { step: "4", bold: "Evaluation des leviers", rest: " d'action et matrice de priorisation", id: 'kanban' },
-                                { step: "5", bold: "Rapport final", rest: " et suite", id: 'next_steps' }
+                                { step: "4", bold: "Evaluation des leviers", rest: " d'action et matrices de priorisation", id: 'kanban' },
+                                { step: "5", bold: "Valorisation et suite", rest: " de votre analyse", id: 'next_steps' }
                             ].map((item, i) => (
                                 <button 
                                     key={i} 
@@ -88,7 +88,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                             </h3>
                             <p className="text-sm text-slate-600 leading-relaxed">
                                 Ce diagnostic a été pensé comme un parcours progressif pour vous guider de l'analyse des risques à l'action. 
-                                Vous pouvez toutefois accéder directement à une étape spécifique ci-dessus pour approfondir une évaluation particulière.
+                                Vous pouvez toutefois <strong>accéder directement à une étape spécifique</strong> ci-dessus pour approfondir une évaluation particulière.
                             </p>
                         </div>
                         <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
@@ -402,17 +402,20 @@ const Index: React.FC = () => {
                 <footer className="fixed bottom-0 right-0 left-0 md:left-64 bg-white/80 backdrop-blur-md border-t border-slate-100 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 no-print z-40 gap-2">
                     <div className="flex items-center gap-4 md:gap-8 flex-wrap justify-center">
                         <a href="mailto:info@mouvement-tilt.com" className="flex items-center gap-2 hover:text-[#1A2F2F] transition-colors font-medium text-xs md:text-sm">
-                            <Mail size={16} className="text-[#9DB280]" /> info@mouvement-tilt.com
+                            <Mail size={16} className="text-[#335353]" /> info@mouvement-tilt.com
                         </a>
                         <a href="https://mouvement-tilt.com/" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-[#1A2F2F] transition-colors font-medium text-xs md:text-sm">
-                            <Globe size={16} className="text-[#9DB280]" /> mouvement-tilt.com
+                            <Globe size={16} className="text-[#335353]" /> mouvement-tilt.com
                         </a>
                         <span className="text-slate-400 text-xs">Date : {new Date().toLocaleDateString('fr-FR')}</span>
+                        <a href="https://autodiag-mouvement-tilt.lovable.app" target="_blank" rel="noreferrer" className="text-slate-400 text-xs hover:text-[#1A2F2F] transition-colors">
+                            source : autodiag-mouvement-tilt.lovable.app
+                        </a>
                     </div>
                     <div className="flex items-center gap-4">
                         <button 
                             onClick={() => window.print()}
-                            className="flex items-center gap-2 px-4 py-2 bg-[#9DB280] text-white rounded-lg font-bold hover:bg-[#8DA270] transition-all shadow-sm text-xs md:text-sm"
+                            className="flex items-center gap-2 px-4 py-2 bg-[#335353] text-white rounded-lg font-bold hover:bg-[#244040] transition-all shadow-sm text-xs md:text-sm"
                         >
                             <Download size={16} /> Télécharger en PDF
                         </button>
@@ -429,7 +432,7 @@ const Index: React.FC = () => {
                             <p>info@mouvement-tilt.com | mouvement-tilt.com</p>
                         </div>
                         <div className="text-right">
-                            <p>Document généré le : {new Date().toLocaleDateString('fr-FR')}</p>
+                            <p>Document généré le : {new Date().toLocaleDateString('fr-FR')} | source : autodiag-mouvement-tilt.lovable.app</p>
                             <p>Auto-diagnostic de robustesse associative</p>
                         </div>
                     </div>
