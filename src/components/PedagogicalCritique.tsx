@@ -179,10 +179,10 @@ const PedagogicalCritique: React.FC<PedagogicalCritiqueProps> = ({ onNext }) => 
                 </div>
 
                 <div className="space-y-6">
-                    <h3 className="text-lg md:text-xl font-bold text-[#1A2F2F] flex items-center gap-2">
-                        <ShieldCheck className="text-[#335353]" /> Démarche éthique et RGPD
-                    </h3>
-                    <div className="bg-[#1A2F2F] text-white p-6 rounded-2xl space-y-4">
+                    <div className="bg-[#B2DFB6]/20 p-6 md:p-8 rounded-2xl border border-[#B2DFB6]/40 space-y-4">
+                        <h3 className="text-lg md:text-xl font-bold text-[#1A2F2F] flex items-center gap-2">
+                            <ShieldCheck className="text-[#335353]" /> Démarche éthique et RGPD
+                        </h3>
                         <p className="text-sm md:text-base text-slate-300">
                             Robust'Asso est conçu pour être <span className="text-[#C3FD97] font-bold">100% anonyme</span>.
                         </p>
