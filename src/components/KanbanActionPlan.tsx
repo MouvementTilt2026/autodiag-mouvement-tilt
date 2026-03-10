@@ -210,7 +210,7 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                 </div>
 
                 {/* État des lieux */}
-                <div className="space-y-8">
+                <div className="space-y-8" style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
                     <div className="flex items-center gap-3 px-4">
                         <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600">
                             <KanbanIcon size={24} />
