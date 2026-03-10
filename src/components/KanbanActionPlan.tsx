@@ -205,7 +205,7 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
             {/* Visual analysis */}
             <div className="space-y-16 pt-8">
                 <div className="text-center no-print">
-                    <h3 className="text-2xl md:text-3xl font-black text-[#1A2F2F] mb-2 uppercase tracking-tight">Analyse visuelle</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] mb-2">Étape 2 : analyse visuelle des leviers d'action</h3>
                     <p className="text-slate-500">Visualisez votre stratégie d'action à travers deux matrices complémentaires.</p>
                 </div>
 
