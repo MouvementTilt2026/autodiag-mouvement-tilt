@@ -88,7 +88,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                             </h3>
                             <p className="text-sm text-slate-600 leading-relaxed">
                                 Ce diagnostic a été pensé comme un parcours progressif pour vous guider de l'analyse des risques à l'action. 
-                                Vous pouvez toutefois accéder directement à une étape spécifique ci-dessus pour approfondir une évaluation particulière.
+                                Vous pouvez toutefois <strong>accéder directement à une étape spécifique</strong> ci-dessus pour approfondir une évaluation particulière.
                             </p>
                         </div>
                         <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
