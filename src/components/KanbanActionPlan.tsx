@@ -210,8 +210,8 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                 </div>
 
                 {/* État des lieux */}
-                <div className="space-y-8" style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
-                    <div className="flex items-center gap-3 px-4">
+                <div className="space-y-8" style={{ pageBreakBefore: 'always' }}>
+                    <div className="flex items-center gap-3 px-4" style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
                         <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600">
                             <KanbanIcon size={24} />
                         </div>
@@ -256,7 +256,7 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                 </div>
 
                 {/* Plan d'action */}
-                <div className="space-y-8">
+                <div className="space-y-8" style={{ pageBreakBefore: 'always' }}>
                     <div className="flex flex-col gap-2 px-4">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600">
@@ -306,7 +306,7 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                 </div>
 
                 {/* Eisenhower */}
-                <div className="space-y-8" style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
+                <div className="space-y-8" style={{ pageBreakBefore: 'always' }}>
                     <div className="flex items-center gap-3 px-4">
                         <div className="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center text-red-600">
                             <Zap size={24} />
