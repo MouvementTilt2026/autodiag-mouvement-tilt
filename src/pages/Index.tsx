@@ -59,11 +59,11 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                         <h2 className="text-xl md:text-2xl font-bold text-[#1A2F2F] mb-6">Les étapes du parcours</h2>
                         <div className="grid grid-cols-1 gap-3">
                             {[
-                                { step: "1", bold: "Pré-requis à l'analyse", rest: " via l'onglet auto-critique", id: 'critique' },
+                                { step: "1", bold: "Pré-requis à l'analyse", rest: ' via l\'onglet "Avant de commencer"', id: 'critique' },
                                 { step: "2", bold: "Evaluation des risques", rest: " socio-environnementaux et de la maturité de votre organisation", id: 'risks' },
                                 { step: "3", bold: "Tableaux de bord", rest: " d'analyse de vos risques et de votre maturité", id: 'risk_dashboard' },
-                                { step: "4", bold: "Evaluation des leviers", rest: " d'action et matrice de priorisation", id: 'kanban' },
-                                { step: "5", bold: "Rapport final", rest: " et suite", id: 'next_steps' }
+                                { step: "4", bold: "Evaluation des leviers", rest: " d'action et matrices de priorisation", id: 'kanban' },
+                                { step: "5", bold: "Valorisation et suite", rest: " de votre analyse", id: 'next_steps' }
                             ].map((item, i) => (
                                 <button 
                                     key={i} 
