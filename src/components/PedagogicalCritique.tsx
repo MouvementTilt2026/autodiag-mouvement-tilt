@@ -183,20 +183,20 @@ const PedagogicalCritique: React.FC<PedagogicalCritiqueProps> = ({ onNext }) => 
                         <h3 className="text-lg md:text-xl font-bold text-[#1A2F2F] flex items-center gap-2">
                             <ShieldCheck className="text-[#335353]" /> Démarche éthique et RGPD
                         </h3>
-                        <p className="text-sm md:text-base text-slate-300">
-                            Robust'Asso est conçu pour être <span className="text-[#C3FD97] font-bold">100% anonyme</span>.
+                        <p className="text-sm md:text-base text-[#1A2F2F]">
+                            Robust'Asso est conçu pour être <span className="text-[#335353] font-bold">100% anonyme</span>.
                         </p>
-                        <ul className="space-y-3 text-sm">
+                        <ul className="space-y-3 text-sm text-[#1A2F2F]">
                             <li className="flex items-start gap-2">
-                                <CheckCircle2 className="text-[#C3FD97] shrink-0" size={16} />
+                                <CheckCircle2 className="text-[#335353] shrink-0" size={16} />
                                 <span>Aucune donnée n'est sauvegardée sur nos serveurs.</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <CheckCircle2 className="text-[#C3FD97] shrink-0" size={16} />
+                                <CheckCircle2 className="text-[#335353] shrink-0" size={16} />
                                 <span>L'accès est libre et sans restriction de compte.</span>
                             </li>
                             <li className="flex items-start gap-2">
-                                <CheckCircle2 className="text-[#C3FD97] shrink-0" size={16} />
+                                <CheckCircle2 className="text-[#335353] shrink-0" size={16} />
                                 <span>Vos résultats sont uniquement disponibles via le PDF que vous téléchargez.</span>
                             </li>
                         </ul>
