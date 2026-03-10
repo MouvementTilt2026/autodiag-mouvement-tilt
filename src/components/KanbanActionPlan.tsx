@@ -93,8 +93,8 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
         <div className="max-w-7xl mx-auto space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-500 pb-20">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 no-print">
                 <div>
-                    <h2 className="text-2xl md:text-4xl font-black text-[#1A2F2F] mb-2 flex items-center gap-3">
-                        <KanbanIcon className="text-[#9DB280]" size={32} /> Leviers d'action
+                    <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] mb-2 flex items-center gap-3">
+                        <KanbanIcon className="text-[#9DB280]" size={32} /> Étape 2 : évaluation des leviers d'action
                     </h2>
                     <p className="text-slate-500 text-sm md:text-lg">Évaluez et priorisez vos actions pour une transition robuste.</p>
                 </div>

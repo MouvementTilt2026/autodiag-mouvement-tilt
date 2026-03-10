@@ -78,7 +78,7 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                     <div className="flex justify-center pt-4">
                         <a 
                             href="mailto:info@mouvement-tilt.com"
-                            className="px-8 py-4 bg-[#1A2F2F] text-white rounded-2xl font-bold text-base hover:bg-[#335353] transition-all flex items-center gap-3 shadow-lg"
+                            className="px-8 py-4 bg-[#335353] text-white rounded-2xl font-bold text-base hover:bg-[#244040] transition-all flex items-center gap-3 shadow-lg"
                         >
                             <Mail size={20} /> Pour échanger sur vos besoins, contactez-nous
                         </a>

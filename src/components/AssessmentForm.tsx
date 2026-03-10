@@ -332,7 +332,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                             
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                 {[
-                                    { value: 'local', label: 'Local & Régional', desc: "L'antenne, le bâtiment spécifique, la ville d'implantation." },
+                                    { value: 'local', label: 'Local & Régional', desc: "Une de vos antennes ou une implantation spécifique." },
                                      { value: 'national', label: 'National', desc: "Le siège et ses différentes antennes." },
                                      { value: 'international', label: 'Européen & International', desc: "Évaluation plus difficile à réaliser, nous vous conseillons de faire plusieurs évaluations par échelle nationale." },
                                 ].map(item => (

@@ -432,7 +432,7 @@ const Index: React.FC = () => {
                             <p>info@mouvement-tilt.com | mouvement-tilt.com</p>
                         </div>
                         <div className="text-right">
-                            <p>Document généré le : {new Date().toLocaleDateString('fr-FR')}</p>
+                            <p>Document généré le : {new Date().toLocaleDateString('fr-FR')} | source : autodiag-mouvement-tilt.lovable.app</p>
                             <p>Auto-diagnostic de robustesse associative</p>
                         </div>
                     </div>

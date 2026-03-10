@@ -168,9 +168,9 @@ const PedagogicalCritique: React.FC<PedagogicalCritiqueProps> = ({ onNext }) => 
                                         <AlertTriangle size={20} /> Limites
                                     </h4>
                                     <ul className="space-y-3 text-sm text-slate-600">
-                                        <li className="flex items-start gap-2"><XCircle size={16} className="text-[#BC5B2E] shrink-0 mt-0.5" /> Subjectivité inhérente à l'auto-évaluation et vision à un instant t, d'où la présence de la date sur les PDF</li>
-                                        <li className="flex items-start gap-2"><XCircle size={16} className="text-[#BC5B2E] shrink-0 mt-0.5" /> Ne remplace pas un audit expert approfondi et un accompagnement spécifique</li>
-                                        <li className="flex items-start gap-2"><XCircle size={16} className="text-[#BC5B2E] shrink-0 mt-0.5" /> Nécessite une connaissance et/ou une transparence interne</li>
+                                        <li className="flex items-start gap-2"><AlertTriangle size={16} className="text-[#BC5B2E] shrink-0 mt-0.5" /> Subjectivité inhérente à l'auto-évaluation et vision à un instant t, d'où la présence de la date sur les PDF</li>
+                                        <li className="flex items-start gap-2"><AlertTriangle size={16} className="text-[#BC5B2E] shrink-0 mt-0.5" /> Ne remplace pas un audit expert approfondi et un accompagnement spécifique</li>
+                                        <li className="flex items-start gap-2"><AlertTriangle size={16} className="text-[#BC5B2E] shrink-0 mt-0.5" /> Nécessite une connaissance et/ou une transparence interne</li>
                                     </ul>
                                 </div>
                             </div>
