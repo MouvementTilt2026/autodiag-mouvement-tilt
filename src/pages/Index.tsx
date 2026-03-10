@@ -429,7 +429,7 @@ const Index: React.FC = () => {
                     <div className="flex justify-between items-center">
                         <div>
                             <p className="font-bold text-[#1A2F2F]">Robust'Asso | Mouvement Tilt</p>
-                            <p>info@mouvement-tilt.com | mouvement-tilt.com</p>
+                            <p>info(@)mouvement-tilt.com | mouvement-tilt.com</p>
                         </div>
                         <div className="text-right">
                             <p>Document généré le : {new Date().toLocaleDateString('fr-FR')} | source : autodiag-mouvement-tilt.lovable.app</p>
