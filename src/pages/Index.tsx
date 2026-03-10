@@ -415,7 +415,7 @@ const Index: React.FC = () => {
                     <div className="flex items-center gap-4">
                         <button 
                             onClick={() => window.print()}
-                            className="flex items-center gap-2 px-4 py-2 bg-[#9DB280] text-white rounded-lg font-bold hover:bg-[#8DA270] transition-all shadow-sm text-xs md:text-sm"
+                            className="flex items-center gap-2 px-4 py-2 bg-[#335353] text-white rounded-lg font-bold hover:bg-[#244040] transition-all shadow-sm text-xs md:text-sm"
                         >
                             <Download size={16} /> Télécharger en PDF
                         </button>
