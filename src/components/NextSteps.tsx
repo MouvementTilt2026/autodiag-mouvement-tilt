@@ -36,7 +36,7 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                         <h3 className="font-bold text-[#1A2F2F] mb-3 text-base">Échangez avec vos financeurs et vos instances</h3>
                         <p className="text-sm text-slate-500 mb-6 flex-1">Pensez à télécharger en PDF vos tableaux de bord et matrices d'actions afin de pouvoir les partager et dialoguer sur vos besoins prioritaires.</p>
                         <a 
-                            href={`mailto:?subject=${encodeURIComponent("Rapport Robust'Asso - Auto-diagnostic")}&body=${encodeURIComponent("Bonjour,\n\nVeuillez trouver ci-joint notre rapport d'auto-diagnostic Robust'Asso.\n\nCe rapport contient :\n- Les tableaux de bord des risques\n- Les matrices des leviers d'action\n\nPour télécharger le PDF, ouvrez l'outil et cliquez sur « Exporter en PDF ».\n\nCordialement")}`}
+                            href={`mailto:?subject=${encodeURIComponent("Rapport Robust'Asso - Auto-diagnostic")}&body=${encodeURIComponent("Bonjour,\n\nNous avons effectué un auto-diagnostique des risques et leviers d'action socio-environnementale de notre organisation.\n\nAfin d'échanger ensemble de vive voix à ce propos, vous trouverez en pièce jointe les PDF suivant :\n- Evaluation des risques\n- Tableaux de bord des risques\n- Evaluation et matrices des leviers d'action\n\nCes PDF sont confidentiels et ont été réalisés grâce à l'outil \"Autodiag Robust'Asso\" du Mouvement Tilt.\n\nCordialement")}`}
                             className="w-full py-3 bg-secondary text-white rounded-xl font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2"
                         >
                             <Mail size={14} /> Partager le rapport
