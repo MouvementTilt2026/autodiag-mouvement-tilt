@@ -303,9 +303,9 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                             
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                                 {[
-                                    { value: 'global', label: 'Global / Institutionnel', desc: "L'association dans son ensemble, son image, sa pérennité." },
-                                     { value: 'poles', label: 'Pôle spécifique pérenne', desc: "Les départements spécifiques : Finance, RH, Technique, Communication." },
-                                     { value: 'unites', label: 'Projet ou activité spécifique', desc: "Liés à des équipes temporaires." },
+                                    { value: 'global', label: 'Global / Institutionnel', desc: "L'association dans son ensemble." },
+                                     { value: 'poles', label: 'Pôle spécifique pérenne', desc: "Un de vos départements spécifique." },
+                                     { value: 'unites', label: 'Projet ou activité spécifique', desc: "Lié à une équipe projet." },
                                 ].map(item => (
                                     <button
                                         key={item.value}
