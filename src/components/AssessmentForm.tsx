@@ -256,6 +256,14 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                             </div>
                         </div>
 
+                        <div className="bg-[#335353]/10 p-4 md:p-6 rounded-2xl border border-[#335353]/20 flex items-start gap-3">
+                            <Download className="text-[#335353] shrink-0 mt-0.5" size={20} />
+                            <div className="space-y-1">
+                                <p className="text-sm font-bold text-[#1A2F2F]">Méthodologie PDF</p>
+                                <p className="text-sm text-slate-600">Vous pouvez enregistrer un PDF par onglet de risque, le bouton "télécharger le PDF" étant associé à la page affichée sur votre écran.</p>
+                            </div>
+                        </div>
+
                         <div className="bg-[#1A2F2F]/5 p-4 md:p-6 rounded-2xl border border-[#1A2F2F]/10 flex items-start gap-3">
                             <Info className="text-[#1A2F2F] shrink-0 mt-0.5" size={20} />
                             <div className="space-y-2">
