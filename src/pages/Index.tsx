@@ -56,7 +56,10 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
 
                 <div className="space-y-8">
                     <div className="bg-[#B2DFB6]/10 p-6 md:p-8 rounded-2xl border border-[#B2DFB6]/30">
-                        <h2 className="text-xl md:text-2xl font-bold text-[#1A2F2F] mb-6">Les étapes du parcours</h2>
+                        <h2 className="text-xl md:text-2xl font-bold text-[#1A2F2F] mb-3">Les étapes du parcours</h2>
+                        <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                            Ce diagnostic a été pensé comme un parcours progressif pour vous guider de l'analyse des risques à l'action. Vous pouvez toutefois <strong>accéder directement à une étape spécifique</strong> ci-dessus pour approfondir une évaluation particulière.
+                        </p>
                         <div className="grid grid-cols-1 gap-3">
                             {[
                                 { step: "1", bold: "Pré-requis à l'analyse", rest: ' via l\'onglet "Avant de commencer"', id: 'critique' },
