@@ -30,7 +30,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                             <Info className="text-[#335353]" /> Le Mouvement Tilt
                         </h2>
                         <p className="text-slate-600 leading-relaxed">
-                            Le Mouvement Tilt accompagne les acteurs de l'intérêt général dans leur transformation pour un impact durable et une résilience accrue. Nous croyons en une ingénierie socio-environnementale au service du bien commun.
+                            Grâce au soutien de la communauté philanthrope, le Mouvement Tilt élabore et déploie des outils, des méthodes et des parcours d'accompagnement dédiés à la transformation écologique des associations, accessibles gratuitement à tous les acteurs de l'intérêt général.
                         </p>
                     </div>
                     <div className="space-y-4">
@@ -56,7 +56,10 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
 
                 <div className="space-y-8">
                     <div className="bg-[#B2DFB6]/10 p-6 md:p-8 rounded-2xl border border-[#B2DFB6]/30">
-                        <h2 className="text-xl md:text-2xl font-bold text-[#1A2F2F] mb-6">Les étapes du parcours</h2>
+                        <h2 className="text-xl md:text-2xl font-bold text-[#1A2F2F] mb-3">Les étapes du parcours</h2>
+                        <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                            Ce diagnostic a été pensé comme un parcours progressif pour vous guider de l'analyse des risques à l'action. Vous pouvez toutefois <strong>accéder directement à une étape spécifique</strong> ci-dessus pour approfondir une évaluation particulière.
+                        </p>
                         <div className="grid grid-cols-1 gap-3">
                             {[
                                 { step: "1", bold: "Pré-requis à l'analyse", rest: ' via l\'onglet "Avant de commencer"', id: 'critique' },
@@ -81,26 +84,6 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                            <h3 className="text-lg font-bold text-[#1A2F2F] mb-3 flex items-center gap-2">
-                                <TrendingUp className="text-[#335353]" size={20} /> Parcours progressif
-                            </h3>
-                            <p className="text-sm text-slate-600 leading-relaxed">
-                                Ce diagnostic a été pensé comme un parcours progressif pour vous guider de l'analyse des risques à l'action. 
-                                Vous pouvez toutefois <strong>accéder directement à une étape spécifique</strong> ci-dessus pour approfondir une évaluation particulière.
-                            </p>
-                        </div>
-                        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                            <h3 className="text-lg font-bold text-[#1A2F2F] mb-3 flex items-center gap-2">
-                                <ShieldCheck className="text-[#335353]" size={20} /> Éthique & RGPD
-                            </h3>
-                            <p className="text-sm text-slate-600 leading-relaxed">
-                                Dans une démarche éthique et de conformité RGPD, vos données ne sont pas stockées sur nos serveurs. 
-                                Pensez à <strong>télécharger vos résultats en PDF</strong> à la fin de chaque étape et à la fin du parcours pour conserver votre analyse.
-                            </p>
-                        </div>
-                    </div>
                 </div>
 
                 <div className="mt-12 flex justify-center">
@@ -117,33 +100,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                     <div className="flex items-center gap-4">
                         <img src={logoTiltImg} alt="Le Mouvement Tilt" className="h-14 w-auto object-contain" />
                         <div>
-                            <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F]">À propos du Mouvement Tilt</h2>
-                            <p className="text-slate-500 font-medium">Ingénierie socio-environnementale au service de l'intérêt général</p>
-                        </div>
-                    </div>
-
-                    {/* Un Mouvement créé sur 3 constats */}
-                    <div className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 space-y-8">
-                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Un Mouvement créé sur 3 constats...</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div className="flex flex-col items-center text-center gap-4 p-4 bg-white rounded-2xl border border-slate-100">
-                                <div className="w-14 h-14 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center">
-                                    <Leaf size={28} />
-                                </div>
-                                <p className="text-sm font-bold text-[#1A2F2F]">7 limites planétaires franchies…</p>
-                            </div>
-                            <div className="flex flex-col items-center text-center gap-4 p-4 bg-white rounded-2xl border border-slate-100">
-                                <div className="w-14 h-14 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center">
-                                    <DollarSign size={28} />
-                                </div>
-                                <p className="text-sm font-bold text-[#1A2F2F]">3% des flux philanthropiques orientés vers des causes environnementales</p>
-                            </div>
-                            <div className="flex flex-col items-center text-center gap-4 p-4 bg-white rounded-2xl border border-slate-100">
-                                <div className="w-14 h-14 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center">
-                                    <Users size={28} />
-                                </div>
-                                <p className="text-sm font-bold text-[#1A2F2F]">La nécessité d'outiller et de redonner à l'écosystème associatif son pouvoir d'agir</p>
-                            </div>
+                        <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F]">À propos du Mouvement Tilt</h2>
                         </div>
                     </div>
 
@@ -193,13 +150,13 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
 
                     {/* Nos accompagnements */}
                     <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 space-y-6">
-                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Nos accompagnements</h3>
+                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Nos actions</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {[
                                 { title: 'Tilt Odyssée', desc: 'Parcours de formation et d\'accompagnement en hybride', icon: Compass },
                                 { title: 'Tilt\'Envol', desc: 'Parcours de formation et d\'accompagnement en ligne', icon: Rocket },
                                 { title: 'Journées Déclic', desc: 'Journées de sensibilisation aux enjeux socio-environnementaux', icon: Leaf },
-                                { title: 'Tilt for good', desc: 'Journées et parcours sur-mesure', icon: Target },
+                                { title: 'La Tilt\'othèque', desc: 'Bibliothèque de ressources open source', icon: Target },
                             ].map((item, i) => (
                                 <div key={i} className="flex items-start gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100">
                                     <div className="w-10 h-10 rounded-xl bg-[#335353] text-[#C3FD97] flex items-center justify-center shrink-0 mt-0.5">
@@ -370,7 +327,7 @@ const Index: React.FC = () => {
         <div className="min-h-screen bg-slate-50 flex">
             <AppSidebar currentStep={state.step} setStep={handleNavigate} />
             
-            <main className="flex-1 md:ml-64 p-4 md:p-8 pb-32 relative min-h-screen pt-16 md:pt-8">
+            <main className="flex-1 md:ml-64 p-4 md:p-8 pb-8 relative min-h-screen pt-16 md:pt-8">
                 <div className="max-w-6xl mx-auto">
                     {state.step === 'intro' && <Intro onStart={(step) => handleNavigate(step || 'critique')} />}
                     {state.step === 'critique' && <PedagogicalCritique onNext={() => handleNavigate('risks')} />}
@@ -399,7 +356,7 @@ const Index: React.FC = () => {
                     )}
                 </div>
 
-                <footer className="fixed bottom-0 right-0 left-0 md:left-64 bg-white/80 backdrop-blur-md border-t border-slate-100 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 no-print z-40 gap-2">
+                <footer className="mt-12 bg-white/80 backdrop-blur-md border-t border-slate-100 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 no-print gap-2">
                     <div className="flex items-center gap-4 md:gap-8 flex-wrap justify-center">
                         <button onClick={() => { window.location.href = 'mai' + 'lto:' + 'info' + '@' + 'mouvement-tilt.com'; }} className="flex items-center gap-2 hover:text-[#1A2F2F] transition-colors font-medium text-xs md:text-sm">
                             <Mail size={16} className="text-[#335353]" /> info(@)mouvement-tilt.com
