@@ -76,7 +76,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
         return `${val} (${LEVEL_DETAILS.vulnerability[val as keyof typeof LEVEL_DETAILS.vulnerability].label})`;
     };
 
-    const filteredRisks = RISK_CATALOG.filter(r => r.category === activeCategory);
+    const filteredRisks = showAllForPrint ? RISK_CATALOG : RISK_CATALOG.filter(r => r.category === activeCategory);
 
     const goToNextCategory = () => {
         if (isLastCategory) {
