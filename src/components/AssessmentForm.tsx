@@ -78,6 +78,12 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
 
     const filteredRisks = showAllForPrint ? RISK_CATALOG : RISK_CATALOG.filter(r => r.category === activeCategory);
 
+    // Group risks by category for print layout
+    const groupedByCategory = categories.map(cat => ({
+        category: cat,
+        risks: RISK_CATALOG.filter(r => r.category === cat)
+    }));
+
     const goToNextCategory = () => {
         if (isLastCategory) {
             onNavigate?.('risk_dashboard');
