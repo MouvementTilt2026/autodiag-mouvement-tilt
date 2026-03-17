@@ -148,7 +148,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
             </div>
 
             {/* Lexique dépliable */}
-            <div className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+            <div className={`bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden ${showAllForPrint ? 'print-lexique-compact' : ''}`}>
                 <button 
                     onClick={() => setLexiqueOpen(!lexiqueOpen)}
                     className="w-full p-6 md:p-8 flex items-center justify-between gap-3 hover:bg-slate-50 transition-colors"
