@@ -100,8 +100,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                     <div className="flex items-center gap-4">
                         <img src={logoTiltImg} alt="Le Mouvement Tilt" className="h-14 w-auto object-contain" />
                         <div>
-                            <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F]">À propos du Mouvement Tilt</h2>
-                            <p className="text-slate-500 font-medium">Ingénierie socio-environnementale au service de l'intérêt général</p>
+                        <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F]">À propos du Mouvement Tilt</h2>
                         </div>
                     </div>
 
