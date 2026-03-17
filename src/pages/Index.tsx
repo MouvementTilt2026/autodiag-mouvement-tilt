@@ -150,7 +150,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
 
                     {/* Nos accompagnements */}
                     <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 space-y-6">
-                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Nos accompagnements</h3>
+                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Nos actions</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {[
                                 { title: 'Tilt Odyssée', desc: 'Parcours de formation et d\'accompagnement en hybride', icon: Compass },
