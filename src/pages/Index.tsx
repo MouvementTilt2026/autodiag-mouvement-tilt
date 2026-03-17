@@ -30,7 +30,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                             <Info className="text-[#335353]" /> Le Mouvement Tilt
                         </h2>
                         <p className="text-slate-600 leading-relaxed">
-                            Le Mouvement Tilt accompagne les acteurs de l'intérêt général dans leur transformation pour un impact durable et une résilience accrue. Nous croyons en une ingénierie socio-environnementale au service du bien commun.
+                            Grâce au soutien de la communauté philanthrope, le Mouvement Tilt élabore et déploie des outils, des méthodes et des parcours d'accompagnement dédiés à la transformation écologique des associations, accessibles gratuitement à tous les acteurs de l'intérêt général.
                         </p>
                     </div>
                     <div className="space-y-4">
