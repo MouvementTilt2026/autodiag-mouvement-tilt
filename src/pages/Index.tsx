@@ -356,7 +356,7 @@ const Index: React.FC = () => {
                     )}
                 </div>
 
-                <footer className="fixed bottom-0 right-0 left-0 md:left-64 bg-white/80 backdrop-blur-md border-t border-slate-100 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 no-print z-40 gap-2">
+                <footer className="mt-12 bg-white/80 backdrop-blur-md border-t border-slate-100 p-4 md:p-6 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 no-print gap-2">
                     <div className="flex items-center gap-4 md:gap-8 flex-wrap justify-center">
                         <button onClick={() => { window.location.href = 'mai' + 'lto:' + 'info' + '@' + 'mouvement-tilt.com'; }} className="flex items-center gap-2 hover:text-[#1A2F2F] transition-colors font-medium text-xs md:text-sm">
                             <Mail size={16} className="text-[#335353]" /> info(@)mouvement-tilt.com
