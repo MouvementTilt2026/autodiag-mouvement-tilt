@@ -156,7 +156,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                                 { title: 'Tilt Odyssée', desc: 'Parcours de formation et d\'accompagnement en hybride', icon: Compass },
                                 { title: 'Tilt\'Envol', desc: 'Parcours de formation et d\'accompagnement en ligne', icon: Rocket },
                                 { title: 'Journées Déclic', desc: 'Journées de sensibilisation aux enjeux socio-environnementaux', icon: Leaf },
-                                { title: 'Tilt for good', desc: 'Journées et parcours sur-mesure', icon: Target },
+                                { title: 'La Tilt\'othèque', desc: 'Bibliothèque de ressources open source', icon: Target },
                             ].map((item, i) => (
                                 <div key={i} className="flex items-start gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100">
                                     <div className="w-10 h-10 rounded-xl bg-[#335353] text-[#C3FD97] flex items-center justify-center shrink-0 mt-0.5">
