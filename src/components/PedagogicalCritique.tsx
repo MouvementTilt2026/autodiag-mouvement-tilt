@@ -14,7 +14,8 @@ import {
     ChevronDown,
     ChevronUp,
     Lightbulb,
-    Search
+    Search,
+    Globe
 } from 'lucide-react';
 
 interface PedagogicalCritiqueProps {
@@ -25,6 +26,10 @@ const PedagogicalCritique: React.FC<PedagogicalCritiqueProps> = ({ onNext }) => 
     const [expandedBias, setExpandedBias] = useState<number | null>(null);
     const [biaisOpen, setBiaisOpen] = useState(false);
     const [limitesOpen, setLimitesOpen] = useState(false);
+    const [perimetreOpen, setPerimetreOpen] = useState(false);
+    const [perimetreOrga, setPerimetreOrga] = useState<string>('');
+    const [perimetreGeo, setPerimetreGeo] = useState<string>('');
+    const [perimetreEval, setPerimetreEval] = useState<string>('');
 
     const biases = [
         { 
