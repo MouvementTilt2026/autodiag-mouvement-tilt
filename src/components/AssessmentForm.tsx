@@ -102,6 +102,134 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
         }, 300);
     };
 
+    const renderRiskCard = (risk: any, assessment: any, riskScore: number, globalIndex: number, isPrint: boolean) => (
+        <div key={risk.id} className={`bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow ${isPrint ? 'print-risk-card' : ''}`}>
+            <div className="p-4 md:p-8">
+                <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-8">
+                    <div className="space-y-3">
+                        <div className="flex flex-wrap items-center gap-2">
+                            <span className="w-8 h-8 rounded-full bg-[#1A2F2F] text-white flex items-center justify-center text-xs font-bold shrink-0">
+                                {globalIndex}
+                            </span>
+                            <span 
+                                className="flex items-center gap-1.5 text-[10px] font-bold px-3 py-1 rounded-lg uppercase tracking-wider"
+                                style={{ backgroundColor: `${getThemeColor(risk.theme)}30`, color: '#1A2F2F', border: `1px solid ${getThemeColor(risk.theme)}50` }}
+                            >
+                                <Globe size={12} /> {risk.theme}
+                            </span>
+                        </div>
+                        <h3 className="text-lg md:text-2xl font-bold text-[#1A2F2F]">{risk.name}</h3>
+                        {risk.description && <p className="text-slate-500 text-sm leading-relaxed">{risk.description}</p>}
+                    </div>
+                    <div className="flex items-center gap-2 shrink-0">
+                        {risk.odds && risk.odds.length > 0 && (
+                            <span className="text-[10px] font-bold text-slate-400 mr-1">ODD :</span>
+                        )}
+                        {risk.odds?.map((odd: number) => (
+                            <div key={odd} className="w-6 h-6 rounded-full bg-slate-800 text-white flex items-center justify-center text-[10px] font-bold">
+                                {odd}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="space-y-10">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-10">
+                        <div className="space-y-3 md:space-y-4">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-1">
+                                <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">FRÉQUENCE (F)</label>
+                                <span className="text-sm font-bold text-[#1A2F2F]">{getProbabilityLabel(assessment.probability)}</span>
+                            </div>
+                            <div className="relative pt-2">
+                                <input type="range" min="1" max="4" step="1" value={assessment.probability}
+                                    onChange={(e) => handleChange(risk.id, 'probability', parseInt(e.target.value))}
+                                    className="w-full h-3 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#D09639]"
+                                    style={{ touchAction: 'none' }} />
+                                <div className="flex justify-between mt-2 px-1">
+                                    {[1, 2, 3, 4].map(v => (
+                                        <button key={v} onClick={() => handleChange(risk.id, 'probability', v)}
+                                            className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                                                assessment.probability === v ? 'bg-[#D09639] text-white scale-110' : 'bg-slate-100 text-slate-400 hover:bg-slate-200'
+                                            }`}>{v}</button>
+                                    ))}
+                                </div>
+                                <p className="mt-3 text-xs text-slate-600 italic leading-relaxed min-h-[2.5rem]">
+                                    {LEVEL_DETAILS.frequency[assessment.probability as keyof typeof LEVEL_DETAILS.frequency].desc}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="space-y-3 md:space-y-4">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-1">
+                                <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">GRAVITÉ (G)</label>
+                                <span className="text-sm font-bold text-[#1A2F2F]">{getImpactLabel(assessment.impact)}</span>
+                            </div>
+                            <div className="relative pt-2">
+                                <input type="range" min="1" max="4" step="1" value={assessment.impact}
+                                    onChange={(e) => handleChange(risk.id, 'impact', parseInt(e.target.value))}
+                                    className="w-full h-3 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#BC5B2E]"
+                                    style={{ touchAction: 'none' }} />
+                                <div className="flex justify-between mt-2 px-1">
+                                    {[1, 2, 3, 4].map(v => (
+                                        <button key={v} onClick={() => handleChange(risk.id, 'impact', v)}
+                                            className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                                                assessment.impact === v ? 'bg-[#BC5B2E] text-white scale-110' : 'bg-slate-100 text-slate-400 hover:bg-slate-200'
+                                            }`}>{v}</button>
+                                    ))}
+                                </div>
+                                <p className="mt-3 text-xs text-slate-600 italic leading-relaxed min-h-[2.5rem]">
+                                    {LEVEL_DETAILS.gravity[assessment.impact as keyof typeof LEVEL_DETAILS.gravity].desc}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="space-y-3 md:space-y-4">
+                            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-1">
+                                <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">VULNÉRABILITÉ (V)</label>
+                                <span className="text-sm font-bold text-[#1A2F2F]">{getVulnerabilityLabel(assessment.maturity)}</span>
+                            </div>
+                            <div className="relative pt-2">
+                                <input type="range" min="1" max="4" step="1" value={assessment.maturity}
+                                    onChange={(e) => handleChange(risk.id, 'maturity', parseInt(e.target.value))}
+                                    className="w-full h-3 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-[#9DB280]"
+                                    style={{ touchAction: 'none' }} />
+                                <div className="flex justify-between mt-2 px-1">
+                                    {[1, 2, 3, 4].map(v => (
+                                        <button key={v} onClick={() => handleChange(risk.id, 'maturity', v)}
+                                            className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
+                                                assessment.maturity === v ? 'bg-[#9DB280] text-white scale-110' : 'bg-slate-100 text-slate-400 hover:bg-slate-200'
+                                            }`}>{v}</button>
+                                    ))}
+                                </div>
+                                <p className="mt-3 text-xs text-slate-600 italic leading-relaxed min-h-[2.5rem]">
+                                    {LEVEL_DETAILS.vulnerability[assessment.maturity as keyof typeof LEVEL_DETAILS.vulnerability].desc}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex flex-col items-center pt-6 border-t border-slate-50">
+                        <div className="bg-[#E1E4D1]/50 p-4 md:p-6 rounded-2xl border border-[#9DB280]/20 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-inner w-full">
+                            <div className="flex flex-col items-center sm:items-start">
+                                <span className="text-[10px] font-bold text-[#1A2F2F]/40 uppercase tracking-widest mb-1">Score de criticité (G x F x V)</span>
+                                <div className="flex items-baseline gap-2">
+                                    <span className="text-[#1A2F2F] font-black text-3xl">{riskScore}</span>
+                                    <span className="text-xs text-slate-400 font-bold">/ 64</span>
+                                </div>
+                            </div>
+                            <div className="px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm" style={{ 
+                                backgroundColor: riskScore > 18 ? '#BC5B2E' : riskScore > 10 ? '#D09639' : '#9DB280',
+                                color: '#fff'
+                            }}>
+                                Priorité : {riskScore > 18 ? 'élevée' : riskScore > 10 ? 'moyenne' : 'basse'}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+
     return (
         <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100">
