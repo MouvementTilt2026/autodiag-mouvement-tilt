@@ -84,26 +84,6 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                            <h3 className="text-lg font-bold text-[#1A2F2F] mb-3 flex items-center gap-2">
-                                <TrendingUp className="text-[#335353]" size={20} /> Parcours progressif
-                            </h3>
-                            <p className="text-sm text-slate-600 leading-relaxed">
-                                Ce diagnostic a été pensé comme un parcours progressif pour vous guider de l'analyse des risques à l'action. 
-                                Vous pouvez toutefois <strong>accéder directement à une étape spécifique</strong> ci-dessus pour approfondir une évaluation particulière.
-                            </p>
-                        </div>
-                        <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                            <h3 className="text-lg font-bold text-[#1A2F2F] mb-3 flex items-center gap-2">
-                                <ShieldCheck className="text-[#335353]" size={20} /> Éthique & RGPD
-                            </h3>
-                            <p className="text-sm text-slate-600 leading-relaxed">
-                                Dans une démarche éthique et de conformité RGPD, vos données ne sont pas stockées sur nos serveurs. 
-                                Pensez à <strong>télécharger vos résultats en PDF</strong> à la fin de chaque étape et à la fin du parcours pour conserver votre analyse.
-                            </p>
-                        </div>
-                    </div>
                 </div>
 
                 <div className="mt-12 flex justify-center">
