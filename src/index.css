@@ -128,6 +128,95 @@
     page-break-inside: avoid;
   }
 
+  /* Assessment print: lexique fits first page */
+  .print-lexique-compact .space-y-8 {
+    gap: 0.25rem !important;
+  }
+  .print-lexique-compact .space-y-4 {
+    gap: 0.15rem !important;
+  }
+  .print-lexique-compact .p-3 {
+    padding: 0.15rem 0.5rem !important;
+  }
+  .print-lexique-compact .text-sm {
+    font-size: 8pt !important;
+    line-height: 1.2 !important;
+  }
+  .print-lexique-compact .text-xs,
+  .print-lexique-compact .text-\[10px\] {
+    font-size: 7pt !important;
+    line-height: 1.1 !important;
+  }
+  .print-lexique-compact .mb-4,
+  .print-lexique-compact .mt-4,
+  .print-lexique-compact .pt-6 {
+    margin-bottom: 0.15rem !important;
+    margin-top: 0.15rem !important;
+    padding-top: 0.15rem !important;
+  }
+  .print-lexique-compact .p-4,
+  .print-lexique-compact .md\:p-6 {
+    padding: 0.35rem 0.5rem !important;
+  }
+  .print-lexique-compact .gap-8 {
+    gap: 0.35rem !important;
+  }
+  .print-lexique-compact .gap-4 {
+    gap: 0.25rem !important;
+  }
+  .print-lexique-compact h4 {
+    font-size: 9pt !important;
+    margin-bottom: 0.1rem !important;
+  }
+  .print-lexique-compact .italic {
+    display: none !important;
+  }
+
+  /* Category separator: always new page */
+  .print-category-break {
+    page-break-before: always;
+  }
+
+  /* 4 risks per page: each risk card compact */
+  .print-risk-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 0.3rem !important;
+    padding: 0.4rem 0.6rem !important;
+  }
+  .print-risk-card .text-lg,
+  .print-risk-card .md\:text-2xl {
+    font-size: 10pt !important;
+  }
+  .print-risk-card .space-y-10 {
+    gap: 0.2rem !important;
+  }
+  .print-risk-card .gap-10 {
+    gap: 0.3rem !important;
+  }
+  .print-risk-card .mb-8 {
+    margin-bottom: 0.2rem !important;
+  }
+  .print-risk-card .pt-6 {
+    padding-top: 0.2rem !important;
+  }
+  .print-risk-card .p-4,
+  .print-risk-card .md\:p-6,
+  .print-risk-card .md\:p-8,
+  .print-risk-card .p-8 {
+    padding: 0.3rem 0.5rem !important;
+  }
+  .print-risk-card .min-h-\[2\.5rem\] {
+    min-height: 0 !important;
+    display: none !important;
+  }
+  .print-risk-card .mt-3 {
+    margin-top: 0.1rem !important;
+  }
+  .print-risk-card .text-3xl {
+    font-size: 14pt !important;
+  }
+
   /* Ensure content fits A4 width */
   main {
     margin-left: 0 !important;
