@@ -89,8 +89,11 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
 
     const handleExpandAndPrint = () => {
         setLexiqueOpen(true);
-        setPerimetreOpen(true);
-        setTimeout(() => window.print(), 300);
+        setShowAllForPrint(true);
+        setTimeout(() => {
+            window.print();
+            setShowAllForPrint(false);
+        }, 300);
     };
 
     return (
