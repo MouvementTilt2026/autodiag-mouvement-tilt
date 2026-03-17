@@ -327,7 +327,7 @@ const Index: React.FC = () => {
         <div className="min-h-screen bg-slate-50 flex">
             <AppSidebar currentStep={state.step} setStep={handleNavigate} />
             
-            <main className="flex-1 md:ml-64 p-4 md:p-8 pb-32 relative min-h-screen pt-16 md:pt-8">
+            <main className="flex-1 md:ml-64 p-4 md:p-8 pb-8 relative min-h-screen pt-16 md:pt-8">
                 <div className="max-w-6xl mx-auto">
                     {state.step === 'intro' && <Intro onStart={(step) => handleNavigate(step || 'critique')} />}
                     {state.step === 'critique' && <PedagogicalCritique onNext={() => handleNavigate('risks')} />}
