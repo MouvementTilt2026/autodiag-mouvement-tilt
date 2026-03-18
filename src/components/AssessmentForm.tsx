@@ -7,9 +7,10 @@ interface AssessmentFormProps {
     assessments: Record<string, RiskAssessment>;
     onUpdate: (id: string, data: RiskAssessment) => void;
     onNavigate?: (step: AppState['step']) => void;
+    onRegisterPrint?: (printFn: () => void) => void;
 }
 
-const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, onNavigate }) => {
+const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, onNavigate, onRegisterPrint }) => {
     const [activeCategory, setActiveCategory] = useState<RiskCategory>(Object.values(RiskCategory)[0]);
     const [lexiqueOpen, setLexiqueOpen] = useState(false);
     const [showAllForPrint, setShowAllForPrint] = useState(false);
