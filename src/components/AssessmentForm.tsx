@@ -109,6 +109,13 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
         }, 800);
     };
 
+    // Register the print function for external use (e.g., footer button)
+    React.useEffect(() => {
+        if (onRegisterPrint) {
+            onRegisterPrint(handleExpandAndPrint);
+        }
+    }, [onRegisterPrint]);
+
     const renderRiskCard = (risk: any, assessment: any, riskScore: number, globalIndex: number, isPrint: boolean) => (
         <div key={risk.id} className={`bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow ${isPrint ? 'print-risk-card' : ''}`}>
             <div className="p-4 md:p-8">
