@@ -382,7 +382,7 @@ const Index: React.FC = () => {
                     </div>
                     <div className="flex items-center gap-4">
                         <button 
-                            onClick={() => window.print()}
+                            onClick={handleFooterPrint}
                             className="flex items-center gap-2 px-4 py-2 bg-[#335353] text-white rounded-lg font-bold hover:bg-[#244040] transition-all shadow-sm text-xs md:text-sm"
                         >
                             <Download size={16} /> Télécharger en PDF
