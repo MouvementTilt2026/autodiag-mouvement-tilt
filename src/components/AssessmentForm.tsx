@@ -96,10 +96,16 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
     const handleExpandAndPrint = () => {
         setLexiqueOpen(true);
         setShowAllForPrint(true);
+        
+        const resetAfterPrint = () => {
+            setShowAllForPrint(false);
+            window.removeEventListener('afterprint', resetAfterPrint);
+        };
+        window.addEventListener('afterprint', resetAfterPrint);
+        
         setTimeout(() => {
             window.print();
-            setShowAllForPrint(false);
-        }, 300);
+        }, 800);
     };
 
     const renderRiskCard = (risk: any, assessment: any, riskScore: number, globalIndex: number, isPrint: boolean) => (
