@@ -7,9 +7,10 @@ interface AssessmentFormProps {
     assessments: Record<string, RiskAssessment>;
     onUpdate: (id: string, data: RiskAssessment) => void;
     onNavigate?: (step: AppState['step']) => void;
+    onRegisterPrint?: (printFn: () => void) => void;
 }
 
-const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, onNavigate }) => {
+const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, onNavigate, onRegisterPrint }) => {
     const [activeCategory, setActiveCategory] = useState<RiskCategory>(Object.values(RiskCategory)[0]);
     const [lexiqueOpen, setLexiqueOpen] = useState(false);
     const [showAllForPrint, setShowAllForPrint] = useState(false);
@@ -96,11 +97,24 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
     const handleExpandAndPrint = () => {
         setLexiqueOpen(true);
         setShowAllForPrint(true);
+        
+        const resetAfterPrint = () => {
+            setShowAllForPrint(false);
+            window.removeEventListener('afterprint', resetAfterPrint);
+        };
+        window.addEventListener('afterprint', resetAfterPrint);
+        
         setTimeout(() => {
             window.print();
-            setShowAllForPrint(false);
-        }, 300);
+        }, 800);
     };
+
+    // Register the print function for external use (e.g., footer button)
+    React.useEffect(() => {
+        if (onRegisterPrint) {
+            onRegisterPrint(handleExpandAndPrint);
+        }
+    }, [onRegisterPrint]);
 
     const renderRiskCard = (risk: any, assessment: any, riskScore: number, globalIndex: number, isPrint: boolean) => (
         <div key={risk.id} className={`bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-md transition-shadow ${isPrint ? 'print-risk-card' : ''}`}>
