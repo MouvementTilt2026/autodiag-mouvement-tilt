@@ -323,6 +323,16 @@ const Index: React.FC = () => {
         window.scrollTo(0, 0);
     };
 
+    const [assessmentPrintFn, setAssessmentPrintFn] = useState<(() => void) | null>(null);
+
+    const handleFooterPrint = () => {
+        if (state.step === 'risks' && assessmentPrintFn) {
+            assessmentPrintFn();
+        } else {
+            window.print();
+        }
+    };
+
     return (
         <div className="min-h-screen bg-slate-50 flex">
             <AppSidebar currentStep={state.step} setStep={handleNavigate} />
@@ -336,6 +346,7 @@ const Index: React.FC = () => {
                             assessments={state.assessments} 
                             onUpdate={handleUpdateAssessment}
                             onNavigate={handleNavigate}
+                            onRegisterPrint={(fn) => setAssessmentPrintFn(() => fn)}
                         />
                     )}
                     {state.step === 'risk_dashboard' && (
