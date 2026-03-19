@@ -17,7 +17,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
 
     const topRisks = useMemo(() => {
         return [...riskData]
-            .sort((a, b) => (b.probability * b.impact * b.maturity) - (a.probability * a.impact * a.maturity))
+            .sort((a, b) => ((b.probability * b.impact) / b.maturity) - ((a.probability * a.impact) / a.maturity))
             .slice(0, 10);
     }, [riskData]);
 
@@ -26,23 +26,25 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
             const themeRisks = RISK_CATALOG.filter(r => r.theme === theme);
             const themeAssessments = themeRisks.map(tr => assessments[tr.id]).filter(Boolean);
             if (themeAssessments.length === 0) return { name: theme, score: 0, count: 0 };
-            const avgScore = themeAssessments.reduce((acc, curr) => acc + (curr.probability * curr.impact * curr.maturity), 0) / themeAssessments.length;
+            const avgScore = themeAssessments.reduce((acc, curr) => acc + ((curr.probability * curr.impact) / curr.maturity), 0) / themeAssessments.length;
             return { name: theme.replace('Choc ', ''), score: Math.round(avgScore * 10) / 10, count: themeAssessments.length };
         }).filter(t => t.count > 0);
     }, [assessments]);
 
     const criticalityDistribution = useMemo(() => {
-        const dist = { low: 0, medium: 0, high: 0 };
+        const dist = { faible: 0, modere: 0, eleve: 0, critique: 0 };
         riskData.forEach(r => {
-            const score = r.probability * r.impact * r.maturity;
-            if (score > 18) dist.high++;
-            else if (score > 10) dist.medium++;
-            else dist.low++;
+            const score = (r.probability * r.impact) / r.maturity;
+            if (score > 10) dist.critique++;
+            else if (score > 6) dist.eleve++;
+            else if (score > 2) dist.modere++;
+            else dist.faible++;
         });
         return [
-            { name: 'Bas (<10)', value: dist.low, color: '#9DB280' },
-            { name: 'Moyen (10-18)', value: dist.medium, color: '#D09639' },
-            { name: 'Élevé (>18)', value: dist.high, color: '#BC5B2E' }
+            { name: 'Faible (≤2)', value: dist.faible, color: '#9DB280' },
+            { name: 'Modéré (>2-6)', value: dist.modere, color: '#D09639' },
+            { name: 'Élevé (>6-10)', value: dist.eleve, color: '#E18392' },
+            { name: 'Critique (>10)', value: dist.critique, color: '#BC5B2E' }
         ].filter(d => d.value > 0);
     }, [riskData]);
 
@@ -50,10 +52,10 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
         const counts = { 1: 0, 2: 0, 3: 0, 4: 0 };
         riskData.forEach(r => { counts[r.maturity as keyof typeof counts]++; });
         return [
-            { subject: 'Sécurisé (1)', A: counts[1], fullMark: riskData.length },
-            { subject: 'Sous Contrôle (2)', A: counts[2], fullMark: riskData.length },
-            { subject: 'Vulnérable (3)', A: counts[3], fullMark: riskData.length },
-            { subject: 'Critique (4)', A: counts[4], fullMark: riskData.length },
+            { subject: 'Critique (1)', A: counts[1], fullMark: riskData.length },
+            { subject: 'Vulnérable (2)', A: counts[2], fullMark: riskData.length },
+            { subject: 'Sous Contrôle (3)', A: counts[3], fullMark: riskData.length },
+            { subject: 'Sécurisé (4)', A: counts[4], fullMark: riskData.length },
         ];
     }, [riskData]);
 
@@ -88,12 +90,12 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                             return (
                                 <div key={`${row}-${col}`} className={`border border-white/40 flex flex-wrap items-center justify-center p-0.5 ${bgColor} transition-colors`}>
                                     {risksInCell.map((r: any, i: number) => {
-                                        const criticality = r.assessment.probability * r.assessment.impact * r.assessment.maturity;
-                                        const dotSize = 16 + (r.assessment.maturity * 5);
+                                        const criticality = Math.round(((r.assessment.probability * r.assessment.impact) / r.assessment.maturity) * 10) / 10;
+                                        const dotSize = 16 + ((5 - r.assessment.maturity) * 5);
                                         return (
                                             <div key={i} className="rounded-full shadow-md m-0.5 cursor-help group relative transition-all hover:scale-125 hover:z-50 flex items-center justify-center text-[8px] font-bold text-white shrink-0"
                                                 style={{ width: `${dotSize}px`, height: `${dotSize}px`,
-                                                    backgroundColor: criticality >= 18 ? '#BC5B2E' : criticality >= 10 ? '#D09639' : '#9DB280',
+                                                    backgroundColor: criticality > 10 ? '#BC5B2E' : criticality > 6 ? '#E18392' : criticality > 2 ? '#D09639' : '#9DB280',
                                                     border: '2px solid rgba(255,255,255,0.9)' }}>
                                                 {r.number}
                                                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block z-[100] w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20">
@@ -127,7 +129,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
             <div className="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-slate-100">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
                     <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] flex items-center gap-3">
-                        <LayoutDashboard className="text-[#9DB280]" /> Tableaux de bord des risques
+                        <LayoutDashboard className="text-[#9DB280]" /> Tableau de bord des risques
                     </h2>
                     <button 
                         onClick={() => window.print()}
@@ -145,13 +147,14 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                         </h3>
                         <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
                             <p>La matrice croise la <strong>Gravité</strong> (axe vertical) et la <strong>Fréquence</strong> (axe horizontal).</p>
-                            <p>Chaque point représente un risque identifié. Sa <strong>couleur</strong> indique sa criticité finale (incluant votre vulnérabilité) :</p>
+                            <p>Chaque point représente un risque identifié. Sa <strong>couleur</strong> indique sa criticité finale (G × F / V) :</p>
                             <ul className="list-disc pl-5 space-y-1">
-                                <li><span className="font-bold text-[#9DB280]">Vert</span> : risque maîtrisé ou faible impact.</li>
-                                <li><span className="font-bold text-[#D09639]">Orange</span> : risque à surveiller, action annuelle.</li>
-                                <li><span className="font-bold text-[#BC5B2E]">Rouge</span> : risque critique, action prioritaire.</li>
+                                <li><span className="font-bold text-[#9DB280]">Vert</span> : faible (≤ 2). Risque maîtrisé.</li>
+                                <li><span className="font-bold text-[#D09639]">Orange</span> : modéré (&gt; 2 à 6). Risque à surveiller.</li>
+                                <li><span className="font-bold text-[#E18392]">Rose</span> : élevé (&gt; 6 à 10). Action nécessaire.</li>
+                                <li><span className="font-bold text-[#BC5B2E]">Rouge</span> : critique (&gt; 10). Priorité absolue.</li>
                             </ul>
-                            <p>La <strong>taille du point</strong> reflète votre vulnérabilité : plus le point est gros, plus vous êtes vulnérable face à ce risque.</p>
+                            <p>La <strong>taille du point</strong> reflète votre vulnérabilité : plus le point est gros, plus vous êtes vulnérable face à ce risque (1 = critique, 4 = sécurisé).</p>
                         </div>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
@@ -201,9 +204,10 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                             <span className="text-[9px] font-bold text-slate-400 uppercase">Couleur = score de criticité :</span>
                             <div className="flex items-center gap-4 flex-wrap">
                                 {[
-                                    { color: '#9DB280', label: 'Vert : bas (<10)' },
-                                    { color: '#D09639', label: 'Orange : moyen (10-18)' },
-                                    { color: '#BC5B2E', label: 'Rouge : élevé (>18)' },
+                                    { color: '#9DB280', label: 'Vert : faible (≤2)' },
+                                    { color: '#D09639', label: 'Orange : modéré (>2-6)' },
+                                    { color: '#E18392', label: 'Rose : élevé (>6-10)' },
+                                    { color: '#BC5B2E', label: 'Rouge : critique (>10)' },
                                 ].map((l, i) => (
                                     <div key={i} className="flex items-center gap-1.5">
                                         <div className="w-2 h-2 rounded-full" style={{ backgroundColor: l.color }}></div>
@@ -215,10 +219,10 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                         <div className="flex flex-wrap items-center gap-4 p-3 bg-slate-50 rounded-xl border border-slate-100 w-full max-w-md">
                             <span className="text-[9px] font-bold text-slate-400 uppercase">Taille du point = niveau de vulnérabilité :</span>
                             <div className="flex items-center gap-3 flex-wrap">
-                                <div className="flex items-center gap-1"><div className="w-2 h-2 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Sécurisé (1)</span></div>
-                                <div className="flex items-center gap-1"><div className="w-3.5 h-3.5 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Sous Contrôle (2)</span></div>
-                                <div className="flex items-center gap-1"><div className="w-5 h-5 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Vulnérable (3)</span></div>
-                                <div className="flex items-center gap-1"><div className="w-6 h-6 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Critique (4)</span></div>
+                                <div className="flex items-center gap-1"><div className="w-6 h-6 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Critique (1)</span></div>
+                                <div className="flex items-center gap-1"><div className="w-5 h-5 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Vulnérable (2)</span></div>
+                                <div className="flex items-center gap-1"><div className="w-3.5 h-3.5 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Sous Contrôle (3)</span></div>
+                                <div className="flex items-center gap-1"><div className="w-2 h-2 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Sécurisé (4)</span></div>
                             </div>
                         </div>
                     </div>
@@ -239,7 +243,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                     <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} />
                                     <Bar dataKey="score" radius={[0, 4, 4, 0]}>
                                         {themeData.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={entry.score > 18 ? '#BC5B2E' : entry.score > 10 ? '#D09639' : '#9DB280'} />
+                                            <Cell key={`cell-${index}`} fill={entry.score > 10 ? '#BC5B2E' : entry.score > 6 ? '#E18392' : entry.score > 2 ? '#D09639' : '#9DB280'} />
                                         ))}
                                     </Bar>
                                 </BarChart>
@@ -289,13 +293,13 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                             <div className="space-y-1">
                                 <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Score moyen</span>
                                 <div className="text-3xl font-black text-[#C3FD97]">
-                                    {Math.round(riskData.reduce((acc, r) => acc + (r.probability * r.impact * r.maturity), 0) / (riskData.length || 1) * 10) / 10}
+                                    {Math.round(riskData.reduce((acc, r) => acc + ((r.probability * r.impact) / r.maturity), 0) / (riskData.length || 1) * 10) / 10}
                                 </div>
                             </div>
                             <div className="space-y-1">
                                 <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Risques critiques</span>
                                 <div className="text-3xl font-black text-[#E18392]">
-                                    {riskData.filter(r => (r.probability * r.impact * r.maturity) > 18).length}
+                                    {riskData.filter(r => ((r.probability * r.impact) / r.maturity) > 10).length}
                                 </div>
                             </div>
                             <div className="space-y-1">
@@ -319,8 +323,8 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {topRisks.map((risk, i) => {
                             const item = RISK_CATALOG.find(rc => rc.id === risk.riskId);
-                            const criticality = risk.probability * risk.impact * risk.maturity;
-                            const priority = criticality > 18 ? 'ÉLEVÉ' : criticality > 10 ? 'MOYEN' : 'BAS';
+                            const criticality = Math.round(((risk.probability * risk.impact) / risk.maturity) * 10) / 10;
+                            const priority = criticality > 10 ? 'CRITIQUE' : criticality > 6 ? 'ÉLEVÉ' : criticality > 2 ? 'MODÉRÉ' : 'FAIBLE';
                             return (
                                 <div key={risk.riskId} className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
                                     <div className="w-8 h-8 rounded-full bg-[#1A2F2F] text-white flex items-center justify-center font-bold text-xs shrink-0">{i + 1}</div>
@@ -332,7 +336,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                             <span className="shrink-0">Score: {criticality}</span>
                                         </div>
                                     </div>
-                                    <div className={`px-3 py-1 rounded-full text-[10px] font-black shrink-0 ${priority === 'ÉLEVÉ' ? 'bg-[#E18392] text-white' : priority === 'MOYEN' ? 'bg-[#D09639] text-white' : 'bg-[#B2DFB6] text-[#1A2F2F]'}`}>
+                                    <div className={`px-3 py-1 rounded-full text-[10px] font-black shrink-0 ${priority === 'CRITIQUE' ? 'bg-[#BC5B2E] text-white' : priority === 'ÉLEVÉ' ? 'bg-[#E18392] text-white' : priority === 'MODÉRÉ' ? 'bg-[#D09639] text-white' : 'bg-[#B2DFB6] text-[#1A2F2F]'}`}>
                                         {priority}
                                     </div>
                                 </div>

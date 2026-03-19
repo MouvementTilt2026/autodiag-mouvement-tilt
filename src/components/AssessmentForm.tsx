@@ -58,10 +58,10 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
             4: { label: 'Très fréquent', desc: "Quasi-systématique ou récurrent." }
         },
         vulnerability: {
-            1: { label: 'Sécurisé', desc: "Actions proactives, contrôle total, amélioration continue." },
-            2: { label: 'Sous Contrôle', desc: "Processus stables et documentés. Risque maîtrisé." },
-            3: { label: 'Vulnérable', desc: "Actions informelles, dépendance humaine. Risque latent." },
-            4: { label: 'Critique', desc: "Aucune action. Risque maximal ou subi." }
+            1: { label: 'Critique', desc: "Aucune action. Risque maximal ou subi." },
+            2: { label: 'Vulnérable', desc: "Actions informelles, dépendance humaine. Risque latent." },
+            3: { label: 'Sous Contrôle', desc: "Processus stables et documentés. Risque maîtrisé." },
+            4: { label: 'Sécurisé', desc: "Actions proactives, contrôle total, amélioration continue." }
         }
     };
 
@@ -225,17 +225,17 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                     <div className="flex flex-col items-center pt-6 border-t border-slate-50">
                         <div className="bg-[#E1E4D1]/50 p-4 md:p-6 rounded-2xl border border-[#9DB280]/20 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-inner w-full">
                             <div className="flex flex-col items-center sm:items-start">
-                                <span className="text-[10px] font-bold text-[#1A2F2F]/40 uppercase tracking-widest mb-1">Score de criticité (G x F x V)</span>
+                                <span className="text-[10px] font-bold text-[#1A2F2F]/40 uppercase tracking-widest mb-1">Score de criticité (G × F) / V</span>
                                 <div className="flex items-baseline gap-2">
                                     <span className="text-[#1A2F2F] font-black text-3xl">{riskScore}</span>
-                                    <span className="text-xs text-slate-400 font-bold">/ 64</span>
+                                    <span className="text-xs text-slate-400 font-bold">/ 16</span>
                                 </div>
                             </div>
                             <div className="px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm" style={{ 
-                                backgroundColor: riskScore > 18 ? '#BC5B2E' : riskScore > 10 ? '#D09639' : '#9DB280',
+                                backgroundColor: riskScore > 10 ? '#BC5B2E' : riskScore > 6 ? '#E18392' : riskScore > 2 ? '#D09639' : '#9DB280',
                                 color: '#fff'
                             }}>
-                                Priorité : {riskScore > 18 ? 'élevée' : riskScore > 10 ? 'moyenne' : 'basse'}
+                                {riskScore > 10 ? 'Critique' : riskScore > 6 ? 'Élevé' : riskScore > 2 ? 'Modéré' : 'Faible'}
                             </div>
                         </div>
                     </div>
@@ -356,11 +356,11 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                 </h4>
                                 <p className="text-sm text-slate-500 italic">Quel est votre niveau de vulnérabilité face à ce risque ?</p>
                                 <div className="space-y-2">
-                                    {[
-                                        { n: 1, l: 'Sécurisé', d: "Actions proactives, contrôle total, amélioration continue.", e: "Tableaux de bord, rapports d'audit, plans mis à jour." },
-                                        { n: 2, l: 'Sous Contrôle', d: "Processus stables et documentés. Risque maîtrisé.", e: "Procédures écrites, fiches de postes, etc." },
-                                        { n: 3, l: 'Vulnérable', d: "Actions informelles, dépendance humaine. Risque latent.", e: "Mémos internes, tableurs non mis à jour." },
-                                        { n: 4, l: 'Critique', d: "Aucune action. Risque maximal ou subi.", e: "Absence de process, de budget ou de responsable." },
+                                {[
+                                        { n: 1, l: 'Critique', d: "Aucune action. Risque maximal ou subi.", e: "Absence de process, de budget ou de responsable." },
+                                        { n: 2, l: 'Vulnérable', d: "Actions informelles, dépendance humaine. Risque latent.", e: "Mémos internes, tableurs non mis à jour." },
+                                        { n: 3, l: 'Sous Contrôle', d: "Processus stables et documentés. Risque maîtrisé.", e: "Procédures écrites, fiches de postes, etc." },
+                                        { n: 4, l: 'Sécurisé', d: "Actions proactives, contrôle total, amélioration continue.", e: "Tableaux de bord, rapports d'audit, plans mis à jour." },
                                     ].map(item => (
                                         <div key={item.n} className="p-3 rounded-xl bg-white border border-slate-100">
                                             <span className="text-sm font-bold text-[#1A2F2F]">{item.n} ({item.l})</span>
@@ -374,25 +374,30 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
 
                         <div className="pt-6 border-t border-slate-100">
                             <div className="bg-[#E1E4D1]/30 p-4 md:p-6 rounded-2xl border border-[#9DB280]/20">
-                                <h4 className="font-bold text-[#1A2F2F] mb-4">Calcul de la criticité : C = G x F x V</h4>
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <h4 className="font-bold text-[#1A2F2F] mb-4">Calcul de la criticité : C = (G × F) / V</h4>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                                     <div className="p-4 rounded-xl bg-white border border-green-100 shadow-sm">
-                                        <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">C &lt; 10</span>
-                                        <span className="block font-bold text-green-600 mb-1">Bas</span>
-                                        <p className="text-[10px] text-slate-500">Risque accepté. Suivi ponctuel.</p>
+                                        <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">0,25 à 2</span>
+                                        <span className="block font-bold text-green-600 mb-1">Faible</span>
+                                        <p className="text-[10px] text-slate-500">Risque maîtrisé.</p>
                                     </div>
                                     <div className="p-4 rounded-xl bg-white border border-orange-100 shadow-sm">
-                                        <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">10 &lt; C &lt; 18</span>
-                                        <span className="block font-bold text-[#D09639] mb-1">Moyen</span>
-                                        <p className="text-[10px] text-slate-500">Action à intégrer dans le plan annuel.</p>
+                                        <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">&gt; 2 à 6</span>
+                                        <span className="block font-bold text-[#D09639] mb-1">Modéré</span>
+                                        <p className="text-[10px] text-slate-500">Risque à surveiller.</p>
+                                    </div>
+                                    <div className="p-4 rounded-xl bg-white border border-pink-100 shadow-sm">
+                                        <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">&gt; 6 à 10</span>
+                                        <span className="block font-bold text-[#E18392] mb-1">Élevé</span>
+                                        <p className="text-[10px] text-slate-500">Action nécessaire.</p>
                                     </div>
                                     <div className="p-4 rounded-xl bg-white border border-red-100 shadow-sm">
-                                        <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">C &gt; 18</span>
-                                        <span className="block font-bold text-[#BC5B2E] mb-1">Élevé / critique</span>
-                                        <p className="text-[10px] text-slate-500">Besoin prioritaire. Action immédiate.</p>
+                                        <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">&gt; 10 à 16</span>
+                                        <span className="block font-bold text-[#BC5B2E] mb-1">Critique</span>
+                                        <p className="text-[10px] text-slate-500">Priorité absolue.</p>
                                     </div>
                                 </div>
-                                <p className="text-[10px] text-slate-400 mt-4 italic">Plage de criticité : le score se situe entre 1 (risque minimal) et 64 (risque maximal).</p>
+                                <p className="text-[10px] text-slate-400 mt-4 italic">Plage de criticité : le score se situe entre 0,25 (risque minimal) et 16 (risque maximal).</p>
                             </div>
                         </div>
 
@@ -447,7 +452,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                         </h3>
                                         {chunk.map((risk) => {
                                             const assessment = assessments[risk.id] || { probability: 1, impact: 1, maturity: 1, notes: '' };
-                                            const riskScore = assessment.probability * assessment.impact * assessment.maturity;
+                                            const riskScore = Math.round((assessment.probability * assessment.impact / assessment.maturity) * 10) / 10;
                                             const globalIndex = RISK_CATALOG.findIndex(r => r.id === risk.id) + 1;
                                             return renderRiskCard(risk, assessment, riskScore, globalIndex, true);
                                         })}
@@ -460,7 +465,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                     // Normal mode
                     filteredRisks.map((risk) => {
                         const assessment = assessments[risk.id] || { probability: 1, impact: 1, maturity: 1, notes: '' };
-                        const riskScore = assessment.probability * assessment.impact * assessment.maturity;
+                        const riskScore = Math.round((assessment.probability * assessment.impact / assessment.maturity) * 10) / 10;
                         const globalIndex = RISK_CATALOG.findIndex(r => r.id === risk.id) + 1;
                         return renderRiskCard(risk, assessment, riskScore, globalIndex, false);
                     })

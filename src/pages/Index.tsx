@@ -64,7 +64,7 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                             {[
                                 { step: "1", bold: "Pré-requis à l'analyse", rest: ' via l\'onglet "Avant de commencer"', id: 'critique' },
                                 { step: "2", bold: "Evaluation des risques", rest: " socio-environnementaux et de la maturité de votre organisation", id: 'risks' },
-                                { step: "3", bold: "Tableaux de bord", rest: " d'analyse de vos risques et de votre maturité", id: 'risk_dashboard' },
+                                { step: "3", bold: "Tableau de bord", rest: " d'analyse de vos risques et de votre maturité", id: 'risk_dashboard' },
                                 { step: "4", bold: "Evaluation des leviers", rest: " d'action et matrices de priorisation", id: 'kanban' },
                                 { step: "5", bold: "Valorisation et suite", rest: " de votre analyse", id: 'next_steps' }
                             ].map((item, i) => (
