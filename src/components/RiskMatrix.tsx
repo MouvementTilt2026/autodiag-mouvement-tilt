@@ -90,12 +90,12 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                             return (
                                 <div key={`${row}-${col}`} className={`border border-white/40 flex flex-wrap items-center justify-center p-0.5 ${bgColor} transition-colors`}>
                                     {risksInCell.map((r: any, i: number) => {
-                                        const criticality = r.assessment.probability * r.assessment.impact * r.assessment.maturity;
-                                        const dotSize = 16 + (r.assessment.maturity * 5);
+                                        const criticality = Math.round(((r.assessment.probability * r.assessment.impact) / r.assessment.maturity) * 10) / 10;
+                                        const dotSize = 16 + ((5 - r.assessment.maturity) * 5);
                                         return (
                                             <div key={i} className="rounded-full shadow-md m-0.5 cursor-help group relative transition-all hover:scale-125 hover:z-50 flex items-center justify-center text-[8px] font-bold text-white shrink-0"
                                                 style={{ width: `${dotSize}px`, height: `${dotSize}px`,
-                                                    backgroundColor: criticality >= 18 ? '#BC5B2E' : criticality >= 10 ? '#D09639' : '#9DB280',
+                                                    backgroundColor: criticality > 10 ? '#BC5B2E' : criticality > 6 ? '#E18392' : criticality > 2 ? '#D09639' : '#9DB280',
                                                     border: '2px solid rgba(255,255,255,0.9)' }}>
                                                 {r.number}
                                                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block z-[100] w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20">
