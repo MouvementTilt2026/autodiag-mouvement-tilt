@@ -1,4 +1,5 @@
 import React from 'react';
+import logoIcon from '@/assets/logo-icon-rond.png';
 import { 
     Home, 
     AlertCircle, 
@@ -40,9 +41,7 @@ const AppSidebar: React.FC<SidebarProps> = ({ currentStep, setStep }) => {
         <>
             <div className="p-8 border-b border-white/10">
                 <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 bg-[#C3FD97] rounded-xl flex items-center justify-center text-[#1A2F2F] font-black text-2xl">
-                        *
-                    </div>
+                    <img src={logoIcon} alt="Robust'Asso" className="w-10 h-10 rounded-xl object-cover" />
                     <div>
                         <h1 className="text-lg font-bold leading-tight tracking-tight">
                             Robust'Asso
