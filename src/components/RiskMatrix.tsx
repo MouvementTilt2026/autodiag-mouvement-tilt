@@ -26,7 +26,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
             const themeRisks = RISK_CATALOG.filter(r => r.theme === theme);
             const themeAssessments = themeRisks.map(tr => assessments[tr.id]).filter(Boolean);
             if (themeAssessments.length === 0) return { name: theme, score: 0, count: 0 };
-            const avgScore = themeAssessments.reduce((acc, curr) => acc + (curr.probability * curr.impact * curr.maturity), 0) / themeAssessments.length;
+            const avgScore = themeAssessments.reduce((acc, curr) => acc + ((curr.probability * curr.impact) / curr.maturity), 0) / themeAssessments.length;
             return { name: theme.replace('Choc ', ''), score: Math.round(avgScore * 10) / 10, count: themeAssessments.length };
         }).filter(t => t.count > 0);
     }, [assessments]);
