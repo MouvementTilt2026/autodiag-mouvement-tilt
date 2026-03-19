@@ -27,7 +27,7 @@ const AppSidebar: React.FC<SidebarProps> = ({ currentStep, setStep }) => {
         { id: 'intro', label: 'A propos', icon: Info },
         { id: 'critique', label: 'Avant de commencer', icon: ShieldAlert },
         { id: 'risks', label: 'Évaluation risques', icon: ClipboardList },
-        { id: 'risk_dashboard', label: 'Tableaux de bord', icon: LayoutDashboard },
+        { id: 'risk_dashboard', label: 'Tableau de bord', icon: LayoutDashboard },
         { id: 'kanban', label: "Leviers d'action", icon: Kanban },
         { id: 'next_steps', label: 'Et après ?', icon: ArrowRightCircle },
     ];
