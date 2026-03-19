@@ -147,11 +147,12 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                         </h3>
                         <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
                             <p>La matrice croise la <strong>Gravité</strong> (axe vertical) et la <strong>Fréquence</strong> (axe horizontal).</p>
-                            <p>Chaque point représente un risque identifié. Sa <strong>couleur</strong> indique sa criticité finale (incluant votre vulnérabilité) :</p>
+                            <p>Chaque point représente un risque identifié. Sa <strong>couleur</strong> indique sa criticité finale (G × F / V) :</p>
                             <ul className="list-disc pl-5 space-y-1">
-                                <li><span className="font-bold text-[#9DB280]">Vert</span> : risque maîtrisé ou faible impact.</li>
-                                <li><span className="font-bold text-[#D09639]">Orange</span> : risque à surveiller, action annuelle.</li>
-                                <li><span className="font-bold text-[#BC5B2E]">Rouge</span> : risque critique, action prioritaire.</li>
+                                <li><span className="font-bold text-[#9DB280]">Vert</span> : faible (≤ 2). Risque maîtrisé.</li>
+                                <li><span className="font-bold text-[#D09639]">Orange</span> : modéré (&gt; 2 à 6). Risque à surveiller.</li>
+                                <li><span className="font-bold text-[#E18392]">Rose</span> : élevé (&gt; 6 à 10). Action nécessaire.</li>
+                                <li><span className="font-bold text-[#BC5B2E]">Rouge</span> : critique (&gt; 10). Priorité absolue.</li>
                             </ul>
                             <p>La <strong>taille du point</strong> reflète votre vulnérabilité : plus le point est gros, plus vous êtes vulnérable face à ce risque.</p>
                         </div>
