@@ -225,17 +225,17 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                     <div className="flex flex-col items-center pt-6 border-t border-slate-50">
                         <div className="bg-[#E1E4D1]/50 p-4 md:p-6 rounded-2xl border border-[#9DB280]/20 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-inner w-full">
                             <div className="flex flex-col items-center sm:items-start">
-                                <span className="text-[10px] font-bold text-[#1A2F2F]/40 uppercase tracking-widest mb-1">Score de criticité (G x F x V)</span>
+                                <span className="text-[10px] font-bold text-[#1A2F2F]/40 uppercase tracking-widest mb-1">Score de criticité (G × F) / V</span>
                                 <div className="flex items-baseline gap-2">
                                     <span className="text-[#1A2F2F] font-black text-3xl">{riskScore}</span>
-                                    <span className="text-xs text-slate-400 font-bold">/ 64</span>
+                                    <span className="text-xs text-slate-400 font-bold">/ 16</span>
                                 </div>
                             </div>
                             <div className="px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm" style={{ 
-                                backgroundColor: riskScore > 18 ? '#BC5B2E' : riskScore > 10 ? '#D09639' : '#9DB280',
+                                backgroundColor: riskScore > 10 ? '#BC5B2E' : riskScore > 6 ? '#E18392' : riskScore > 2 ? '#D09639' : '#9DB280',
                                 color: '#fff'
                             }}>
-                                Priorité : {riskScore > 18 ? 'élevée' : riskScore > 10 ? 'moyenne' : 'basse'}
+                                {riskScore > 10 ? 'Critique' : riskScore > 6 ? 'Élevé' : riskScore > 2 ? 'Modéré' : 'Faible'}
                             </div>
                         </div>
                     </div>
