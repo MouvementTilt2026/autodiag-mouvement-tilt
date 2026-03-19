@@ -32,17 +32,19 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
     }, [assessments]);
 
     const criticalityDistribution = useMemo(() => {
-        const dist = { low: 0, medium: 0, high: 0 };
+        const dist = { faible: 0, modere: 0, eleve: 0, critique: 0 };
         riskData.forEach(r => {
-            const score = r.probability * r.impact * r.maturity;
-            if (score > 18) dist.high++;
-            else if (score > 10) dist.medium++;
-            else dist.low++;
+            const score = (r.probability * r.impact) / r.maturity;
+            if (score > 10) dist.critique++;
+            else if (score > 6) dist.eleve++;
+            else if (score > 2) dist.modere++;
+            else dist.faible++;
         });
         return [
-            { name: 'Bas (<10)', value: dist.low, color: '#9DB280' },
-            { name: 'Moyen (10-18)', value: dist.medium, color: '#D09639' },
-            { name: 'Élevé (>18)', value: dist.high, color: '#BC5B2E' }
+            { name: 'Faible (≤2)', value: dist.faible, color: '#9DB280' },
+            { name: 'Modéré (>2-6)', value: dist.modere, color: '#D09639' },
+            { name: 'Élevé (>6-10)', value: dist.eleve, color: '#E18392' },
+            { name: 'Critique (>10)', value: dist.critique, color: '#BC5B2E' }
         ].filter(d => d.value > 0);
     }, [riskData]);
 
