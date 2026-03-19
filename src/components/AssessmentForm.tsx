@@ -58,10 +58,10 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
             4: { label: 'Très fréquent', desc: "Quasi-systématique ou récurrent." }
         },
         vulnerability: {
-            1: { label: 'Sécurisé', desc: "Actions proactives, contrôle total, amélioration continue." },
-            2: { label: 'Sous Contrôle', desc: "Processus stables et documentés. Risque maîtrisé." },
-            3: { label: 'Vulnérable', desc: "Actions informelles, dépendance humaine. Risque latent." },
-            4: { label: 'Critique', desc: "Aucune action. Risque maximal ou subi." }
+            1: { label: 'Critique', desc: "Aucune action. Risque maximal ou subi." },
+            2: { label: 'Vulnérable', desc: "Actions informelles, dépendance humaine. Risque latent." },
+            3: { label: 'Sous Contrôle', desc: "Processus stables et documentés. Risque maîtrisé." },
+            4: { label: 'Sécurisé', desc: "Actions proactives, contrôle total, amélioration continue." }
         }
     };
 
