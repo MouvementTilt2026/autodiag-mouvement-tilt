@@ -52,10 +52,10 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
         const counts = { 1: 0, 2: 0, 3: 0, 4: 0 };
         riskData.forEach(r => { counts[r.maturity as keyof typeof counts]++; });
         return [
-            { subject: 'Sécurisé (1)', A: counts[1], fullMark: riskData.length },
-            { subject: 'Sous Contrôle (2)', A: counts[2], fullMark: riskData.length },
-            { subject: 'Vulnérable (3)', A: counts[3], fullMark: riskData.length },
-            { subject: 'Critique (4)', A: counts[4], fullMark: riskData.length },
+            { subject: 'Critique (1)', A: counts[1], fullMark: riskData.length },
+            { subject: 'Vulnérable (2)', A: counts[2], fullMark: riskData.length },
+            { subject: 'Sous Contrôle (3)', A: counts[3], fullMark: riskData.length },
+            { subject: 'Sécurisé (4)', A: counts[4], fullMark: riskData.length },
         ];
     }, [riskData]);
 
