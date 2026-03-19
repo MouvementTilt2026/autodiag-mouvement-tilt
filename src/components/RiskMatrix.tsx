@@ -293,13 +293,13 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                             <div className="space-y-1">
                                 <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Score moyen</span>
                                 <div className="text-3xl font-black text-[#C3FD97]">
-                                    {Math.round(riskData.reduce((acc, r) => acc + (r.probability * r.impact * r.maturity), 0) / (riskData.length || 1) * 10) / 10}
+                                    {Math.round(riskData.reduce((acc, r) => acc + ((r.probability * r.impact) / r.maturity), 0) / (riskData.length || 1) * 10) / 10}
                                 </div>
                             </div>
                             <div className="space-y-1">
                                 <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Risques critiques</span>
                                 <div className="text-3xl font-black text-[#E18392]">
-                                    {riskData.filter(r => (r.probability * r.impact * r.maturity) > 18).length}
+                                    {riskData.filter(r => ((r.probability * r.impact) / r.maturity) > 10).length}
                                 </div>
                             </div>
                             <div className="space-y-1">
