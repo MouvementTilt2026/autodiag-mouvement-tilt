@@ -17,7 +17,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
 
     const topRisks = useMemo(() => {
         return [...riskData]
-            .sort((a, b) => (b.probability * b.impact * b.maturity) - (a.probability * a.impact * a.maturity))
+            .sort((a, b) => ((b.probability * b.impact) / b.maturity) - ((a.probability * a.impact) / a.maturity))
             .slice(0, 10);
     }, [riskData]);
 
