@@ -1,4 +1,5 @@
 import React from 'react';
+import logoIcon from '@/assets/logo-icon-rond.png';
 import { 
     Home, 
     AlertCircle, 
