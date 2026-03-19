@@ -374,25 +374,30 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
 
                         <div className="pt-6 border-t border-slate-100">
                             <div className="bg-[#E1E4D1]/30 p-4 md:p-6 rounded-2xl border border-[#9DB280]/20">
-                                <h4 className="font-bold text-[#1A2F2F] mb-4">Calcul de la criticité : C = G x F x V</h4>
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <h4 className="font-bold text-[#1A2F2F] mb-4">Calcul de la criticité : C = (G × F) / V</h4>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                                     <div className="p-4 rounded-xl bg-white border border-green-100 shadow-sm">
-                                        <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">C &lt; 10</span>
-                                        <span className="block font-bold text-green-600 mb-1">Bas</span>
-                                        <p className="text-[10px] text-slate-500">Risque accepté. Suivi ponctuel.</p>
+                                        <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">0,25 à 2</span>
+                                        <span className="block font-bold text-green-600 mb-1">Faible</span>
+                                        <p className="text-[10px] text-slate-500">Risque maîtrisé.</p>
                                     </div>
                                     <div className="p-4 rounded-xl bg-white border border-orange-100 shadow-sm">
-                                        <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">10 &lt; C &lt; 18</span>
-                                        <span className="block font-bold text-[#D09639] mb-1">Moyen</span>
-                                        <p className="text-[10px] text-slate-500">Action à intégrer dans le plan annuel.</p>
+                                        <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">&gt; 2 à 6</span>
+                                        <span className="block font-bold text-[#D09639] mb-1">Modéré</span>
+                                        <p className="text-[10px] text-slate-500">Risque à surveiller.</p>
+                                    </div>
+                                    <div className="p-4 rounded-xl bg-white border border-pink-100 shadow-sm">
+                                        <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">&gt; 6 à 10</span>
+                                        <span className="block font-bold text-[#E18392] mb-1">Élevé</span>
+                                        <p className="text-[10px] text-slate-500">Action nécessaire.</p>
                                     </div>
                                     <div className="p-4 rounded-xl bg-white border border-red-100 shadow-sm">
-                                        <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">C &gt; 18</span>
-                                        <span className="block font-bold text-[#BC5B2E] mb-1">Élevé / critique</span>
-                                        <p className="text-[10px] text-slate-500">Besoin prioritaire. Action immédiate.</p>
+                                        <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">&gt; 10 à 16</span>
+                                        <span className="block font-bold text-[#BC5B2E] mb-1">Critique</span>
+                                        <p className="text-[10px] text-slate-500">Priorité absolue.</p>
                                     </div>
                                 </div>
-                                <p className="text-[10px] text-slate-400 mt-4 italic">Plage de criticité : le score se situe entre 1 (risque minimal) et 64 (risque maximal).</p>
+                                <p className="text-[10px] text-slate-400 mt-4 italic">Plage de criticité : le score se situe entre 0,25 (risque minimal) et 16 (risque maximal).</p>
                             </div>
                         </div>
 
