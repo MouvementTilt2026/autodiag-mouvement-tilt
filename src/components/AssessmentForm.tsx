@@ -356,11 +356,11 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                 </h4>
                                 <p className="text-sm text-slate-500 italic">Quel est votre niveau de vulnérabilité face à ce risque ?</p>
                                 <div className="space-y-2">
-                                    {[
-                                        { n: 1, l: 'Sécurisé', d: "Actions proactives, contrôle total, amélioration continue.", e: "Tableaux de bord, rapports d'audit, plans mis à jour." },
-                                        { n: 2, l: 'Sous Contrôle', d: "Processus stables et documentés. Risque maîtrisé.", e: "Procédures écrites, fiches de postes, etc." },
-                                        { n: 3, l: 'Vulnérable', d: "Actions informelles, dépendance humaine. Risque latent.", e: "Mémos internes, tableurs non mis à jour." },
-                                        { n: 4, l: 'Critique', d: "Aucune action. Risque maximal ou subi.", e: "Absence de process, de budget ou de responsable." },
+                                {[
+                                        { n: 1, l: 'Critique', d: "Aucune action. Risque maximal ou subi.", e: "Absence de process, de budget ou de responsable." },
+                                        { n: 2, l: 'Vulnérable', d: "Actions informelles, dépendance humaine. Risque latent.", e: "Mémos internes, tableurs non mis à jour." },
+                                        { n: 3, l: 'Sous Contrôle', d: "Processus stables et documentés. Risque maîtrisé.", e: "Procédures écrites, fiches de postes, etc." },
+                                        { n: 4, l: 'Sécurisé', d: "Actions proactives, contrôle total, amélioration continue.", e: "Tableaux de bord, rapports d'audit, plans mis à jour." },
                                     ].map(item => (
                                         <div key={item.n} className="p-3 rounded-xl bg-white border border-slate-100">
                                             <span className="text-sm font-bold text-[#1A2F2F]">{item.n} ({item.l})</span>
