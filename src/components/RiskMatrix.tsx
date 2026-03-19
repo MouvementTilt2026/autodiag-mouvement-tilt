@@ -204,9 +204,10 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                             <span className="text-[9px] font-bold text-slate-400 uppercase">Couleur = score de criticité :</span>
                             <div className="flex items-center gap-4 flex-wrap">
                                 {[
-                                    { color: '#9DB280', label: 'Vert : bas (<10)' },
-                                    { color: '#D09639', label: 'Orange : moyen (10-18)' },
-                                    { color: '#BC5B2E', label: 'Rouge : élevé (>18)' },
+                                    { color: '#9DB280', label: 'Vert : faible (≤2)' },
+                                    { color: '#D09639', label: 'Orange : modéré (>2-6)' },
+                                    { color: '#E18392', label: 'Rose : élevé (>6-10)' },
+                                    { color: '#BC5B2E', label: 'Rouge : critique (>10)' },
                                 ].map((l, i) => (
                                     <div key={i} className="flex items-center gap-1.5">
                                         <div className="w-2 h-2 rounded-full" style={{ backgroundColor: l.color }}></div>
@@ -218,10 +219,10 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                         <div className="flex flex-wrap items-center gap-4 p-3 bg-slate-50 rounded-xl border border-slate-100 w-full max-w-md">
                             <span className="text-[9px] font-bold text-slate-400 uppercase">Taille du point = niveau de vulnérabilité :</span>
                             <div className="flex items-center gap-3 flex-wrap">
-                                <div className="flex items-center gap-1"><div className="w-2 h-2 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Sécurisé (1)</span></div>
-                                <div className="flex items-center gap-1"><div className="w-3.5 h-3.5 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Sous Contrôle (2)</span></div>
-                                <div className="flex items-center gap-1"><div className="w-5 h-5 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Vulnérable (3)</span></div>
-                                <div className="flex items-center gap-1"><div className="w-6 h-6 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Critique (4)</span></div>
+                                <div className="flex items-center gap-1"><div className="w-6 h-6 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Critique (1)</span></div>
+                                <div className="flex items-center gap-1"><div className="w-5 h-5 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Vulnérable (2)</span></div>
+                                <div className="flex items-center gap-1"><div className="w-3.5 h-3.5 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Sous Contrôle (3)</span></div>
+                                <div className="flex items-center gap-1"><div className="w-2 h-2 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Sécurisé (4)</span></div>
                             </div>
                         </div>
                     </div>
