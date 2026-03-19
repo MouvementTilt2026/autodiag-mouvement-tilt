@@ -465,7 +465,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                     // Normal mode
                     filteredRisks.map((risk) => {
                         const assessment = assessments[risk.id] || { probability: 1, impact: 1, maturity: 1, notes: '' };
-                        const riskScore = assessment.probability * assessment.impact * assessment.maturity;
+                        const riskScore = Math.round((assessment.probability * assessment.impact / assessment.maturity) * 10) / 10;
                         const globalIndex = RISK_CATALOG.findIndex(r => r.id === risk.id) + 1;
                         return renderRiskCard(risk, assessment, riskScore, globalIndex, false);
                     })
