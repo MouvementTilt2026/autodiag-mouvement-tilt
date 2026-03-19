@@ -323,8 +323,8 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {topRisks.map((risk, i) => {
                             const item = RISK_CATALOG.find(rc => rc.id === risk.riskId);
-                            const criticality = risk.probability * risk.impact * risk.maturity;
-                            const priority = criticality > 18 ? 'ÉLEVÉ' : criticality > 10 ? 'MOYEN' : 'BAS';
+                            const criticality = Math.round(((risk.probability * risk.impact) / risk.maturity) * 10) / 10;
+                            const priority = criticality > 10 ? 'CRITIQUE' : criticality > 6 ? 'ÉLEVÉ' : criticality > 2 ? 'MODÉRÉ' : 'FAIBLE';
                             return (
                                 <div key={risk.riskId} className="flex items-center gap-4 p-4 bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-all">
                                     <div className="w-8 h-8 rounded-full bg-[#1A2F2F] text-white flex items-center justify-center font-bold text-xs shrink-0">{i + 1}</div>
@@ -336,7 +336,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                             <span className="shrink-0">Score: {criticality}</span>
                                         </div>
                                     </div>
-                                    <div className={`px-3 py-1 rounded-full text-[10px] font-black shrink-0 ${priority === 'ÉLEVÉ' ? 'bg-[#E18392] text-white' : priority === 'MOYEN' ? 'bg-[#D09639] text-white' : 'bg-[#B2DFB6] text-[#1A2F2F]'}`}>
+                                    <div className={`px-3 py-1 rounded-full text-[10px] font-black shrink-0 ${priority === 'CRITIQUE' ? 'bg-[#BC5B2E] text-white' : priority === 'ÉLEVÉ' ? 'bg-[#E18392] text-white' : priority === 'MODÉRÉ' ? 'bg-[#D09639] text-white' : 'bg-[#B2DFB6] text-[#1A2F2F]'}`}>
                                         {priority}
                                     </div>
                                 </div>
