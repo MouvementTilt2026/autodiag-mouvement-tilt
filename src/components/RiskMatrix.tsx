@@ -243,7 +243,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                     <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} />
                                     <Bar dataKey="score" radius={[0, 4, 4, 0]}>
                                         {themeData.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={entry.score > 18 ? '#BC5B2E' : entry.score > 10 ? '#D09639' : '#9DB280'} />
+                                            <Cell key={`cell-${index}`} fill={entry.score > 10 ? '#BC5B2E' : entry.score > 6 ? '#E18392' : entry.score > 2 ? '#D09639' : '#9DB280'} />
                                         ))}
                                     </Bar>
                                 </BarChart>
