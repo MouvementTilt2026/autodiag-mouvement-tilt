@@ -399,23 +399,25 @@ const Index: React.FC = () => {
     }, []);
 
     const handleUpdateAssessment = (id: string, data: RiskAssessment) => {
-        setState(prev => ({
-            ...prev,
-            assessments: { ...prev.assessments, [id]: data }
-        }));
+        setState(prev => {
+            const newAssessments = { ...prev.assessments, [id]: data };
+            localStorage.setItem('robustasso_assessments', JSON.stringify(newAssessments));
+            return { ...prev, assessments: newAssessments };
+        });
     };
 
     const handleUpdateActionLever = (id: string, field: 'status' | 'importance' | 'urgency', value: any) => {
-        setState(prev => ({
-            ...prev,
-            actionLeverAssessments: {
+        setState(prev => {
+            const newActionLevers = {
                 ...prev.actionLeverAssessments,
                 [id]: {
                     ...prev.actionLeverAssessments[id] || { leverId: id, status: 'none', importance: 1, urgency: 1 },
                     [field]: value
                 }
-            }
-        }));
+            };
+            localStorage.setItem('robustasso_actionLevers', JSON.stringify(newActionLevers));
+            return { ...prev, actionLeverAssessments: newActionLevers };
+        });
     };
 
     const handleNavigate = (step: AppState['step']) => {
