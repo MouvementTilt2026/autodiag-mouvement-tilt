@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import { RISK_CATALOG, COLORS } from '@/constants';
 import { RiskAssessment, RiskTheme, RiskCategory } from '@/types';
-import { AlertTriangle, ArrowRight, Target, TrendingUp, Zap, ShieldCheck, Info, LayoutDashboard, BarChart3, PieChart as PieChartIcon, Activity, Download } from 'lucide-react';
+import { AlertTriangle, ArrowRight, Target, TrendingUp, Zap, ShieldCheck, Info, LayoutDashboard, BarChart3, PieChart as PieChartIcon, Activity, Download, FileSpreadsheet } from 'lucide-react';
+import { exportDashboardToExcel } from '@/lib/excelExport';
 import { 
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, 
     PieChart, Pie, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar
