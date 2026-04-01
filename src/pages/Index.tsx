@@ -477,12 +477,6 @@ const Index: React.FC = () => {
                         </a>
                     </div>
                     <div className="flex items-center gap-4">
-                        <button 
-                            onClick={handleFooterPrint}
-                            className="flex items-center gap-2 px-4 py-2 bg-[#335353] text-white rounded-lg font-bold hover:bg-[#244040] transition-all shadow-sm text-xs md:text-sm"
-                        >
-                            <Download size={16} /> Télécharger en PDF
-                        </button>
                         <div className="font-bold text-[#1A2F2F] tracking-tight hidden md:block">
                             Robust'Asso <span className="font-normal text-slate-400 mx-2">|</span> Mouvement Tilt
                         </div>
