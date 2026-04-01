@@ -154,7 +154,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                 <li><span className="font-bold text-[#E18392]">Rose</span> : élevé (&gt; 6 à 10). Action nécessaire.</li>
                                 <li><span className="font-bold text-[#BC5B2E]">Rouge</span> : critique (&gt; 10). Priorité absolue.</li>
                             </ul>
-                            <p>La <strong>taille du point</strong> reflète votre vulnérabilité : plus le point est gros, plus vous êtes vulnérable face à ce risque (1 = critique, 4 = sécurisé).</p>
+                            <p>La <strong>taille du point</strong> reflète votre maturité : plus le point est gros, moins vous êtes mature face à ce risque (1 = critique, 4 = sécurisé).</p>
                         </div>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
