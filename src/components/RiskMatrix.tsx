@@ -132,12 +132,20 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] flex items-center gap-3">
                         <LayoutDashboard className="text-[#9DB280]" /> Tableau de bord des risques
                     </h2>
-                    <button 
-                        onClick={() => window.print()}
-                        className="flex items-center gap-2 px-6 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0 no-print"
-                    >
-                        <Download size={18} /> Télécharger en PDF
-                    </button>
+                    <div className="flex items-center gap-2">
+                        <button 
+                            onClick={() => window.print()}
+                            className="flex items-center gap-2 px-5 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0 no-print"
+                        >
+                            <Download size={18} /> PDF
+                        </button>
+                        <button 
+                            onClick={() => exportDashboardToExcel(assessments)}
+                            className="flex items-center gap-2 px-5 py-3 bg-[#9DB280] text-white rounded-xl font-bold hover:bg-[#8DA270] transition-all shadow-lg text-sm shrink-0 no-print"
+                        >
+                            <FileSpreadsheet size={18} /> Excel
+                        </button>
+                    </div>
                 </div>
 
                 {/* Info box - Comprendre la matrice (above matrices) */}

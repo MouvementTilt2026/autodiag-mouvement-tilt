@@ -253,12 +253,20 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                         <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] mb-2">Étape 1 : évaluation des risques</h2>
                         <p className="text-slate-500 text-sm md:text-base">Évaluez chaque risque selon sa fréquence, sa gravité et votre niveau de maturité.</p>
                     </div>
-                    <button 
-                        onClick={handleExpandAndPrint}
-                        className="flex items-center gap-2 px-6 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0"
-                    >
-                        <Download size={18} /> Télécharger en PDF
-                    </button>
+                    <div className="flex items-center gap-2">
+                        <button 
+                            onClick={handleExpandAndPrint}
+                            className="flex items-center gap-2 px-5 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0"
+                        >
+                            <Download size={18} /> PDF
+                        </button>
+                        <button 
+                            onClick={() => exportRisksToExcel(assessments)}
+                            className="flex items-center gap-2 px-5 py-3 bg-[#9DB280] text-white rounded-xl font-bold hover:bg-[#8DA270] transition-all shadow-lg text-sm shrink-0"
+                        >
+                            <FileSpreadsheet size={18} /> Excel
+                        </button>
+                    </div>
                 </div>
 
                 <div className="relative group">
