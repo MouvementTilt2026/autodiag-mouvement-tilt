@@ -104,75 +104,174 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                         </div>
                     </div>
 
-                    {/* Vision & Mission */}
-                    <div className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 space-y-8">
-                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Notre vision & notre mission</h3>
-                        <div className="space-y-6">
-                            <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center shrink-0">
-                                    <Rocket size={24} />
+                    {/* Collapsible sections */}
+                    {[
+                        {
+                            title: "Notre vision & notre mission",
+                            defaultOpen: false,
+                            content: (
+                                <div className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-100 space-y-8">
+                                    <div className="space-y-6">
+                                        <div className="flex items-start gap-4">
+                                            <div className="w-12 h-12 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center shrink-0">
+                                                <Rocket size={24} />
+                                            </div>
+                                            <p className="text-slate-600 leading-relaxed">
+                                                Promouvoir un modèle d'engagement systémique, où la dimension environnementale devient l'affaire de tous les acteurs et de toutes les causes de l'intérêt général, <strong className="text-[#1A2F2F]">en alliant respect des limites planétaires et réponses aux défis sociaux</strong>.
+                                            </p>
+                                        </div>
+                                        <div className="flex items-start gap-4">
+                                            <div className="w-12 h-12 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center shrink-0">
+                                                <RefreshCw size={24} />
+                                            </div>
+                                            <p className="text-slate-600 leading-relaxed">
+                                                Activer le pouvoir d'agir des associations pour répondre aux grands enjeux de notre temps et <strong className="text-[#1A2F2F]">favoriser la soutenabilité et la robustesse des acteurs de l'intérêt général</strong>.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <p className="text-slate-600 leading-relaxed">
-                                    Promouvoir un modèle d'engagement systémique, où la dimension environnementale devient l'affaire de tous les acteurs et de toutes les causes de l'intérêt général, <strong className="text-[#1A2F2F]">en alliant respect des limites planétaires et réponses aux défis sociaux</strong>.
-                                </p>
+                            )
+                        },
+                        {
+                            title: "Nos valeurs qui constituent l'ADN du Mouvement Tilt",
+                            defaultOpen: false,
+                            content: (
+                                <div className="bg-[#E1E4D1]/30 p-6 md:p-8 rounded-3xl border border-[#9DB280]/20 space-y-6">
+                                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                                        {[
+                                            { label: 'Gratuité', icon: Heart },
+                                            { label: 'Open Source', icon: BookOpen },
+                                            { label: 'Recherche-Action', icon: Target },
+                                            { label: 'Communauté apprenante', icon: Users },
+                                        ].map((val, i) => (
+                                            <div key={i} className="flex flex-col items-center text-center gap-3">
+                                                <div className="w-14 h-14 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center">
+                                                    <val.icon size={28} />
+                                                </div>
+                                                <span className="text-sm font-bold text-[#1A2F2F]">{val.label}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )
+                        },
+                        {
+                            title: "Nos actions",
+                            defaultOpen: false,
+                            content: (
+                                <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 space-y-6">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        {[
+                                            { title: 'Tilt Odyssée', desc: 'Parcours de formation et d\'accompagnement en hybride', icon: Compass },
+                                            { title: 'Tilt\'Envol', desc: 'Parcours de formation et d\'accompagnement en ligne', icon: Rocket },
+                                            { title: 'Journées Déclic', desc: 'Journées de sensibilisation aux enjeux socio-environnementaux', icon: Leaf },
+                                            { title: 'La Tilt\'othèque', desc: 'Bibliothèque de ressources open source', icon: Target },
+                                        ].map((item, i) => (
+                                            <div key={i} className="flex items-start gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100">
+                                                <div className="w-10 h-10 rounded-xl bg-[#335353] text-[#C3FD97] flex items-center justify-center shrink-0 mt-0.5">
+                                                    <item.icon size={20} />
+                                                </div>
+                                                <div>
+                                                    <h4 className="font-bold text-[#1A2F2F] text-base mb-1">{item.title}</h4>
+                                                    <p className="text-sm text-slate-600">{item.desc}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )
+                        },
+                        {
+                            title: "L'équipe Tilt",
+                            defaultOpen: false,
+                            content: (
+                                <div className="space-y-8">
+                                    <p className="text-slate-500 font-medium">Les visages derrière Robust'Asso</p>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                        {[
+                                            {
+                                                name: "Loraine Derville",
+                                                role: "Fondatrice du Mouvement Tilt",
+                                                linkedin: "https://www.linkedin.com/in/loraine-derville/?originalSubdomain=fr",
+                                                contactReason: "la contacter si vous avez des questions en tant que fondation / fonds de dotation ou si vous souhaitez devenir partenaire (mécénat de compétences, relai médias, etc.)",
+                                                image: loraineImg
+                                            },
+                                            {
+                                                name: "Alizé Danchaud",
+                                                role: "Responsable du programme",
+                                                linkedin: "https://www.linkedin.com/in/aliz%C3%A9-danchaud-282509115/",
+                                                contactReason: "la contacter si vous avez des questions en tant qu'association et sur les contenus de cet outil d'autodiag",
+                                                image: alizeImg
+                                            },
+                                            {
+                                                name: "Héloïse Martin",
+                                                role: "Consultante et formatrice",
+                                                linkedin: "https://www.linkedin.com/in/heloise-martin/",
+                                                contactReason: "la contacter si vous avez des questions sur l'ingénierie et la conception d'outil d'autodiag personnalisé",
+                                                image: heloiseImg
+                                            }
+                                        ].map((member, index) => (
+                                            <div key={index} className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden group hover:shadow-xl transition-all duration-300 flex flex-col">
+                                                <div className="aspect-square relative overflow-hidden">
+                                                    <img 
+                                                        src={member.image} 
+                                                        alt={member.name}
+                                                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100"
+                                                    />
+                                                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A2F2F]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                                        <a 
+                                                            href={member.linkedin}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="w-full py-3 bg-[#C3FD97] text-[#1A2F2F] rounded-xl font-bold flex items-center justify-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300"
+                                                        >
+                                                            <ArrowRight size={18} /> Profil LinkedIn
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div className="p-6 flex-1 flex flex-col space-y-3">
+                                                    <div>
+                                                        <h4 className="text-lg font-bold text-[#1A2F2F] mb-1">{member.name}</h4>
+                                                        <p className="text-[#9DB280] font-bold text-[10px] uppercase tracking-widest">{member.role}</p>
+                                                    </div>
+                                                    <p className="text-[10px] text-slate-400 italic">Crédit photo : Marylou Mauricio</p>
+                                                    <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 mt-auto">
+                                                        <div className="flex gap-3 items-start">
+                                                            <ArrowRight size={16} className="text-[#BC5B2E] shrink-0 mt-1" />
+                                                            <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                                                                {member.contactReason}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )
+                        }
+                    ].map((section, idx) => {
+                        const [isOpen, setIsOpen] = React.useState(section.defaultOpen);
+                        return (
+                            <div key={idx} className="bg-white rounded-2xl border border-slate-100 overflow-hidden">
+                                <button 
+                                    onClick={() => setIsOpen(!isOpen)}
+                                    className="w-full p-5 md:p-6 flex items-center justify-between gap-3 hover:bg-slate-50 transition-colors"
+                                >
+                                    <h3 className="text-lg md:text-xl font-bold text-[#1A2F2F]">{section.title}</h3>
+                                    {isOpen ? <ChevronUp size={24} className="text-slate-400" /> : <ChevronDown size={24} className="text-slate-400" />}
+                                </button>
+                                {isOpen && (
+                                    <div className="px-5 md:px-6 pb-6 animate-in slide-in-from-top-2 duration-200">
+                                        {section.content}
+                                    </div>
+                                )}
                             </div>
-                            <div className="flex items-start gap-4">
-                                <div className="w-12 h-12 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center shrink-0">
-                                    <RefreshCw size={24} />
-                                </div>
-                                <p className="text-slate-600 leading-relaxed">
-                                    Activer le pouvoir d'agir des associations pour répondre aux grands enjeux de notre temps et <strong className="text-[#1A2F2F]">favoriser la soutenabilité et la robustesse des acteurs de l'intérêt général</strong>.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                        );
+                    })}
 
-
-                    {/* Valeurs */}
-                    <div className="bg-[#E1E4D1]/30 p-6 md:p-8 rounded-3xl border border-[#9DB280]/20 space-y-6">
-                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Nos valeurs qui constituent l'ADN du Mouvement Tilt</h3>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                            {[
-                                { label: 'Gratuité', icon: Heart },
-                                { label: 'Open Source', icon: BookOpen },
-                                { label: 'Recherche-Action', icon: Target },
-                                { label: 'Communauté apprenante', icon: Users },
-                            ].map((val, i) => (
-                                <div key={i} className="flex flex-col items-center text-center gap-3">
-                                    <div className="w-14 h-14 rounded-2xl bg-[#1A2F2F] text-[#C3FD97] flex items-center justify-center">
-                                        <val.icon size={28} />
-                                    </div>
-                                    <span className="text-sm font-bold text-[#1A2F2F]">{val.label}</span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Nos accompagnements */}
-                    <div className="bg-white p-6 md:p-8 rounded-3xl border border-slate-100 space-y-6">
-                        <h3 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Nos actions</h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {[
-                                { title: 'Tilt Odyssée', desc: 'Parcours de formation et d\'accompagnement en hybride', icon: Compass },
-                                { title: 'Tilt\'Envol', desc: 'Parcours de formation et d\'accompagnement en ligne', icon: Rocket },
-                                { title: 'Journées Déclic', desc: 'Journées de sensibilisation aux enjeux socio-environnementaux', icon: Leaf },
-                                { title: 'La Tilt\'othèque', desc: 'Bibliothèque de ressources open source', icon: Target },
-                            ].map((item, i) => (
-                                <div key={i} className="flex items-start gap-4 p-5 bg-slate-50 rounded-2xl border border-slate-100">
-                                    <div className="w-10 h-10 rounded-xl bg-[#335353] text-[#C3FD97] flex items-center justify-center shrink-0 mt-0.5">
-                                        <item.icon size={20} />
-                                    </div>
-                                    <div>
-                                        <h4 className="font-bold text-[#1A2F2F] text-base mb-1">{item.title}</h4>
-                                        <p className="text-sm text-slate-600">{item.desc}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Bouton vers le site */}
-                    <div className="flex justify-center">
+                    {/* Bouton vers le site - moved to bottom */}
+                    <div className="flex justify-center pt-4">
                         <a 
                             href="https://www.mouvement-tilt.com" 
                             target="_blank" 
@@ -182,9 +281,6 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                             Découvrir le Mouvement Tilt <ExternalLink size={20} />
                         </a>
                     </div>
-
-                    {/* Équipe */}
-                    <div className="space-y-8 pt-8 border-t border-slate-100">
                         <div className="flex items-center gap-4">
                             <div className="w-12 h-12 bg-[#1A2F2F] rounded-2xl flex items-center justify-center text-[#C3FD97]">
                                 <Users size={24} />
