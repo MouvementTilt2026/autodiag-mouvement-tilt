@@ -217,7 +217,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                             </div>
                         </div>
                         <div className="flex flex-wrap items-center gap-4 p-3 bg-slate-50 rounded-xl border border-slate-100 w-full max-w-md">
-                            <span className="text-[9px] font-bold text-slate-400 uppercase">Taille du point = niveau de vulnérabilité :</span>
+                            <span className="text-[9px] font-bold text-slate-400 uppercase">Taille du point = niveau de maturité :</span>
                             <div className="flex items-center gap-3 flex-wrap">
                                 <div className="flex items-center gap-1"><div className="w-6 h-6 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Critique (1)</span></div>
                                 <div className="flex items-center gap-1"><div className="w-5 h-5 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Vulnérable (2)</span></div>
