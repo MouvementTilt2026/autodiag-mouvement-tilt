@@ -303,7 +303,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                 </div>
                             </div>
                             <div className="space-y-1">
-                                <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Vulnérabilité moy.</span>
+                                <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Maturité moy.</span>
                                 <div className="text-3xl font-black text-[#9DB280]">
                                     {Math.round(riskData.reduce((acc, r) => acc + r.maturity, 0) / (riskData.length || 1) * 10) / 10}
                                 </div>

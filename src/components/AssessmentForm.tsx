@@ -374,7 +374,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
 
                         <div className="pt-6 border-t border-slate-100">
                             <div className="bg-[#E1E4D1]/30 p-4 md:p-6 rounded-2xl border border-[#9DB280]/20">
-                                <h4 className="font-bold text-[#1A2F2F] mb-4">Calcul de la criticité : C = (G × F) / V</h4>
+                                <h4 className="font-bold text-[#1A2F2F] mb-4">Calcul de la criticité : C = (G × F) / M</h4>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                                     <div className="p-4 rounded-xl bg-white border border-green-100 shadow-sm">
                                         <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">0,25 à 2</span>
