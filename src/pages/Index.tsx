@@ -250,25 +250,11 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                                 </div>
                             )
                         }
-                    ].map((section, idx) => {
-                        const [isOpen, setIsOpen] = React.useState(section.defaultOpen);
-                        return (
-                            <div key={idx} className="bg-white rounded-2xl border border-slate-100 overflow-hidden">
-                                <button 
-                                    onClick={() => setIsOpen(!isOpen)}
-                                    className="w-full p-5 md:p-6 flex items-center justify-between gap-3 hover:bg-slate-50 transition-colors"
-                                >
-                                    <h3 className="text-lg md:text-xl font-bold text-[#1A2F2F]">{section.title}</h3>
-                                    {isOpen ? <ChevronUp size={24} className="text-slate-400" /> : <ChevronDown size={24} className="text-slate-400" />}
-                                </button>
-                                {isOpen && (
-                                    <div className="px-5 md:px-6 pb-6 animate-in slide-in-from-top-2 duration-200">
-                                        {section.content}
-                                    </div>
-                                )}
-                            </div>
-                        );
-                    })}
+                    ].map((section, idx) => (
+                        <CollapsibleAboutSection key={idx} title={section.title}>
+                            {section.content}
+                        </CollapsibleAboutSection>
+                    ))}
 
                     {/* Bouton vers le site - moved to bottom */}
                     <div className="flex justify-center pt-4">
