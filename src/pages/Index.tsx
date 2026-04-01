@@ -13,6 +13,26 @@ import logoTiltImg from '@/assets/logo-tilt.png';
 import alizeImg from '@/assets/alize.png';
 import heloiseImg from '@/assets/heloise.png';
 
+const CollapsibleAboutSection = ({ title, children }: { title: string; children: React.ReactNode }) => {
+    const [isOpen, setIsOpen] = useState(false);
+    return (
+        <div className="bg-white rounded-2xl border border-slate-100 overflow-hidden">
+            <button 
+                onClick={() => setIsOpen(!isOpen)}
+                className="w-full p-5 md:p-6 flex items-center justify-between gap-3 hover:bg-slate-50 transition-colors"
+            >
+                <h3 className="text-lg md:text-xl font-bold text-[#1A2F2F]">{title}</h3>
+                {isOpen ? <ChevronUp size={24} className="text-slate-400" /> : <ChevronDown size={24} className="text-slate-400" />}
+            </button>
+            {isOpen && (
+                <div className="px-5 md:px-6 pb-6 animate-in slide-in-from-top-2 duration-200">
+                    {children}
+                </div>
+            )}
+        </div>
+    );
+};
+
 const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
     <div className="max-w-4xl mx-auto p-4 md:p-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
         <div className="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-slate-100 relative overflow-hidden">
