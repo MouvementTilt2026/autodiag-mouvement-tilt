@@ -101,7 +101,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block z-[100] w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20">
                                                     <div className="font-bold border-b border-white/10 pb-2 mb-2 leading-tight">{r.name}</div>
                                                     <div className="flex justify-between items-center">
-                                                        <span className="opacity-70">G:{r.assessment.impact} F:{r.assessment.probability} V:{r.assessment.maturity}</span>
+                                                        <span className="opacity-70">G:{r.assessment.impact} F:{r.assessment.probability} M:{r.assessment.maturity}</span>
                                                         <span className="bg-white/10 px-2 py-0.5 rounded-md font-bold">Score: {criticality}</span>
                                                     </div>
                                                 </div>
