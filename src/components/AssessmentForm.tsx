@@ -352,9 +352,9 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                             <div className="space-y-4">
                                 <h4 className="font-bold text-base text-[#9DB280] flex items-center gap-2">
                                     <span className="w-6 h-6 rounded-full bg-[#9DB280]/10 flex items-center justify-center text-xs">3</span>
-                                    Vulnérabilité (V)
+                                    Maturité (M)
                                 </h4>
-                                <p className="text-sm text-slate-500 italic">Quel est votre niveau de vulnérabilité face à ce risque ?</p>
+                                <p className="text-sm text-slate-500 italic">Quel est votre niveau de maturité face à ce risque ?</p>
                                 <div className="space-y-2">
                                 {[
                                         { n: 1, l: 'Critique', d: "Aucune action. Risque maximal ou subi.", e: "Absence de process, de budget ou de responsable." },
