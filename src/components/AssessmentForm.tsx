@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { RISK_CATALOG, COLORS } from '@/constants';
 import { RiskAssessment, RiskTheme, RiskCategory, AppState } from '@/types';
-import { AlertTriangle, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Globe, Info, MessageSquare, ShieldCheck, TrendingUp, Zap, ArrowRight, Download } from 'lucide-react';
+import { AlertTriangle, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Globe, Info, MessageSquare, ShieldCheck, TrendingUp, Zap, ArrowRight, Download, FileSpreadsheet } from 'lucide-react';
+import { exportRisksToExcel } from '@/lib/excelExport';
 
 interface AssessmentFormProps {
     assessments: Record<string, RiskAssessment>;
