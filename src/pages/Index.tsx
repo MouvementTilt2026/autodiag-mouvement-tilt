@@ -387,10 +387,14 @@ const Index: React.FC = () => {
             };
         });
 
+        // Load from localStorage if available
+        const savedAssessments = localStorage.getItem('robustasso_assessments');
+        const savedActionLevers = localStorage.getItem('robustasso_actionLevers');
+        
         setState(prev => ({ 
             ...prev, 
-            assessments: initialAssessments,
-            actionLeverAssessments: initialActionLevers
+            assessments: savedAssessments ? JSON.parse(savedAssessments) : initialAssessments,
+            actionLeverAssessments: savedActionLevers ? JSON.parse(savedActionLevers) : initialActionLevers
         }));
     }, []);
 
