@@ -287,6 +287,9 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
                             Découvrir le Mouvement Tilt <ExternalLink size={20} />
                         </a>
                     </div>
+                </div>
+            </div>
+        </div>
     </div>
 );
 
