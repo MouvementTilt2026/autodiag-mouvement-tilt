@@ -272,7 +272,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
 
                     <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
                         <h3 className="text-lg font-bold text-[#1A2F2F] mb-6 flex items-center gap-2">
-                            <Activity size={20} className="text-[#9DB280]" /> Radar des niveaux de vulnérabilité
+                            <Activity size={20} className="text-[#9DB280]" /> Radar des niveaux de maturité
                         </h3>
                         <div className="h-64 w-full">
                             <ResponsiveContainer width="100%" height="100%">
