@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { RISK_CATALOG, COLORS } from '@/constants';
 import { RiskAssessment, RiskTheme, RiskCategory, AppState } from '@/types';
-import { AlertTriangle, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Globe, Info, MessageSquare, ShieldCheck, TrendingUp, Zap, ArrowRight, Download } from 'lucide-react';
+import { AlertTriangle, ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Globe, Info, MessageSquare, ShieldCheck, TrendingUp, Zap, ArrowRight, Download, FileSpreadsheet } from 'lucide-react';
+import { exportRisksToExcel } from '@/lib/excelExport';
 
 interface AssessmentFormProps {
     assessments: Record<string, RiskAssessment>;
@@ -199,7 +200,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
 
                         <div className="space-y-3 md:space-y-4">
                             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-end gap-1">
-                                <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">VULNÉRABILITÉ (V)</label>
+                                <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">MATURITÉ (M)</label>
                                 <span className="text-sm font-bold text-[#1A2F2F]">{getVulnerabilityLabel(assessment.maturity)}</span>
                             </div>
                             <div className="relative pt-2">
@@ -225,7 +226,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                     <div className="flex flex-col items-center pt-6 border-t border-slate-50">
                         <div className="bg-[#E1E4D1]/50 p-4 md:p-6 rounded-2xl border border-[#9DB280]/20 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-inner w-full">
                             <div className="flex flex-col items-center sm:items-start">
-                                <span className="text-[10px] font-bold text-[#1A2F2F]/40 uppercase tracking-widest mb-1">Score de criticité (G × F) / V</span>
+                                <span className="text-[10px] font-bold text-[#1A2F2F]/40 uppercase tracking-widest mb-1">Score de criticité (G × F) / M</span>
                                 <div className="flex items-baseline gap-2">
                                     <span className="text-[#1A2F2F] font-black text-3xl">{riskScore}</span>
                                     <span className="text-xs text-slate-400 font-bold">/ 16</span>
@@ -250,14 +251,22 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                     <div>
                         <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] mb-2">Étape 1 : évaluation des risques</h2>
-                        <p className="text-slate-500 text-sm md:text-base">Évaluez chaque risque selon sa fréquence, sa gravité et votre niveau de vulnérabilité.</p>
+                        <p className="text-slate-500 text-sm md:text-base">Évaluez chaque risque selon sa fréquence, sa gravité et votre niveau de maturité.</p>
                     </div>
-                    <button 
-                        onClick={handleExpandAndPrint}
-                        className="flex items-center gap-2 px-6 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0"
-                    >
-                        <Download size={18} /> Télécharger en PDF
-                    </button>
+                    <div className="flex items-center gap-2">
+                        <button 
+                            onClick={handleExpandAndPrint}
+                            className="flex items-center gap-2 px-5 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0"
+                        >
+                            <Download size={18} /> PDF
+                        </button>
+                        <button 
+                            onClick={() => exportRisksToExcel(assessments)}
+                            className="flex items-center gap-2 px-5 py-3 bg-[#9DB280] text-white rounded-xl font-bold hover:bg-[#8DA270] transition-all shadow-lg text-sm shrink-0"
+                        >
+                            <FileSpreadsheet size={18} /> Excel
+                        </button>
+                    </div>
                 </div>
 
                 <div className="relative group">
@@ -352,9 +361,9 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                             <div className="space-y-4">
                                 <h4 className="font-bold text-base text-[#9DB280] flex items-center gap-2">
                                     <span className="w-6 h-6 rounded-full bg-[#9DB280]/10 flex items-center justify-center text-xs">3</span>
-                                    Vulnérabilité (V)
+                                    Maturité (M)
                                 </h4>
-                                <p className="text-sm text-slate-500 italic">Quel est votre niveau de vulnérabilité face à ce risque ?</p>
+                                <p className="text-sm text-slate-500 italic">Quel est votre niveau de maturité face à ce risque ?</p>
                                 <div className="space-y-2">
                                 {[
                                         { n: 1, l: 'Critique', d: "Aucune action. Risque maximal ou subi.", e: "Absence de process, de budget ou de responsable." },
@@ -374,7 +383,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
 
                         <div className="pt-6 border-t border-slate-100">
                             <div className="bg-[#E1E4D1]/30 p-4 md:p-6 rounded-2xl border border-[#9DB280]/20">
-                                <h4 className="font-bold text-[#1A2F2F] mb-4">Calcul de la criticité : C = (G × F) / V</h4>
+                                <h4 className="font-bold text-[#1A2F2F] mb-4">Calcul de la criticité : C = (G × F) / M</h4>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                                     <div className="p-4 rounded-xl bg-white border border-green-100 shadow-sm">
                                         <span className="block text-[10px] font-bold text-slate-400 uppercase mb-1">0,25 à 2</span>

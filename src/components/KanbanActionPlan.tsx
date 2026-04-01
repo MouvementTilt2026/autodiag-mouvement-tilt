@@ -4,8 +4,9 @@ import { ActionLeverAssessment } from '@/types';
 import { 
     Kanban as KanbanIcon, ArrowRight, Info, Download, CheckCircle2, XCircle, PlayCircle, AlertCircle, 
     Zap, Clock, Target, ShieldAlert, Printer, Trash2, ChevronDown, ChevronUp, MinusCircle,
-    Landmark, Briefcase, Lightbulb
+    Landmark, Briefcase, Lightbulb, FileSpreadsheet
 } from 'lucide-react';
+import { exportLeversToExcel } from '@/lib/excelExport';
 import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
 
 interface KanbanActionPlanProps {
@@ -98,9 +99,14 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                     </h2>
                     <p className="text-slate-500 text-sm md:text-lg">Évaluez et priorisez vos actions pour une transition robuste.</p>
                 </div>
-                <button onClick={handleDownloadPDF} className="flex items-center gap-2 px-6 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#2A4F4F] transition-all shadow-lg text-sm">
-                    <Printer size={20} /> Télécharger en PDF
-                </button>
+                <div className="flex items-center gap-2">
+                    <button onClick={handleDownloadPDF} className="flex items-center gap-2 px-5 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#2A4F4F] transition-all shadow-lg text-sm">
+                        <Printer size={20} /> PDF
+                    </button>
+                    <button onClick={() => exportLeversToExcel(assessments)} className="flex items-center gap-2 px-5 py-3 bg-[#9DB280] text-white rounded-xl font-bold hover:bg-[#8DA270] transition-all shadow-lg text-sm">
+                        <FileSpreadsheet size={20} /> Excel
+                    </button>
+                </div>
             </div>
 
             {/* Info box */}

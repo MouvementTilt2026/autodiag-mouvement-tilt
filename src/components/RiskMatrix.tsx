@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
 import { RISK_CATALOG, COLORS } from '@/constants';
 import { RiskAssessment, RiskTheme, RiskCategory } from '@/types';
-import { AlertTriangle, ArrowRight, Target, TrendingUp, Zap, ShieldCheck, Info, LayoutDashboard, BarChart3, PieChart as PieChartIcon, Activity, Download } from 'lucide-react';
+import { AlertTriangle, ArrowRight, Target, TrendingUp, Zap, ShieldCheck, Info, LayoutDashboard, BarChart3, PieChart as PieChartIcon, Activity, Download, FileSpreadsheet } from 'lucide-react';
+import { exportDashboardToExcel } from '@/lib/excelExport';
 import { 
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, 
     PieChart, Pie, Cell, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar
@@ -101,7 +102,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block z-[100] w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20">
                                                     <div className="font-bold border-b border-white/10 pb-2 mb-2 leading-tight">{r.name}</div>
                                                     <div className="flex justify-between items-center">
-                                                        <span className="opacity-70">G:{r.assessment.impact} F:{r.assessment.probability} V:{r.assessment.maturity}</span>
+                                                        <span className="opacity-70">G:{r.assessment.impact} F:{r.assessment.probability} M:{r.assessment.maturity}</span>
                                                         <span className="bg-white/10 px-2 py-0.5 rounded-md font-bold">Score: {criticality}</span>
                                                     </div>
                                                 </div>
@@ -131,12 +132,20 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     <h2 className="text-2xl md:text-3xl font-bold text-[#1A2F2F] flex items-center gap-3">
                         <LayoutDashboard className="text-[#9DB280]" /> Tableau de bord des risques
                     </h2>
-                    <button 
-                        onClick={() => window.print()}
-                        className="flex items-center gap-2 px-6 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0 no-print"
-                    >
-                        <Download size={18} /> Télécharger en PDF
-                    </button>
+                    <div className="flex items-center gap-2">
+                        <button 
+                            onClick={() => window.print()}
+                            className="flex items-center gap-2 px-5 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0 no-print"
+                        >
+                            <Download size={18} /> PDF
+                        </button>
+                        <button 
+                            onClick={() => exportDashboardToExcel(assessments)}
+                            className="flex items-center gap-2 px-5 py-3 bg-[#9DB280] text-white rounded-xl font-bold hover:bg-[#8DA270] transition-all shadow-lg text-sm shrink-0 no-print"
+                        >
+                            <FileSpreadsheet size={18} /> Excel
+                        </button>
+                    </div>
                 </div>
 
                 {/* Info box - Comprendre la matrice (above matrices) */}
@@ -147,14 +156,14 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                         </h3>
                         <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
                             <p>La matrice croise la <strong>Gravité</strong> (axe vertical) et la <strong>Fréquence</strong> (axe horizontal).</p>
-                            <p>Chaque point représente un risque identifié. Sa <strong>couleur</strong> indique sa criticité finale (G × F / V) :</p>
+                            <p>Chaque point représente un risque identifié. Sa <strong>couleur</strong> indique sa criticité finale (G × F / M) :</p>
                             <ul className="list-disc pl-5 space-y-1">
                                 <li><span className="font-bold text-[#9DB280]">Vert</span> : faible (≤ 2). Risque maîtrisé.</li>
                                 <li><span className="font-bold text-[#D09639]">Orange</span> : modéré (&gt; 2 à 6). Risque à surveiller.</li>
                                 <li><span className="font-bold text-[#E18392]">Rose</span> : élevé (&gt; 6 à 10). Action nécessaire.</li>
                                 <li><span className="font-bold text-[#BC5B2E]">Rouge</span> : critique (&gt; 10). Priorité absolue.</li>
                             </ul>
-                            <p>La <strong>taille du point</strong> reflète votre vulnérabilité : plus le point est gros, plus vous êtes vulnérable face à ce risque (1 = critique, 4 = sécurisé).</p>
+                            <p>La <strong>taille du point</strong> reflète votre maturité : plus le point est gros, moins vous êtes mature face à ce risque (1 = critique, 4 = sécurisé).</p>
                         </div>
                     </div>
                     <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
@@ -217,7 +226,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                             </div>
                         </div>
                         <div className="flex flex-wrap items-center gap-4 p-3 bg-slate-50 rounded-xl border border-slate-100 w-full max-w-md">
-                            <span className="text-[9px] font-bold text-slate-400 uppercase">Taille du point = niveau de vulnérabilité :</span>
+                            <span className="text-[9px] font-bold text-slate-400 uppercase">Taille du point = niveau de maturité :</span>
                             <div className="flex items-center gap-3 flex-wrap">
                                 <div className="flex items-center gap-1"><div className="w-6 h-6 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Critique (1)</span></div>
                                 <div className="flex items-center gap-1"><div className="w-5 h-5 bg-slate-400 rounded-full"></div> <span className="text-[9px]">Vulnérable (2)</span></div>
@@ -272,7 +281,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
 
                     <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
                         <h3 className="text-lg font-bold text-[#1A2F2F] mb-6 flex items-center gap-2">
-                            <Activity size={20} className="text-[#9DB280]" /> Radar des niveaux de vulnérabilité
+                            <Activity size={20} className="text-[#9DB280]" /> Radar des niveaux de maturité
                         </h3>
                         <div className="h-64 w-full">
                             <ResponsiveContainer width="100%" height="100%">
@@ -303,7 +312,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                 </div>
                             </div>
                             <div className="space-y-1">
-                                <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Vulnérabilité moy.</span>
+                                <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Maturité moy.</span>
                                 <div className="text-3xl font-black text-[#9DB280]">
                                     {Math.round(riskData.reduce((acc, r) => acc + r.maturity, 0) / (riskData.length || 1) * 10) / 10}
                                 </div>
