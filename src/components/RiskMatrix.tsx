@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { RISK_CATALOG, COLORS } from '@/constants';
 import { RiskAssessment, RiskTheme, RiskCategory } from '@/types';
-import { AlertTriangle, ArrowRight, Target, TrendingUp, Zap, ShieldCheck, Info, LayoutDashboard, BarChart3, PieChart as PieChartIcon, Activity, Download, FileSpreadsheet } from 'lucide-react';
+import { AlertTriangle, ArrowRight, Target, TrendingUp, Zap, ShieldCheck, Info, LayoutDashboard, BarChart3, PieChart as PieChartIcon, Activity, Download, FileSpreadsheet, ChevronDown } from 'lucide-react';
 import { exportDashboardToExcel } from '@/lib/excelExport';
 import { 
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, 
@@ -14,6 +14,9 @@ interface RiskMatrixProps {
 }
 
 const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
+    const [showComprehension, setShowComprehension] = useState(false);
+    const [showLexique, setShowLexique] = useState(false);
+
     const riskData = Object.values(assessments) as RiskAssessment[];
 
     const topRisks = useMemo(() => {
@@ -26,45 +29,34 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
         return Object.values(RiskTheme).map(theme => {
             const themeRisks = RISK_CATALOG.filter(r => r.theme === theme);
             const themeAssessments = themeRisks.map(tr => assessments[tr.id]).filter(Boolean);
-            if (themeAssessments.length === 0) return { name: theme, score: 0, count: 0 };
+            if (themeAssessments.length === 0) return { name: theme, score: 0, gxf: 0, count: 0 };
             const avgScore = themeAssessments.reduce((acc, curr) => acc + ((curr.probability * curr.impact) / curr.maturity), 0) / themeAssessments.length;
-            return { name: theme.replace('Choc ', ''), score: Math.round(avgScore * 10) / 10, count: themeAssessments.length };
+            const avgGxF = themeAssessments.reduce((acc, curr) => acc + (curr.probability * curr.impact), 0) / themeAssessments.length;
+            return { name: theme.replace('Choc ', ''), score: Math.round(avgScore * 10) / 10, gxf: Math.round(avgGxF * 10) / 10, count: themeAssessments.length };
         }).filter(t => t.count > 0);
     }, [assessments]);
 
-    const criticalityDistribution = useMemo(() => {
-        const dist = { faible: 0, modere: 0, eleve: 0, critique: 0 };
-        riskData.forEach(r => {
-            const score = (r.probability * r.impact) / r.maturity;
-            if (score > 10) dist.critique++;
-            else if (score > 6) dist.eleve++;
-            else if (score > 2) dist.modere++;
-            else dist.faible++;
-        });
-        return [
-            { name: 'Faible (≤2)', value: dist.faible, color: '#9DB280' },
-            { name: 'Modéré (>2-6)', value: dist.modere, color: '#D09639' },
-            { name: 'Élevé (>6-10)', value: dist.eleve, color: '#E18392' },
-            { name: 'Critique (>10)', value: dist.critique, color: '#BC5B2E' }
-        ].filter(d => d.value > 0);
-    }, [riskData]);
+    const maturityByTheme = useMemo(() => {
+        return Object.values(RiskTheme).map(theme => {
+            const themeRisks = RISK_CATALOG.filter(r => r.theme === theme);
+            const themeAssessments = themeRisks.map(tr => assessments[tr.id]).filter(Boolean);
+            if (themeAssessments.length === 0) return null;
+            const avgMaturity = themeAssessments.reduce((acc, curr) => acc + curr.maturity, 0) / themeAssessments.length;
+            return { name: theme.replace('Choc ', ''), maturity: Math.round(avgMaturity * 10) / 10, count: themeAssessments.length };
+        }).filter(Boolean) as { name: string; maturity: number; count: number }[];
+    }, [assessments]);
 
-    const vulnerabilityData = useMemo(() => {
-        const counts = { 1: 0, 2: 0, 3: 0, 4: 0 };
-        riskData.forEach(r => { counts[r.maturity as keyof typeof counts]++; });
-        return [
-            { subject: 'Critique (1)', A: counts[1], fullMark: riskData.length },
-            { subject: 'Vulnérable (2)', A: counts[2], fullMark: riskData.length },
-            { subject: 'Sous Contrôle (3)', A: counts[3], fullMark: riskData.length },
-            { subject: 'Sécurisé (4)', A: counts[4], fullMark: riskData.length },
-        ];
-    }, [riskData]);
+    const getMaturityLabel = (m: number) => {
+        if (m >= 3.5) return { label: 'Sécurisé', color: '#9DB280' };
+        if (m >= 2.5) return { label: 'Sous contrôle', color: '#D09639' };
+        if (m >= 1.5) return { label: 'Vulnérable', color: '#E18392' };
+        return { label: 'Critique', color: '#BC5B2E' };
+    };
 
     const riskWithNumbers = useMemo(() => RISK_CATALOG.map((risk, index) => ({
         ...risk, number: index + 1, assessment: assessments[risk.id]
     })).filter(r => r.assessment), [assessments]);
 
-    // 3 matrices: Environnementaux, Internes, Externes
     const envRisks = useMemo(() => riskWithNumbers.filter(r => r.theme === RiskTheme.ENVIRONNEMENTAL), [riskWithNumbers]);
     const internalRisks = useMemo(() => riskWithNumbers.filter(r => 
         r.theme === RiskTheme.RH || r.theme === RiskTheme.RP || r.theme === RiskTheme.TECHNOLOGIQUE
@@ -134,7 +126,11 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     </h2>
                     <div className="flex items-center gap-2">
                         <button 
-                            onClick={() => window.print()}
+                            onClick={() => {
+                                setShowComprehension(true);
+                                setShowLexique(true);
+                                setTimeout(() => window.print(), 300);
+                            }}
                             className="flex items-center gap-2 px-5 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0 no-print"
                         >
                             <Download size={18} /> PDF
@@ -148,45 +144,71 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     </div>
                 </div>
 
-                {/* Info box - Comprendre la matrice (above matrices) */}
+                {/* Comprendre la matrice + Lexique - collapsible on screen, always visible in print */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-                    <div className="bg-[#E1E4D1]/30 p-6 rounded-3xl border border-[#9DB280]/20">
-                        <h3 className="text-lg font-bold text-[#1A2F2F] mb-4 flex items-center gap-2">
-                            <Info size={18} className="text-[#9DB280]" /> Comprendre la matrice
-                        </h3>
-                        <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
-                            <p>La matrice croise la <strong>Gravité</strong> (axe vertical) et la <strong>Fréquence</strong> (axe horizontal).</p>
-                            <p>Chaque point représente un risque identifié. Sa <strong>couleur</strong> indique sa criticité finale (G × F / M) :</p>
-                            <ul className="list-disc pl-5 space-y-1">
-                                <li><span className="font-bold text-[#9DB280]">Vert</span> : faible (≤ 2). Risque maîtrisé.</li>
-                                <li><span className="font-bold text-[#D09639]">Orange</span> : modéré (&gt; 2 à 6). Risque à surveiller.</li>
-                                <li><span className="font-bold text-[#E18392]">Rose</span> : élevé (&gt; 6 à 10). Action nécessaire.</li>
-                                <li><span className="font-bold text-[#BC5B2E]">Rouge</span> : critique (&gt; 10). Priorité absolue.</li>
-                            </ul>
-                            <p>La <strong>taille du point</strong> reflète votre maturité : plus le point est gros, moins vous êtes mature face à ce risque (1 = critique, 4 = sécurisé).</p>
+                    <div className="bg-[#E1E4D1]/30 rounded-3xl border border-[#9DB280]/20 overflow-hidden">
+                        <button 
+                            onClick={() => setShowComprehension(!showComprehension)}
+                            className="w-full p-6 flex items-center justify-between text-left no-print"
+                        >
+                            <h3 className="text-lg font-bold text-[#1A2F2F] flex items-center gap-2">
+                                <Info size={18} className="text-[#9DB280]" /> Comprendre la matrice
+                            </h3>
+                            <ChevronDown size={20} className={`text-slate-400 transition-transform ${showComprehension ? 'rotate-180' : ''}`} />
+                        </button>
+                        <div className={`${showComprehension ? 'block' : 'hidden'} print:!block px-6 pb-6`}>
+                            <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
+                                <p>La matrice croise la <strong>Gravité</strong> (axe vertical) et la <strong>Fréquence</strong> (axe horizontal).</p>
+                                <p>Chaque point représente un risque identifié. Sa <strong>couleur</strong> indique sa criticité finale (G × F / M) :</p>
+                                <ul className="list-disc pl-5 space-y-1">
+                                    <li><span className="font-bold text-[#9DB280]">Vert</span> : faible (≤ 2). Risque maîtrisé.</li>
+                                    <li><span className="font-bold text-[#D09639]">Orange</span> : modéré (&gt; 2 à 6). Risque à surveiller.</li>
+                                    <li><span className="font-bold text-[#E18392]">Rose</span> : élevé (&gt; 6 à 10). Action nécessaire.</li>
+                                    <li><span className="font-bold text-[#BC5B2E]">Rouge</span> : critique (&gt; 10). Priorité absolue.</li>
+                                </ul>
+                                <p>La <strong>taille du point</strong> reflète votre maturité : plus le point est gros, moins vous êtes mature face à ce risque (1 = critique, 4 = sécurisé).</p>
+                            </div>
+                        </div>
+                        {/* Print-only: always show title */}
+                        <div className="hidden print:block p-6">
+                            <h3 className="text-lg font-bold text-[#1A2F2F] flex items-center gap-2 mb-4">
+                                <Info size={18} className="text-[#9DB280]" /> Comprendre la matrice
+                            </h3>
                         </div>
                     </div>
-                    <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-                        <h5 className="text-sm font-bold text-[#1A2F2F] mb-4 uppercase tracking-wider">Lexique des risques positionnés</h5>
-                        <div className="space-y-6">
-                            {[
-                                { title: "Risques environnementaux", risks: envRisks },
-                                { title: "Risques internes", subtitle: "RH, RP, Technologique", risks: internalRisks },
-                                { title: "Risques externes", subtitle: "Financement, Réglementaire, Politique, Bénéficiaires", risks: externalRisks },
-                            ].map((group, idx) => (
-                                <div key={idx}>
-                                    <h6 className="text-xs font-bold text-[#9DB280] uppercase tracking-widest mb-2">{group.title}</h6>
-                                    {group.subtitle && <p className="text-[10px] text-slate-400 mb-2">{group.subtitle}</p>}
-                                    <div className="space-y-1">
-                                        {group.risks.map(r => (
-                                            <div key={r.id} className="flex items-start gap-2 text-sm leading-tight py-1 border-b border-slate-200/50 last:border-0">
-                                                <span className="font-bold text-[#1A2F2F] shrink-0 w-5">{r.number}.</span>
-                                                <span className="text-slate-600">{r.name}</span>
-                                            </div>
-                                        ))}
+                    <div className="bg-slate-50 rounded-3xl border border-slate-100 overflow-hidden">
+                        <button 
+                            onClick={() => setShowLexique(!showLexique)}
+                            className="w-full p-6 flex items-center justify-between text-left no-print"
+                        >
+                            <h5 className="text-sm font-bold text-[#1A2F2F] uppercase tracking-wider">Lexique des risques positionnés</h5>
+                            <ChevronDown size={20} className={`text-slate-400 transition-transform ${showLexique ? 'rotate-180' : ''}`} />
+                        </button>
+                        <div className={`${showLexique ? 'block' : 'hidden'} print:!block px-6 pb-6`}>
+                            <div className="space-y-6">
+                                {[
+                                    { title: "Risques environnementaux", risks: envRisks },
+                                    { title: "Risques internes", subtitle: "RH, RP, Technologique", risks: internalRisks },
+                                    { title: "Risques externes", subtitle: "Financement, Réglementaire, Politique, Bénéficiaires", risks: externalRisks },
+                                ].map((group, idx) => (
+                                    <div key={idx}>
+                                        <h6 className="text-xs font-bold text-[#9DB280] uppercase tracking-widest mb-2">{group.title}</h6>
+                                        {group.subtitle && <p className="text-[10px] text-slate-400 mb-2">{group.subtitle}</p>}
+                                        <div className="space-y-1">
+                                            {group.risks.map(r => (
+                                                <div key={r.id} className="flex items-start gap-2 text-sm leading-tight py-1 border-b border-slate-200/50 last:border-0">
+                                                    <span className="font-bold text-[#1A2F2F] shrink-0 w-5">{r.number}.</span>
+                                                    <span className="text-slate-600">{r.name}</span>
+                                                </div>
+                                            ))}
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
+                        </div>
+                        {/* Print-only: always show title */}
+                        <div className="hidden print:block p-6">
+                            <h5 className="text-sm font-bold text-[#1A2F2F] uppercase tracking-wider mb-4">Lexique des risques positionnés</h5>
                         </div>
                     </div>
                 </div>
@@ -237,12 +259,13 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     </div>
                 </div>
 
-                {/* Charts */}
+                {/* Charts: Criticité + G×F side by side */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                     <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
                         <h3 className="text-lg font-bold text-[#1A2F2F] mb-6 flex items-center gap-2">
                             <BarChart3 size={20} className="text-[#BC5B2E]" /> Criticité moyenne par thématique
                         </h3>
+                        <p className="text-xs text-slate-500 mb-4">Score = (Gravité × Fréquence) / Maturité</p>
                         <div className="h-64 w-full">
                             <ResponsiveContainer width="100%" height="100%">
                                 <BarChart data={themeData} layout="vertical" margin={{ left: 20, right: 30 }}>
@@ -250,7 +273,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                     <XAxis type="number" hide />
                                     <YAxis dataKey="name" type="category" width={100} tick={{ fontSize: 10, fontWeight: 600, fill: '#64748b' }} />
                                     <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} />
-                                    <Bar dataKey="score" radius={[0, 4, 4, 0]}>
+                                    <Bar dataKey="score" name="Criticité (G×F/M)" radius={[0, 4, 4, 0]}>
                                         {themeData.map((entry, index) => (
                                             <Cell key={`cell-${index}`} fill={entry.score > 10 ? '#BC5B2E' : entry.score > 6 ? '#E18392' : entry.score > 2 ? '#D09639' : '#9DB280'} />
                                         ))}
@@ -262,66 +285,86 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
 
                     <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
                         <h3 className="text-lg font-bold text-[#1A2F2F] mb-6 flex items-center gap-2">
-                            <PieChartIcon size={20} className="text-[#D09639]" /> Répartition de la criticité
+                            <Zap size={20} className="text-[#D09639]" /> Évaluation du risque brut (G × F)
                         </h3>
-                        <div className="h-64 w-full flex items-center">
-                            <ResponsiveContainer width="100%" height="100%">
-                                <PieChart>
-                                    <Pie data={criticalityDistribution} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={5} dataKey="value">
-                                        {criticalityDistribution.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={entry.color} />
-                                        ))}
-                                    </Pie>
-                                    <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} />
-                                    <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ fontSize: '10px', fontWeight: 600 }} />
-                                </PieChart>
-                            </ResponsiveContainer>
-                        </div>
-                    </div>
-
-                    <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-                        <h3 className="text-lg font-bold text-[#1A2F2F] mb-6 flex items-center gap-2">
-                            <Activity size={20} className="text-[#9DB280]" /> Radar des niveaux de maturité
-                        </h3>
+                        <p className="text-xs text-slate-500 mb-4">Score = Gravité × Fréquence (sans pondération maturité)</p>
                         <div className="h-64 w-full">
                             <ResponsiveContainer width="100%" height="100%">
-                                <RadarChart cx="50%" cy="50%" outerRadius="80%" data={vulnerabilityData}>
-                                    <PolarGrid stroke="#e2e8f0" />
-                                    <PolarAngleAxis dataKey="subject" tick={{ fontSize: 9, fontWeight: 600, fill: '#64748b' }} />
-                                    <PolarRadiusAxis angle={30} domain={[0, 'auto']} tick={false} axisLine={false} />
-                                    <Radar name="Nombre de risques" dataKey="A" stroke="#9DB280" fill="#9DB280" fillOpacity={0.6} />
-                                    <Tooltip contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} />
-                                </RadarChart>
+                                <BarChart data={themeData} layout="vertical" margin={{ left: 20, right: 30 }}>
+                                    <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#e2e8f0" />
+                                    <XAxis type="number" hide />
+                                    <YAxis dataKey="name" type="category" width={100} tick={{ fontSize: 10, fontWeight: 600, fill: '#64748b' }} />
+                                    <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} />
+                                    <Bar dataKey="gxf" name="Risque brut (G×F)" radius={[0, 4, 4, 0]}>
+                                        {themeData.map((entry, index) => (
+                                            <Cell key={`cell-${index}`} fill={entry.gxf > 12 ? '#BC5B2E' : entry.gxf > 8 ? '#E18392' : entry.gxf > 4 ? '#D09639' : '#9DB280'} />
+                                        ))}
+                                    </Bar>
+                                </BarChart>
                             </ResponsiveContainer>
                         </div>
                     </div>
+                </div>
 
-                    <div className="bg-[#1A2F2F] p-8 rounded-3xl text-white flex flex-col justify-center">
-                        <h3 className="text-xl font-bold mb-6">Indicateurs clés</h3>
-                        <div className="grid grid-cols-2 gap-6 mb-6">
-                            <div className="space-y-1">
-                                <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Score moyen</span>
-                                <div className="text-3xl font-black text-[#C3FD97]">
-                                    {Math.round(riskData.reduce((acc, r) => acc + ((r.probability * r.impact) / r.maturity), 0) / (riskData.length || 1) * 10) / 10}
-                                </div>
-                            </div>
-                            <div className="space-y-1">
-                                <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Risques critiques</span>
-                                <div className="text-3xl font-black text-[#E18392]">
-                                    {riskData.filter(r => ((r.probability * r.impact) / r.maturity) > 10).length}
-                                </div>
-                            </div>
-                            <div className="space-y-1">
-                                <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Maturité moy.</span>
-                                <div className="text-3xl font-black text-[#9DB280]">
-                                    {Math.round(riskData.reduce((acc, r) => acc + r.maturity, 0) / (riskData.length || 1) * 10) / 10}
-                                </div>
-                            </div>
-                            <div className="space-y-1">
-                                <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">Risques évalués</span>
-                                <div className="text-3xl font-black text-white">{riskData.length}</div>
-                            </div>
+                {/* Maturity by theme */}
+                <div className="mb-16">
+                    <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                        <h3 className="text-lg font-bold text-[#1A2F2F] mb-6 flex items-center gap-2">
+                            <ShieldCheck size={20} className="text-[#9DB280]" /> Maturité moyenne par thématique
+                        </h3>
+                        <p className="text-xs text-slate-500 mb-6">Niveau moyen de maturité de votre association face à chaque famille de risques (1 = critique, 4 = sécurisé)</p>
+                        <div className="h-64 w-full mb-8">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <BarChart data={maturityByTheme} layout="vertical" margin={{ left: 20, right: 30 }}>
+                                    <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#e2e8f0" />
+                                    <XAxis type="number" domain={[0, 4]} ticks={[1, 2, 3, 4]} tick={{ fontSize: 10 }} />
+                                    <YAxis dataKey="name" type="category" width={100} tick={{ fontSize: 10, fontWeight: 600, fill: '#64748b' }} />
+                                    <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} />
+                                    <Bar dataKey="maturity" name="Maturité moyenne" radius={[0, 4, 4, 0]}>
+                                        {maturityByTheme.map((entry, index) => (
+                                            <Cell key={`cell-${index}`} fill={getMaturityLabel(entry.maturity).color} />
+                                        ))}
+                                    </Bar>
+                                </BarChart>
+                            </ResponsiveContainer>
                         </div>
+                        {/* Conclusion per theme */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            {maturityByTheme.map((t, i) => {
+                                const { label, color } = getMaturityLabel(t.maturity);
+                                return (
+                                    <div key={i} className="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-100">
+                                        <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: color }}></div>
+                                        <div className="flex-1 min-w-0">
+                                            <span className="text-sm font-bold text-[#1A2F2F]">{t.name}</span>
+                                            <span className="text-xs text-slate-500 ml-2">({t.maturity}/4)</span>
+                                        </div>
+                                        <span className="text-xs font-bold px-2 py-1 rounded-full shrink-0" style={{ backgroundColor: `${color}20`, color }}>{label}</span>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                        {/* Global conclusion */}
+                        {maturityByTheme.length > 0 && (() => {
+                            const globalMaturity = Math.round(maturityByTheme.reduce((acc, t) => acc + t.maturity, 0) / maturityByTheme.length * 10) / 10;
+                            const { label, color } = getMaturityLabel(globalMaturity);
+                            return (
+                                <div className="mt-6 p-4 rounded-2xl border-2 flex items-center gap-4" style={{ borderColor: color, backgroundColor: `${color}10` }}>
+                                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0" style={{ backgroundColor: color }}>
+                                        {globalMaturity}
+                                    </div>
+                                    <div>
+                                        <p className="text-sm font-bold text-[#1A2F2F]">Maturité globale : <span style={{ color }}>{label}</span></p>
+                                        <p className="text-xs text-slate-500">
+                                            {globalMaturity >= 3.5 ? "Votre association dispose de processus solides et proactifs face aux risques identifiés." :
+                                             globalMaturity >= 2.5 ? "Votre association a mis en place des processus stables mais certains axes nécessitent un renforcement." :
+                                             globalMaturity >= 1.5 ? "Votre association présente des fragilités significatives. Des actions correctives sont recommandées." :
+                                             "Votre association est en situation de vulnérabilité critique. Une action immédiate est nécessaire."}
+                                        </p>
+                                    </div>
+                                </div>
+                            );
+                        })()}
                     </div>
                 </div>
 

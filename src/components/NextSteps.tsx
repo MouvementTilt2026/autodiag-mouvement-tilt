@@ -51,7 +51,7 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                         </div>
                         <h3 className="font-bold text-[#1A2F2F] mb-3 text-base">Votre avis nous intéresse</h3>
                         <p className="text-sm text-slate-500 mb-6 flex-1">Aidez-nous à améliorer cet outil en répondant à notre court questionnaire.</p>
-                        <a href="https://tally.so/r/n0X0X0" target="_blank" rel="noreferrer"
+                        <a href="https://haphfh3nbbo.typeform.com/to/wnrow7h0" target="_blank" rel="noreferrer"
                             className="w-full py-3 bg-[#F394A3] text-white rounded-xl font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2">
                             Donner mon avis <ArrowRightCircle size={16} />
                         </a>
