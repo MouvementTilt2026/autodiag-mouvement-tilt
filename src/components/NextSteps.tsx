@@ -63,12 +63,14 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                         </div>
                         <h3 className="font-bold text-[#1A2F2F] mb-3 text-base">Pour échanger sur vos besoins, contactez-nous</h3>
                         <p className="text-sm text-slate-500 mb-6 flex-1">Échangez avec notre équipe pour approfondir votre diagnostic et identifier vos besoins prioritaires.</p>
-                        <button 
-                            onClick={() => { window.location.href = 'mai' + 'lto:' + 'info' + '@' + 'mouvement-tilt.com'; }}
+                        <a 
+                            href="https://haphfh3nbbo.typeform.com/to/iua0TPuS"
+                            target="_blank"
+                            rel="noreferrer"
                             className="w-full py-3 bg-[#335353] text-white rounded-xl font-bold text-sm hover:bg-[#244040] transition-all flex items-center justify-center gap-2"
                         >
                             <Mail size={14} /> Nous contacter
-                        </button>
+                        </a>
                     </div>
                 </div>
 
