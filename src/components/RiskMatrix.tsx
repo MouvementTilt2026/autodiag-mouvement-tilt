@@ -66,22 +66,46 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
         r.theme === RiskTheme.POLITIQUE || r.theme === RiskTheme.BENEFICIAIRES
     ), [riskWithNumbers]);
 
+    const getRiskBrutLabel = (gxf: number) => {
+        if (gxf >= 12) return { label: 'Critique', color: '#BC5B2E' };
+        if (gxf >= 8) return { label: 'Élevé', color: '#E18392' };
+        if (gxf >= 4) return { label: 'Modéré', color: '#D09639' };
+        return { label: 'Faible', color: '#9DB280' };
+    };
+
+    const getCriticalityLabel = (score: number) => {
+        if (score > 10) return { label: 'Critique', color: '#BC5B2E' };
+        if (score > 6) return { label: 'Élevé', color: '#E18392' };
+        if (score > 2) return { label: 'Modéré', color: '#D09639' };
+        return { label: 'Faible', color: '#9DB280' };
+    };
+
+    const globalGxF = useMemo(() => {
+        if (themeData.length === 0) return 0;
+        return Math.round(themeData.reduce((acc, t) => acc + t.gxf, 0) / themeData.length * 10) / 10;
+    }, [themeData]);
+
+    const globalCriticality = useMemo(() => {
+        if (themeData.length === 0) return 0;
+        return Math.round(themeData.reduce((acc, t) => acc + t.score, 0) / themeData.length * 10) / 10;
+    }, [themeData]);
+
     const MatrixGrid = ({ risks }: { risks: any[] }) => (
-        <div className="w-full max-w-md mx-auto">
-            <div className="grid grid-cols-[30px_1fr] grid-rows-[1fr_30px] gap-1 aspect-square relative">
+        <div className="w-full max-w-md mx-auto" style={{ overflow: 'visible' }}>
+            <div className="grid grid-cols-[30px_1fr] grid-rows-[1fr_30px] gap-1 aspect-square relative" style={{ overflow: 'visible' }}>
                 <div className="absolute -left-10 top-1/2 -translate-y-1/2 -rotate-90 text-[9px] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap hidden md:block">
                     Gravité
                 </div>
                 <div className="flex flex-col justify-around items-end pr-2 text-[10px] font-bold text-slate-500">
                     <span>4</span><span>3</span><span>2</span><span>1</span>
                 </div>
-                <div className="border-l-2 border-b-2 border-[#1A2F2F] grid grid-cols-4 grid-rows-4 overflow-hidden rounded-tr-xl">
+                <div className="border-l-2 border-b-2 border-[#1A2F2F] grid grid-cols-4 grid-rows-4 rounded-tr-xl" style={{ overflow: 'visible' }}>
                     {[4, 3, 2, 1].map((row) => (
                         [1, 2, 3, 4].map((col) => {
                             const risksInCell = risks.filter(r => r.assessment.impact === row && r.assessment.probability === col);
                             const bgColor = row * col >= 12 ? 'bg-[#BC5B2E]/20' : row * col >= 6 ? 'bg-[#D09639]/20' : 'bg-[#C3FD97]/20';
                             return (
-                                <div key={`${row}-${col}`} className={`border border-white/40 flex flex-wrap items-center justify-center p-0.5 ${bgColor} transition-colors`}>
+                                <div key={`${row}-${col}`} className={`border border-white/40 flex flex-wrap items-center justify-center p-0.5 ${bgColor} transition-colors`} style={{ overflow: 'visible' }}>
                                     {risksInCell.map((r: any, i: number) => {
                                         const criticality = Math.round(((r.assessment.probability * r.assessment.impact) / r.assessment.maturity) * 10) / 10;
                                         const dotSize = 16 + ((5 - r.assessment.maturity) * 5);
@@ -89,9 +113,10 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                             <div key={i} className="rounded-full shadow-md m-0.5 cursor-help group relative transition-all hover:scale-125 hover:z-50 flex items-center justify-center text-[8px] font-bold text-white shrink-0"
                                                 style={{ width: `${dotSize}px`, height: `${dotSize}px`,
                                                     backgroundColor: criticality > 10 ? '#BC5B2E' : criticality > 6 ? '#E18392' : criticality > 2 ? '#D09639' : '#9DB280',
-                                                    border: '2px solid rgba(255,255,255,0.9)' }}>
+                                                    border: '2px solid rgba(255,255,255,0.9)', overflow: 'visible' }}>
                                                 {r.number}
-                                                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block z-[100] w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20">
+                                                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20"
+                                                    style={{ zIndex: 9999 }}>
                                                     <div className="font-bold border-b border-white/10 pb-2 mb-2 leading-tight">{r.name}</div>
                                                     <div className="flex justify-between items-center">
                                                         <span className="opacity-70">G:{r.assessment.impact} F:{r.assessment.probability} M:{r.assessment.maturity}</span>
@@ -259,8 +284,9 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     </div>
                 </div>
 
-                {/* Charts: Criticité + G×F side by side */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                {/* Row 1: G×F (left) + Maturité (right) */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    {/* Évaluation du risque brut (G × F) */}
                     <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
                         <h3 className="text-lg font-bold text-[#1A2F2F] mb-6 flex items-center gap-2">
                             <Zap size={20} className="text-[#D09639]" /> Évaluation du risque brut (G × F)
@@ -281,8 +307,68 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
+                        {themeData.length > 0 && (() => {
+                            const { label, color } = getRiskBrutLabel(globalGxF);
+                            return (
+                                <div className="mt-6 p-4 rounded-2xl border-2 flex items-center gap-4" style={{ borderColor: color, backgroundColor: `${color}10` }}>
+                                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0" style={{ backgroundColor: color }}>
+                                        {globalGxF}
+                                    </div>
+                                    <div>
+                                        <p className="text-sm font-bold text-[#1A2F2F]">Risque brut global : <span style={{ color }}>{label}</span></p>
+                                        <p className="text-xs text-slate-500">Moyenne du score G × F sur l'ensemble des thématiques évaluées.</p>
+                                    </div>
+                                </div>
+                            );
+                        })()}
                     </div>
 
+                    {/* Maturité moyenne par thématique */}
+                    <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                        <h3 className="text-lg font-bold text-[#1A2F2F] mb-6 flex items-center gap-2">
+                            <ShieldCheck size={20} className="text-[#9DB280]" /> Maturité moyenne par thématique
+                        </h3>
+                        <p className="text-xs text-slate-500 mb-4">Niveau moyen de maturité (1 = critique, 4 = sécurisé)</p>
+                        <div className="h-64 w-full">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <BarChart data={maturityByTheme} layout="vertical" margin={{ left: 20, right: 30 }}>
+                                    <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#e2e8f0" />
+                                    <XAxis type="number" domain={[0, 4]} ticks={[1, 2, 3, 4]} tick={{ fontSize: 10 }} />
+                                    <YAxis dataKey="name" type="category" width={100} tick={{ fontSize: 10, fontWeight: 600, fill: '#64748b' }} />
+                                    <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} />
+                                    <Bar dataKey="maturity" name="Maturité moyenne" radius={[0, 4, 4, 0]}>
+                                        {maturityByTheme.map((entry, index) => (
+                                            <Cell key={`cell-${index}`} fill={getMaturityLabel(entry.maturity).color} />
+                                        ))}
+                                    </Bar>
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </div>
+                        {maturityByTheme.length > 0 && (() => {
+                            const globalMaturity = Math.round(maturityByTheme.reduce((acc, t) => acc + t.maturity, 0) / maturityByTheme.length * 10) / 10;
+                            const { label, color } = getMaturityLabel(globalMaturity);
+                            return (
+                                <div className="mt-6 p-4 rounded-2xl border-2 flex items-center gap-4" style={{ borderColor: color, backgroundColor: `${color}10` }}>
+                                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0" style={{ backgroundColor: color }}>
+                                        {globalMaturity}
+                                    </div>
+                                    <div>
+                                        <p className="text-sm font-bold text-[#1A2F2F]">Maturité globale : <span style={{ color }}>{label}</span></p>
+                                        <p className="text-xs text-slate-500">
+                                            {globalMaturity >= 3.5 ? "Processus solides et proactifs face aux risques identifiés." :
+                                             globalMaturity >= 2.5 ? "Processus stables mais certains axes nécessitent un renforcement." :
+                                             globalMaturity >= 1.5 ? "Fragilités significatives. Des actions correctives sont recommandées." :
+                                             "Vulnérabilité critique. Une action immédiate est nécessaire."}
+                                        </p>
+                                    </div>
+                                </div>
+                            );
+                        })()}
+                    </div>
+                </div>
+
+                {/* Row 2: Criticité moyenne (full width) */}
+                <div className="mb-16">
                     <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
                         <h3 className="text-lg font-bold text-[#1A2F2F] mb-6 flex items-center gap-2">
                             <BarChart3 size={20} className="text-[#BC5B2E]" /> Criticité moyenne par thématique
@@ -303,64 +389,16 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                 </BarChart>
                             </ResponsiveContainer>
                         </div>
-                    </div>
-                </div>
-
-                {/* Maturity by theme */}
-                <div className="mb-16">
-                    <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-                        <h3 className="text-lg font-bold text-[#1A2F2F] mb-6 flex items-center gap-2">
-                            <ShieldCheck size={20} className="text-[#9DB280]" /> Maturité moyenne par thématique
-                        </h3>
-                        <p className="text-xs text-slate-500 mb-6">Niveau moyen de maturité de votre association face à chaque famille de risques (1 = critique, 4 = sécurisé)</p>
-                        <div className="h-64 w-full mb-8">
-                            <ResponsiveContainer width="100%" height="100%">
-                                <BarChart data={maturityByTheme} layout="vertical" margin={{ left: 20, right: 30 }}>
-                                    <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#e2e8f0" />
-                                    <XAxis type="number" domain={[0, 4]} ticks={[1, 2, 3, 4]} tick={{ fontSize: 10 }} />
-                                    <YAxis dataKey="name" type="category" width={100} tick={{ fontSize: 10, fontWeight: 600, fill: '#64748b' }} />
-                                    <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} />
-                                    <Bar dataKey="maturity" name="Maturité moyenne" radius={[0, 4, 4, 0]}>
-                                        {maturityByTheme.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={getMaturityLabel(entry.maturity).color} />
-                                        ))}
-                                    </Bar>
-                                </BarChart>
-                            </ResponsiveContainer>
-                        </div>
-                        {/* Conclusion per theme */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {maturityByTheme.map((t, i) => {
-                                const { label, color } = getMaturityLabel(t.maturity);
-                                return (
-                                    <div key={i} className="flex items-center gap-3 p-3 bg-white rounded-xl border border-slate-100">
-                                        <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: color }}></div>
-                                        <div className="flex-1 min-w-0">
-                                            <span className="text-sm font-bold text-[#1A2F2F]">{t.name}</span>
-                                            <span className="text-xs text-slate-500 ml-2">({t.maturity}/4)</span>
-                                        </div>
-                                        <span className="text-xs font-bold px-2 py-1 rounded-full shrink-0" style={{ backgroundColor: `${color}20`, color }}>{label}</span>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                        {/* Global conclusion */}
-                        {maturityByTheme.length > 0 && (() => {
-                            const globalMaturity = Math.round(maturityByTheme.reduce((acc, t) => acc + t.maturity, 0) / maturityByTheme.length * 10) / 10;
-                            const { label, color } = getMaturityLabel(globalMaturity);
+                        {themeData.length > 0 && (() => {
+                            const { label, color } = getCriticalityLabel(globalCriticality);
                             return (
                                 <div className="mt-6 p-4 rounded-2xl border-2 flex items-center gap-4" style={{ borderColor: color, backgroundColor: `${color}10` }}>
                                     <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0" style={{ backgroundColor: color }}>
-                                        {globalMaturity}
+                                        {globalCriticality}
                                     </div>
                                     <div>
-                                        <p className="text-sm font-bold text-[#1A2F2F]">Maturité globale : <span style={{ color }}>{label}</span></p>
-                                        <p className="text-xs text-slate-500">
-                                            {globalMaturity >= 3.5 ? "Votre association dispose de processus solides et proactifs face aux risques identifiés." :
-                                             globalMaturity >= 2.5 ? "Votre association a mis en place des processus stables mais certains axes nécessitent un renforcement." :
-                                             globalMaturity >= 1.5 ? "Votre association présente des fragilités significatives. Des actions correctives sont recommandées." :
-                                             "Votre association est en situation de vulnérabilité critique. Une action immédiate est nécessaire."}
-                                        </p>
+                                        <p className="text-sm font-bold text-[#1A2F2F]">Criticité globale : <span style={{ color }}>{label}</span></p>
+                                        <p className="text-xs text-slate-500">Moyenne du score de criticité (G × F / M) sur l'ensemble des thématiques.</p>
                                     </div>
                                 </div>
                             );
@@ -368,10 +406,12 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     </div>
                 </div>
 
+                {/* Top 10 */}
                 <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100">
-                    <h3 className="text-2xl font-bold text-[#1A2F2F] mb-8 flex items-center gap-3">
+                    <h3 className="text-2xl font-bold text-[#1A2F2F] mb-2 flex items-center gap-3">
                         <Target className="text-[#BC5B2E]" /> Top 10 des priorités (criticité)
                     </h3>
+                    <p className="text-xs text-slate-500 mb-8">Criticité = (Gravité × Fréquence) / Maturité</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {topRisks.map((risk, i) => {
                             const item = RISK_CATALOG.find(rc => rc.id === risk.riskId);
