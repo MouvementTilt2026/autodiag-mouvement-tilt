@@ -92,20 +92,20 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
 
     const MatrixGrid = ({ risks }: { risks: any[] }) => (
         <div className="w-full max-w-md mx-auto">
-            <div className="grid grid-cols-[30px_1fr] grid-rows-[1fr_30px] gap-1 aspect-square relative">
+            <div className="grid grid-cols-[30px_1fr] grid-rows-[1fr_30px] gap-1 aspect-square relative" style={{ overflow: 'visible' }}>
                 <div className="absolute -left-10 top-1/2 -translate-y-1/2 -rotate-90 text-[9px] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap hidden md:block">
                     Gravité
                 </div>
                 <div className="flex flex-col justify-around items-end pr-2 text-[10px] font-bold text-slate-500">
                     <span>4</span><span>3</span><span>2</span><span>1</span>
                 </div>
-                <div className="border-l-2 border-b-2 border-[#1A2F2F] grid grid-cols-4 grid-rows-4 rounded-tr-xl">
+                <div className="border-l-2 border-b-2 border-[#1A2F2F] grid grid-cols-4 grid-rows-4 rounded-tr-xl" style={{ overflow: 'visible' }}>
                     {[4, 3, 2, 1].map((row) => (
                         [1, 2, 3, 4].map((col) => {
                             const risksInCell = risks.filter(r => r.assessment.impact === row && r.assessment.probability === col);
                             const bgColor = row * col >= 12 ? 'bg-[#BC5B2E]/20' : row * col >= 6 ? 'bg-[#D09639]/20' : 'bg-[#C3FD97]/20';
                             return (
-                                <div key={`${row}-${col}`} className={`border border-white/40 flex flex-wrap items-center justify-center p-0.5 ${bgColor} transition-colors`}>
+                                <div key={`${row}-${col}`} className={`border border-white/40 flex flex-wrap items-center justify-center p-0.5 ${bgColor} transition-colors`} style={{ overflow: 'visible' }}>
                                     {risksInCell.map((r: any, i: number) => {
                                         const criticality = Math.round(((r.assessment.probability * r.assessment.impact) / r.assessment.maturity) * 10) / 10;
                                         const dotSize = 16 + ((5 - r.assessment.maturity) * 5);
@@ -113,13 +113,10 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                             <div key={i} className="rounded-full shadow-md m-0.5 cursor-help group relative transition-all hover:scale-125 hover:z-50 flex items-center justify-center text-[8px] font-bold text-white shrink-0"
                                                 style={{ width: `${dotSize}px`, height: `${dotSize}px`,
                                                     backgroundColor: criticality > 10 ? '#BC5B2E' : criticality > 6 ? '#E18392' : criticality > 2 ? '#D09639' : '#9DB280',
-                                                    border: '2px solid rgba(255,255,255,0.9)' }}>
+                                                    border: '2px solid rgba(255,255,255,0.9)', overflow: 'visible' }}>
                                                 {r.number}
-                                                <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-3 hidden group-hover:block z-[9999] w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20 pointer-events-none"
-                                                    style={{ position: 'fixed' as any }}>
-                                                </div>
                                                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20"
-                                                    style={{ zIndex: 9999, position: 'absolute' }}>
+                                                    style={{ zIndex: 9999 }}>
                                                     <div className="font-bold border-b border-white/10 pb-2 mb-2 leading-tight">{r.name}</div>
                                                     <div className="flex justify-between items-center">
                                                         <span className="opacity-70">G:{r.assessment.impact} F:{r.assessment.probability} M:{r.assessment.maturity}</span>
