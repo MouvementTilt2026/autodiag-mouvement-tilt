@@ -66,6 +66,30 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
         r.theme === RiskTheme.POLITIQUE || r.theme === RiskTheme.BENEFICIAIRES
     ), [riskWithNumbers]);
 
+    const getRiskBrutLabel = (gxf: number) => {
+        if (gxf >= 12) return { label: 'Critique', color: '#BC5B2E' };
+        if (gxf >= 8) return { label: 'Élevé', color: '#E18392' };
+        if (gxf >= 4) return { label: 'Modéré', color: '#D09639' };
+        return { label: 'Faible', color: '#9DB280' };
+    };
+
+    const getCriticalityLabel = (score: number) => {
+        if (score > 10) return { label: 'Critique', color: '#BC5B2E' };
+        if (score > 6) return { label: 'Élevé', color: '#E18392' };
+        if (score > 2) return { label: 'Modéré', color: '#D09639' };
+        return { label: 'Faible', color: '#9DB280' };
+    };
+
+    const globalGxF = useMemo(() => {
+        if (themeData.length === 0) return 0;
+        return Math.round(themeData.reduce((acc, t) => acc + t.gxf, 0) / themeData.length * 10) / 10;
+    }, [themeData]);
+
+    const globalCriticality = useMemo(() => {
+        if (themeData.length === 0) return 0;
+        return Math.round(themeData.reduce((acc, t) => acc + t.score, 0) / themeData.length * 10) / 10;
+    }, [themeData]);
+
     const MatrixGrid = ({ risks }: { risks: any[] }) => (
         <div className="w-full max-w-md mx-auto">
             <div className="grid grid-cols-[30px_1fr] grid-rows-[1fr_30px] gap-1 aspect-square relative">
@@ -75,7 +99,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                 <div className="flex flex-col justify-around items-end pr-2 text-[10px] font-bold text-slate-500">
                     <span>4</span><span>3</span><span>2</span><span>1</span>
                 </div>
-                <div className="border-l-2 border-b-2 border-[#1A2F2F] grid grid-cols-4 grid-rows-4 overflow-hidden rounded-tr-xl">
+                <div className="border-l-2 border-b-2 border-[#1A2F2F] grid grid-cols-4 grid-rows-4 rounded-tr-xl">
                     {[4, 3, 2, 1].map((row) => (
                         [1, 2, 3, 4].map((col) => {
                             const risksInCell = risks.filter(r => r.assessment.impact === row && r.assessment.probability === col);
@@ -91,7 +115,11 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                                     backgroundColor: criticality > 10 ? '#BC5B2E' : criticality > 6 ? '#E18392' : criticality > 2 ? '#D09639' : '#9DB280',
                                                     border: '2px solid rgba(255,255,255,0.9)' }}>
                                                 {r.number}
-                                                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block z-[100] w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20">
+                                                <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-3 hidden group-hover:block z-[9999] w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20 pointer-events-none"
+                                                    style={{ position: 'fixed' as any }}>
+                                                </div>
+                                                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20"
+                                                    style={{ zIndex: 9999, position: 'absolute' }}>
                                                     <div className="font-bold border-b border-white/10 pb-2 mb-2 leading-tight">{r.name}</div>
                                                     <div className="flex justify-between items-center">
                                                         <span className="opacity-70">G:{r.assessment.impact} F:{r.assessment.probability} M:{r.assessment.maturity}</span>
