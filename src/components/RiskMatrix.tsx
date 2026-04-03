@@ -263,28 +263,6 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                     <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
                         <h3 className="text-lg font-bold text-[#1A2F2F] mb-6 flex items-center gap-2">
-                            <BarChart3 size={20} className="text-[#BC5B2E]" /> Criticité moyenne par thématique
-                        </h3>
-                        <p className="text-xs text-slate-500 mb-4">Score = (Gravité × Fréquence) / Maturité</p>
-                        <div className="h-64 w-full">
-                            <ResponsiveContainer width="100%" height="100%">
-                                <BarChart data={themeData} layout="vertical" margin={{ left: 20, right: 30 }}>
-                                    <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#e2e8f0" />
-                                    <XAxis type="number" hide />
-                                    <YAxis dataKey="name" type="category" width={100} tick={{ fontSize: 10, fontWeight: 600, fill: '#64748b' }} />
-                                    <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} />
-                                    <Bar dataKey="score" name="Criticité (G×F/M)" radius={[0, 4, 4, 0]}>
-                                        {themeData.map((entry, index) => (
-                                            <Cell key={`cell-${index}`} fill={entry.score > 10 ? '#BC5B2E' : entry.score > 6 ? '#E18392' : entry.score > 2 ? '#D09639' : '#9DB280'} />
-                                        ))}
-                                    </Bar>
-                                </BarChart>
-                            </ResponsiveContainer>
-                        </div>
-                    </div>
-
-                    <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
-                        <h3 className="text-lg font-bold text-[#1A2F2F] mb-6 flex items-center gap-2">
                             <Zap size={20} className="text-[#D09639]" /> Évaluation du risque brut (G × F)
                         </h3>
                         <p className="text-xs text-slate-500 mb-4">Score = Gravité × Fréquence (sans pondération maturité)</p>
@@ -298,6 +276,28 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                     <Bar dataKey="gxf" name="Risque brut (G×F)" radius={[0, 4, 4, 0]}>
                                         {themeData.map((entry, index) => (
                                             <Cell key={`cell-${index}`} fill={entry.gxf > 12 ? '#BC5B2E' : entry.gxf > 8 ? '#E18392' : entry.gxf > 4 ? '#D09639' : '#9DB280'} />
+                                        ))}
+                                    </Bar>
+                                </BarChart>
+                            </ResponsiveContainer>
+                        </div>
+                    </div>
+
+                    <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                        <h3 className="text-lg font-bold text-[#1A2F2F] mb-6 flex items-center gap-2">
+                            <BarChart3 size={20} className="text-[#BC5B2E]" /> Criticité moyenne par thématique
+                        </h3>
+                        <p className="text-xs text-slate-500 mb-4">Score = (Gravité × Fréquence) / Maturité</p>
+                        <div className="h-64 w-full">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <BarChart data={themeData} layout="vertical" margin={{ left: 20, right: 30 }}>
+                                    <CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} stroke="#e2e8f0" />
+                                    <XAxis type="number" hide />
+                                    <YAxis dataKey="name" type="category" width={100} tick={{ fontSize: 10, fontWeight: 600, fill: '#64748b' }} />
+                                    <Tooltip cursor={{ fill: '#f1f5f9' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)' }} />
+                                    <Bar dataKey="score" name="Criticité (G×F/M)" radius={[0, 4, 4, 0]}>
+                                        {themeData.map((entry, index) => (
+                                            <Cell key={`cell-${index}`} fill={entry.score > 10 ? '#BC5B2E' : entry.score > 6 ? '#E18392' : entry.score > 2 ? '#D09639' : '#9DB280'} />
                                         ))}
                                     </Bar>
                                 </BarChart>
