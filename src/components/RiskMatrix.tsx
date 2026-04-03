@@ -91,7 +91,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
     }, [themeData]);
 
     const MatrixGrid = ({ risks }: { risks: any[] }) => (
-        <div className="w-full max-w-md mx-auto">
+        <div className="w-full max-w-md mx-auto" style={{ overflow: 'visible' }}>
             <div className="grid grid-cols-[30px_1fr] grid-rows-[1fr_30px] gap-1 aspect-square relative" style={{ overflow: 'visible' }}>
                 <div className="absolute -left-10 top-1/2 -translate-y-1/2 -rotate-90 text-[9px] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap hidden md:block">
                     Gravité
