@@ -304,51 +304,46 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
 
                 {/* Eisenhower */}
                 <div className="space-y-8" style={{ pageBreakBefore: 'always' }}>
-                    <div className="flex flex-col gap-2 px-4">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600">
-                                <CheckCircle2 size={24} />
-                            </div>
-                            <h4 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Mon plan d'action</h4>
+                    <div className="flex items-center gap-3 px-4">
+                        <div className="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center text-red-600">
+                            <Zap size={24} />
                         </div>
-                         <p className="text-sm text-slate-500 italic ml-13">
-                            Affichage des leviers prioritaires ayant un score (Importance × Urgence) supérieur ou égal à 4.
-                         </p>
+                        <h4 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Matrice de priorisation (Eisenhower)</h4>
                     </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {assessedLevers.filter(l => (l.assessment.importance * l.assessment.urgency) >= 4).length > 0 ? (
-                            assessedLevers.filter(l => (l.assessment.importance * l.assessment.urgency) >= 4).map(lever => (
-                                <div key={lever.id} className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col gap-4">
-                                    <div className="flex justify-between items-start">
-                                        <span className="font-bold text-slate-300 text-xs">{lever.number}.</span>
-                                        <span className="text-[10px] font-bold px-2 py-1 bg-slate-100 text-slate-500 rounded-md uppercase">{lever.category}</span>
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="font-bold text-[#1A2F2F] text-sm mb-2">{lever.name}</div>
-                                        <p className="text-[10px] text-slate-500 leading-relaxed line-clamp-3">{lever.details}</p>
-                                    </div>
-                                    <div className="flex gap-4 pt-4 border-t border-slate-50">
-                                        <div className="flex flex-col">
-                                            <span className="text-[9px] text-slate-400 uppercase font-black">Importance</span>
-                                            <span className="font-bold text-xs">{lever.assessment.importance}</span>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div className="lg:col-span-2 bg-white p-4 md:p-8 rounded-3xl border border-slate-100 shadow-sm">
+                            <EisenhowerGrid levers={assessedLevers} />
+
+                            <div className="mt-12 bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                                <h5 className="text-sm font-bold text-[#1A2F2F] mb-4 uppercase tracking-wider">Lexique des leviers positionnés</h5>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+                                    {assessedLevers.map(l => (
+                                        <div key={l.id} className="flex items-start gap-3 text-sm leading-tight">
+                                            <span className="font-bold text-[#1A2F2F] w-4 shrink-0">{l.number}.</span>
+                                            <span className="text-slate-600">{l.name}</span>
                                         </div>
-                                        <div className="flex flex-col">
-                                            <span className="text-[9px] text-slate-400 uppercase font-black">Urgence</span>
-                                            <span className="font-bold text-xs text-[#BC5B2E]">{lever.assessment.urgency}</span>
-                                        </div>
-                                        <div className="flex flex-col ml-auto">
-                                            <span className="text-[9px] text-slate-400 uppercase font-black">Score</span>
-                                            <span className="font-bold text-xs text-[#1A2F2F]">{lever.assessment.importance * lever.assessment.urgency}</span>
-                                        </div>
-                                    </div>
+                                    ))}
                                 </div>
-                            ))
-                        ) : (
-                            <div className="col-span-full h-40 border-2 border-dashed border-slate-200 rounded-3xl flex items-center justify-center text-slate-300 text-sm font-bold italic">
-                                Aucun levier n'atteint un score supérieur ou égal à 4 pour le moment.
                             </div>
-                        )}
+                        </div>
+
+                        <div className="space-y-6">
+                            <div className="bg-[#1A2F2F] p-8 rounded-3xl text-white">
+                                <h5 className="font-bold text-xl mb-4">Légende</h5>
+                                <div className="space-y-4">
+                                    {eisenhowerQuadrants.map(quad => (
+                                        <div key={quad.id} className="flex items-start gap-3">
+                                            <div className="w-3 h-3 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: quad.id === 'q1' ? '#ef4444' : quad.id === 'q2' ? '#3b82f6' : quad.id === 'q3' ? '#f97316' : '#94a3b8' }}></div>
+                                            <div>
+                                                <div className="font-bold text-sm">{quad.label}</div>
+                                                <div className="text-[10px] text-slate-400">{quad.desc}</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
