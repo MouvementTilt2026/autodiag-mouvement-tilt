@@ -7,7 +7,7 @@ import {
     Landmark, Briefcase, Lightbulb, FileSpreadsheet
 } from 'lucide-react';
 import { exportLeversToExcel } from '@/lib/excelExport';
-import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
+
 
 interface KanbanActionPlanProps {
     assessments: Record<string, ActionLeverAssessment>;
