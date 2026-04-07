@@ -1,23 +1,21 @@
 export enum RiskTheme {
-    ENVIRONNEMENTAL = "Environnemental",
-    FINANCEMENT = "Financement et approvisionnement",
-    REGLEMENTAIRE = "Réglementaire",
-    POLITIQUE = "Politique",
-    RH = "RH",
-    RP = "RP",
-    TECHNOLOGIQUE = "Technologique",
-    BENEFICIAIRES = "Pour les bénéficiaires"
+    ENVIRONNEMENTAL = "Environnementaux",
+    FINANCEMENT = "Financement, Approvisionnement & Distribution",
+    REGLEMENTAIRE = "Réglementaires",
+    RH = "Ressources Humaines",
+    IMAGE = "Image & Controverses",
+    TECHNOLOGIQUE = "Technologiques",
+    BENEFICIAIRES = "Demande (Bénéficiaires)"
 }
 
 export enum RiskCategory {
-    ENVIRONNEMENTAL = "Environnemental",
-    FINANCEMENT = "Financement et approvisionnement",
-    REGLEMENTAIRE = "Réglementaire",
-    RH = "RH",
-    POLITIQUE = "Politique",
-    RP = "RP",
-    TECHNOLOGIQUE = "Technologique",
-    BENEFICIAIRES = "Pour les bénéficiaires"
+    ENVIRONNEMENTAL = "Environnementaux",
+    FINANCEMENT = "Financement, Approvisionnement & Distribution",
+    REGLEMENTAIRE = "Réglementaires",
+    RH = "Ressources Humaines",
+    IMAGE = "Image & Controverses",
+    TECHNOLOGIQUE = "Technologiques",
+    BENEFICIAIRES = "Demande (Bénéficiaires)"
 }
 
 export interface RiskItem {
