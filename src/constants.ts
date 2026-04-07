@@ -376,52 +376,52 @@ export const ACTION_LEVERS_CATALOG: ActionLever[] = [
 ];
 
 export const RISK_CATALOG: RiskItem[] = [
-    // Choc environnemental
-    { id: 'env-1', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Hausse de la température moyenne globale", description: "" },
-    { id: 'env-2', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Records et vagues de chaleur / chaleur humide", description: "" },
-    { id: 'env-3', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Records et vagues de froid extrême", description: "" },
-    { id: 'env-4', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Sécheresses fortes répétées ou épisodes de sécheresse extrême", description: "" },
-    { id: 'env-5', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Pluies fortes répétées ou épisodes de pluie extrème", description: "" },
-    { id: 'env-6', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Glissement de terrain", description: "" },
-    { id: 'env-7', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Incendies", description: "" },
-    { id: 'env-8', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Tempêtes ou ouragans", description: "" },
-    { id: 'env-9', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Montée du niveau de la mer", description: "" },
-    { id: 'env-10', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Agents pathogènes", description: "" },
-    { id: 'env-11', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Retrait-gonflement d'argile", description: "" },
-    
-    // Choc financement et approvisionnement
-    { id: 'fin-1', category: RiskCategory.FINANCEMENT, theme: RiskTheme.FINANCEMENT, name: "Baisse des dons", description: "" },
-    { id: 'fin-2', category: RiskCategory.FINANCEMENT, theme: RiskTheme.FINANCEMENT, name: "Hausse de l'énergie", description: "" },
-    { id: 'fin-3', category: RiskCategory.FINANCEMENT, theme: RiskTheme.FINANCEMENT, name: "Restriction sur l'eau", description: "" },
-    { id: 'fin-4', category: RiskCategory.FINANCEMENT, theme: RiskTheme.FINANCEMENT, name: "Transport mis à l'arrêt", description: "" },
-    { id: 'fin-5', category: RiskCategory.FINANCEMENT, theme: RiskTheme.FINANCEMENT, name: "Dépendance à un partenaire (financeur, approvisionnement, etc.)", description: "" },
-    
-    // Choc réglementaire
-    { id: 'reg-1', category: RiskCategory.REGLEMENTAIRE, theme: RiskTheme.REGLEMENTAIRE, name: "Modification de la fiscalité pour les dons privés (particuliers et entreprises)", description: "" },
-    { id: 'reg-2', category: RiskCategory.REGLEMENTAIRE, theme: RiskTheme.REGLEMENTAIRE, name: "Arrêt des financements publics", description: "" },
-    { id: 'reg-3', category: RiskCategory.REGLEMENTAIRE, theme: RiskTheme.REGLEMENTAIRE, name: "Nouveaux impots (TVA, impôt sur le revenu, taxe d'apprentissage)", description: "" },
-    
-    // Choc politique
-    { id: 'pol-1', category: RiskCategory.POLITIQUE, theme: RiskTheme.POLITIQUE, name: "Elections de personnalités politiques populistes/climatosceptiques/transhumanistes", description: "" },
-    { id: 'pol-2', category: RiskCategory.POLITIQUE, theme: RiskTheme.POLITIQUE, name: "Essoufflement des instances dirigeantes", description: "Difficulté à renouveler le CA/Bureau, usure des dirigeants, manque de diversité générationnelle.", odds: [3, 16] },
-    
-    // Choc RH
-    { id: 'rh-1', category: RiskCategory.RH, theme: RiskTheme.RH, name: "Baisse du bénévolat", description: "" },
-    { id: 'rh-2', category: RiskCategory.RH, theme: RiskTheme.RH, name: "Baisse des adhésions", description: "" },
-    { id: 'rh-3', category: RiskCategory.RH, theme: RiskTheme.RH, name: "Désengagement des équipes internes", description: "" },
-    { id: 'rh-4', category: RiskCategory.RH, theme: RiskTheme.RH, name: "Dégradations de la qualité de vie et des conditions de travail", description: "" },
-    { id: 'rh-5', category: RiskCategory.RH, theme: RiskTheme.RH, name: "Déqualification par l'IA", description: "" },
-    
-    // Choc RP
-    { id: 'rp-1', category: RiskCategory.RP, theme: RiskTheme.RP, name: "Gestion de crise interne avec impact sur l'image de l'organisation", description: "" },
-    
-    // Choc technologique
-    { id: 'tech-1', category: RiskCategory.TECHNOLOGIQUE, theme: RiskTheme.TECHNOLOGIQUE, name: "Infrastructure et équipements hors d'usage ou endommagés", description: "" },
-    { id: 'tech-2', category: RiskCategory.TECHNOLOGIQUE, theme: RiskTheme.TECHNOLOGIQUE, name: "Cyberattaque", description: "" },
-    { id: 'tech-3', category: RiskCategory.TECHNOLOGIQUE, theme: RiskTheme.TECHNOLOGIQUE, name: "Panne informatique globale", description: "" },
-    
-    // Choc pour les bénéficiaires
-    { id: 'ben-1', category: RiskCategory.BENEFICIAIRES, theme: RiskTheme.BENEFICIAIRES, name: "Explosion du nombre de bénéficiaires", description: "" },
-    { id: 'ben-2', category: RiskCategory.BENEFICIAIRES, theme: RiskTheme.BENEFICIAIRES, name: "Augmentation des précarités de vos bénéficiaires", description: "" },
-    { id: 'ben-3', category: RiskCategory.BENEFICIAIRES, theme: RiskTheme.BENEFICIAIRES, name: "Fracture numérique grandissante pour vos bénéficiaires", description: "" }
+    // Environnementaux
+    { id: 'env-1', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Hausse de la température globale", description: "Augmentation continue de la moyenne mondiale perturbant les écosystèmes et les cycles agricoles." },
+    { id: 'env-2', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Vagues de chaleur humide", description: "Atteinte des seuils de tolérance humaine rendant les activités extérieures impossibles ou mortelles." },
+    { id: 'env-3', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Froid extrême", description: "Épisodes de gel tardif ou records de froid fragilisant les infrastructures et les populations précaires." },
+    { id: 'env-4', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Sécheresses extrêmes", description: "Raréfaction critique de la ressource en eau impactant l'hygiène, l'agriculture et la biodiversité." },
+    { id: 'env-5', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Pluies extrêmes", description: "Épisodes méditerranéens ou pluies diluviennes provoquant des inondations éclair et le lessivage des sols." },
+    { id: 'env-6', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Glissements de terrain", description: "Instabilité des sols suite à des épisodes climatiques extrêmes, menaçant les bâtiments et les accès." },
+    { id: 'env-7', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Incendies & Mégafeux", description: "Multiplication des feux de forêt incontrôlables menaçant les zones habitées et la qualité de l'air." },
+    { id: 'env-8', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Tempêtes & Ouragans", description: "Intensification des vents violents causant des dommages structurels majeurs aux infrastructures associatives." },
+    { id: 'env-9', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Vagues de chaleur marine", description: "Surchauffe des océans entraînant l'effondrement des stocks de poissons et des écosystèmes côtiers." },
+    { id: 'env-10', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Montée du niveau de la mer", description: "Submersion progressive ou érosion côtière forçant le déplacement des activités situées sur le littoral." },
+    { id: 'env-11', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Agents pathogènes", description: "Émergence de nouvelles maladies ou zoonoses facilitée par les déséquilibres écologiques." },
+    { id: 'env-12', category: RiskCategory.ENVIRONNEMENTAL, theme: RiskTheme.ENVIRONNEMENTAL, name: "Retrait-gonflement d'argile", description: "Mouvements de terrain liés à la sécheresse provoquant des fissures structurelles graves sur les bâtiments." },
+
+    // Financement, Approvisionnement & Distribution
+    { id: 'fin-1', category: RiskCategory.FINANCEMENT, theme: RiskTheme.FINANCEMENT, name: "Fin de l'énergie bon marché", description: "Tensions géopolitiques et raréfaction des ressources entraînant une hausse des prix forte et durable." },
+    { id: 'fin-2', category: RiskCategory.FINANCEMENT, theme: RiskTheme.FINANCEMENT, name: "Restrictions sur l'eau", description: "Quotas restreignant la consommation par secteur, provoquant des pénuries et l'arrêt d'activités." },
+    { id: 'fin-3', category: RiskCategory.FINANCEMENT, theme: RiskTheme.FINANCEMENT, name: "Situation de monopole", description: "Un fournisseur/financeur modifie soudainement ses tarifs ou conditions, mettant fin à la collaboration." },
+    { id: 'fin-4', category: RiskCategory.FINANCEMENT, theme: RiskTheme.FINANCEMENT, name: "Baisse de volumétrie des dons", description: "Émergence de plateformes de vente/don en ligne entraînant une rupture d'approvisionnement pour l'association." },
+    { id: 'fin-5', category: RiskCategory.FINANCEMENT, theme: RiskTheme.FINANCEMENT, name: "Baisse de la qualité des dons", description: "Marché envahi par des produits de faible qualité (ex: fast fashion) augmentant les coûts de gestion." },
+    { id: 'fin-6', category: RiskCategory.FINANCEMENT, theme: RiskTheme.FINANCEMENT, name: "Extinction du vivant", description: "Accélération de l'extinction des insectes et animaux affectant la chaîne d'approvisionnement ou les missions." },
+    { id: 'fin-7', category: RiskCategory.FINANCEMENT, theme: RiskTheme.FINANCEMENT, name: "Transports mis à l'arrêt", description: "Évènements météo extrêmes empêchant les bénévoles, salariés et bénéficiaires de se déplacer." },
+
+    // Réglementaires
+    { id: 'reg-1', category: RiskCategory.REGLEMENTAIRE, theme: RiskTheme.REGLEMENTAIRE, name: "Modification de la fiscalité", description: "Changement de réglementation sur les dons privés conduisant à une baisse drastique des financements." },
+    { id: 'reg-2', category: RiskCategory.REGLEMENTAIRE, theme: RiskTheme.REGLEMENTAIRE, name: "Coupure des financements publics", description: "Baisse structurelle des subventions et réorientation du budget de l'État vers les activités productives." },
+    { id: 'reg-3', category: RiskCategory.REGLEMENTAIRE, theme: RiskTheme.REGLEMENTAIRE, name: "Nouvel impôt sur les assos", description: "Soumission du monde associatif à la taxe d'apprentissage, à l'impôt sur le revenu et à la TVA." },
+    { id: 'reg-4', category: RiskCategory.REGLEMENTAIRE, theme: RiskTheme.REGLEMENTAIRE, name: "Trumpisation du pouvoir", description: "Arrivée au pouvoir de populistes, climatosceptiques et milliardaires libertariens." },
+
+    // Ressources Humaines
+    { id: 'rh-1', category: RiskCategory.RH, theme: RiskTheme.RH, name: "Baisse du bénévolat", description: "Épidémies ou météo limitant les déplacements et dégradant la motivation (risques de burn-out)." },
+    { id: 'rh-2', category: RiskCategory.RH, theme: RiskTheme.RH, name: "Conditions de travail & Santé", description: "Aggravation de la santé physique et mentale des salariés face aux crises, affectant le recrutement." },
+    { id: 'rh-3', category: RiskCategory.RH, theme: RiskTheme.RH, name: "Défiance et perte d'adhésion", description: "Questionnement des collaborateurs sur l'engagement écologique de l'association, entraînant des démissions." },
+    { id: 'rh-4', category: RiskCategory.RH, theme: RiskTheme.RH, name: "Déqualification par l'IA", description: "Risque de perte de savoir-faire et dépendance à une IA à faible éthique affectant la qualité des missions." },
+
+    // Image & Controverses
+    { id: 'img-1', category: RiskCategory.IMAGE, theme: RiskTheme.IMAGE, name: "Scandale chez un partenaire", description: "Mise en cause suite aux révélations sur les pratiques d'un financeur (greenwashing, abus de faiblesse)." },
+    { id: 'img-2', category: RiskCategory.IMAGE, theme: RiskTheme.IMAGE, name: "Attaque pour vos pratiques", description: "Accusation de green/social washing par un lanceur d'alerte, entraînant le retrait des partenaires." },
+
+    // Technologiques
+    { id: 'tech-1', category: RiskCategory.TECHNOLOGIQUE, theme: RiskTheme.TECHNOLOGIQUE, name: "Infrastructures hors d'usage", description: "Inondations et chaleurs rendant le matériel inutilisable (ex: destruction de data centers)." },
+    { id: 'tech-2', category: RiskCategory.TECHNOLOGIQUE, theme: RiskTheme.TECHNOLOGIQUE, name: "Cyber-attaque", description: "Infiltration par e-mail frauduleux pour bloquer l'activité, supprimer ou diffuser des données sensibles." },
+    { id: 'tech-3', category: RiskCategory.TECHNOLOGIQUE, theme: RiskTheme.TECHNOLOGIQUE, name: "Panne informatique mondiale", description: "Paralysie totale d'Internet ou des services informatiques pour une durée de quelques heures à plusieurs mois." },
+
+    // Demande (Bénéficiaires)
+    { id: 'ben-1', category: RiskCategory.BENEFICIAIRES, theme: RiskTheme.BENEFICIAIRES, name: "Explosion du nombre de bénéficiaires", description: "Précarisation de la société (conflits, climat, pouvoir d'achat) dépassant la capacité de l'association." },
+    { id: 'ben-2', category: RiskCategory.BENEFICIAIRES, theme: RiskTheme.BENEFICIAIRES, name: "Précarisation des bénéficiaires", description: "Impact majeur du dérèglement climatique sur les plus vulnérables, forçant l'association à revoir sa mission." },
+    { id: 'ben-3', category: RiskCategory.BENEFICIAIRES, theme: RiskTheme.BENEFICIAIRES, name: "Fracture numérique & IA", description: "L'IA accentue les inégalités et exclut une partie de la population faute de compétences ou d'accès." },
 ];

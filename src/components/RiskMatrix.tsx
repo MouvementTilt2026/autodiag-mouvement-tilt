@@ -21,6 +21,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
 
     const topRisks = useMemo(() => {
         return [...riskData]
+            .filter(a => !(a.probability === 1 && a.impact === 1))
             .sort((a, b) => ((b.probability * b.impact) / b.maturity) - ((a.probability * a.impact) / a.maturity))
             .slice(0, 10);
     }, [riskData]);
@@ -28,7 +29,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
     const themeData = useMemo(() => {
         return Object.values(RiskTheme).map(theme => {
             const themeRisks = RISK_CATALOG.filter(r => r.theme === theme);
-            const themeAssessments = themeRisks.map(tr => assessments[tr.id]).filter(Boolean);
+            const themeAssessments = themeRisks.map(tr => assessments[tr.id]).filter(Boolean).filter(a => !(a.probability === 1 && a.impact === 1));
             if (themeAssessments.length === 0) return { name: theme, score: 0, gxf: 0, count: 0 };
             const avgScore = themeAssessments.reduce((acc, curr) => acc + ((curr.probability * curr.impact) / curr.maturity), 0) / themeAssessments.length;
             const avgGxF = themeAssessments.reduce((acc, curr) => acc + (curr.probability * curr.impact), 0) / themeAssessments.length;
@@ -39,7 +40,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
     const maturityByTheme = useMemo(() => {
         return Object.values(RiskTheme).map(theme => {
             const themeRisks = RISK_CATALOG.filter(r => r.theme === theme);
-            const themeAssessments = themeRisks.map(tr => assessments[tr.id]).filter(Boolean);
+            const themeAssessments = themeRisks.map(tr => assessments[tr.id]).filter(Boolean).filter(a => !(a.probability === 1 && a.impact === 1));
             if (themeAssessments.length === 0) return null;
             const avgMaturity = themeAssessments.reduce((acc, curr) => acc + curr.maturity, 0) / themeAssessments.length;
             return { name: theme.replace('Choc ', ''), maturity: Math.round(avgMaturity * 10) / 10, count: themeAssessments.length };
@@ -57,14 +58,14 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
         ...risk, number: index + 1, assessment: assessments[risk.id]
     })).filter(r => r.assessment), [assessments]);
 
-    const envRisks = useMemo(() => riskWithNumbers.filter(r => r.theme === RiskTheme.ENVIRONNEMENTAL), [riskWithNumbers]);
-    const internalRisks = useMemo(() => riskWithNumbers.filter(r => 
-        r.theme === RiskTheme.RH || r.theme === RiskTheme.RP || r.theme === RiskTheme.TECHNOLOGIQUE
-    ), [riskWithNumbers]);
-    const externalRisks = useMemo(() => riskWithNumbers.filter(r => 
-        r.theme === RiskTheme.FINANCEMENT || r.theme === RiskTheme.REGLEMENTAIRE || 
-        r.theme === RiskTheme.POLITIQUE || r.theme === RiskTheme.BENEFICIAIRES
-    ), [riskWithNumbers]);
+    // For matrices and charts: exclude G=1 & F=1
+    const filteredRisks = useMemo(() => riskWithNumbers.filter(r => !(r.assessment.probability === 1 && r.assessment.impact === 1)), [riskWithNumbers]);
+    const envRisks = useMemo(() => filteredRisks.filter(r => r.theme === RiskTheme.ENVIRONNEMENTAL), [filteredRisks]);
+    const systemicRisks = useMemo(() => filteredRisks.filter(r => r.theme !== RiskTheme.ENVIRONNEMENTAL), [filteredRisks]);
+
+    // For lexique: show all assessed risks
+    const allEnvRisks = useMemo(() => riskWithNumbers.filter(r => r.theme === RiskTheme.ENVIRONNEMENTAL), [riskWithNumbers]);
+    const allSystemicRisks = useMemo(() => riskWithNumbers.filter(r => r.theme !== RiskTheme.ENVIRONNEMENTAL), [riskWithNumbers]);
 
     const getRiskBrutLabel = (gxf: number) => {
         if (gxf >= 12) return { label: 'Critique', color: '#BC5B2E' };
@@ -212,9 +213,8 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                         <div className={`${showLexique ? 'block' : 'hidden'} print:!block px-6 pb-6`}>
                             <div className="space-y-6">
                                 {[
-                                    { title: "Risques environnementaux", risks: envRisks },
-                                    { title: "Risques internes", subtitle: "RH, RP, Technologique", risks: internalRisks },
-                                    { title: "Risques externes", subtitle: "Financement, Réglementaire, Politique, Bénéficiaires", risks: externalRisks },
+                                    { title: "Risques environnementaux", risks: allEnvRisks },
+                                    { title: "Chocs systémiques", subtitle: "Financement, Réglementaires, RH, Image, Technologiques, Bénéficiaires", risks: allSystemicRisks },
                                 ].map((group, idx) => (
                                     <div key={idx}>
                                         <h6 className="text-xs font-bold text-[#9DB280] uppercase tracking-widest mb-2">{group.title}</h6>
@@ -242,8 +242,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                 <div className="space-y-16 mb-16">
                     {[
                         { title: "Matrice 1 : Risques environnementaux", risks: envRisks },
-                        { title: "Matrice 2 : Risques internes", subtitle: "(RH, RP, Technologique)", risks: internalRisks },
-                        { title: "Matrice 3 : Risques externes", subtitle: "(Financement, Réglementaire, Politique, Bénéficiaires)", risks: externalRisks },
+                        { title: "Matrice 2 : Chocs systémiques", subtitle: "(Financement, Réglementaires, RH, Image & Controverses, Technologiques, Bénéficiaires)", risks: systemicRisks },
                     ].map((matrix, idx) => (
                         <div key={idx} className="space-y-6" style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
                             <div className="text-center">
