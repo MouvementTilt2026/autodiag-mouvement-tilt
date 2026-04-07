@@ -78,15 +78,56 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
         .map((lever, index) => ({ ...lever, number: index + 1, assessment: assessments[lever.id] }))
         .filter(l => l.assessment && (l.assessment.importance > 1 || l.assessment.urgency > 1));
 
-    const CustomDot = (props: any) => {
-        const { cx, cy, payload } = props;
-        const quad = getQuadrant(payload.importance, payload.urgency);
-        const color = quad === 'q1' ? '#ef4444' : quad === 'q2' ? '#3b82f6' : quad === 'q3' ? '#f97316' : '#94a3b8';
+    const EisenhowerGrid = ({ levers }: { levers: typeof assessedLevers }) => {
+        const quadrantColor = (imp: number, urg: number) => {
+            const q = getQuadrant(imp, urg);
+            return q === 'q1' ? '#ef4444' : q === 'q2' ? '#3b82f6' : q === 'q3' ? '#f97316' : '#94a3b8';
+        };
+
+        const gridCells = [4, 3, 2, 1].flatMap(row =>
+            [1, 2, 3, 4].map(col => {
+                const leversInCell = levers.filter(l => l.assessment.importance === row && l.assessment.urgency === col);
+                const bgColor = (row >= 3 && col >= 3) ? 'bg-red-50/50' : (row >= 3 && col < 3) ? 'bg-blue-50/50' : (row < 3 && col >= 3) ? 'bg-orange-50/50' : 'bg-slate-50/50';
+                return { row, col, leversInCell, bgColor };
+            })
+        );
+
         return (
-            <g transform={`translate(${cx},${cy})`}>
-                <circle r="10" fill={color} stroke="#fff" strokeWidth="2" />
-                <text x="0" y="0" dy=".3em" textAnchor="middle" fill="#fff" fontSize="10px" fontWeight="bold">{payload.number}</text>
-            </g>
+            <div className="w-full max-w-lg mx-auto" style={{ overflow: 'visible' }}>
+                <div className="text-center text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Importance →</div>
+                <div className="grid grid-cols-[30px_1fr] grid-rows-[1fr_30px] gap-1 aspect-square relative" style={{ overflow: 'visible' }}>
+                    <div className="flex flex-col justify-around items-end pr-2 text-[10px] font-bold text-slate-500">
+                        <span>4</span><span>3</span><span>2</span><span>1</span>
+                    </div>
+                    <div className="border-l-2 border-b-2 border-[#1A2F2F] grid grid-cols-4 grid-rows-4 rounded-tr-xl" style={{ overflow: 'visible' }}>
+                        {gridCells.map(({ row, col, leversInCell, bgColor }) => (
+                            <div key={`${row}-${col}`} className={`border border-white/40 flex flex-wrap items-center justify-center p-0.5 ${bgColor} transition-colors`} style={{ overflow: 'visible' }}>
+                                {leversInCell.map((l, i) => (
+                                    <div key={i} className="rounded-full shadow-md m-0.5 cursor-help group relative transition-all hover:scale-125 hover:z-50 flex items-center justify-center text-[8px] font-bold text-white shrink-0"
+                                        style={{ width: '22px', height: '22px', backgroundColor: quadrantColor(l.assessment.importance, l.assessment.urgency), border: '2px solid rgba(255,255,255,0.9)', overflow: 'visible' }}>
+                                        {l.number}
+                                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20"
+                                            style={{ zIndex: 9999 }}>
+                                            <div className="font-bold border-b border-white/10 pb-2 mb-2 leading-tight">{l.name}</div>
+                                            <div className="flex justify-between items-center">
+                                                <span className="opacity-70">I:{l.assessment.importance} U:{l.assessment.urgency}</span>
+                                                <span className="bg-white/10 px-2 py-0.5 rounded-md font-bold">Score: {l.assessment.importance * l.assessment.urgency}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                    <div />
+                    <div className="flex justify-around items-start pt-2 text-[10px] font-bold text-slate-500">
+                        <span>1</span><span>2</span><span>3</span><span>4</span>
+                    </div>
+                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[9px] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">
+                        Urgence →
+                    </div>
+                </div>
+            </div>
         );
     };
 
