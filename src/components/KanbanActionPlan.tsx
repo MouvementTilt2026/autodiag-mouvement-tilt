@@ -7,7 +7,7 @@ import {
     Landmark, Briefcase, Lightbulb, FileSpreadsheet
 } from 'lucide-react';
 import { exportLeversToExcel } from '@/lib/excelExport';
-import { ScatterChart, Scatter, XAxis, YAxis, ZAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
+
 
 interface KanbanActionPlanProps {
     assessments: Record<string, ActionLeverAssessment>;
@@ -78,15 +78,56 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
         .map((lever, index) => ({ ...lever, number: index + 1, assessment: assessments[lever.id] }))
         .filter(l => l.assessment && (l.assessment.importance > 1 || l.assessment.urgency > 1));
 
-    const CustomDot = (props: any) => {
-        const { cx, cy, payload } = props;
-        const quad = getQuadrant(payload.importance, payload.urgency);
-        const color = quad === 'q1' ? '#ef4444' : quad === 'q2' ? '#3b82f6' : quad === 'q3' ? '#f97316' : '#94a3b8';
+    const EisenhowerGrid = ({ levers }: { levers: typeof assessedLevers }) => {
+        const quadrantColor = (imp: number, urg: number) => {
+            const q = getQuadrant(imp, urg);
+            return q === 'q1' ? '#ef4444' : q === 'q2' ? '#3b82f6' : q === 'q3' ? '#f97316' : '#94a3b8';
+        };
+
+        const gridCells = [4, 3, 2, 1].flatMap(row =>
+            [1, 2, 3, 4].map(col => {
+                const leversInCell = levers.filter(l => l.assessment.importance === row && l.assessment.urgency === col);
+                const bgColor = (row >= 3 && col >= 3) ? 'bg-red-50/50' : (row >= 3 && col < 3) ? 'bg-blue-50/50' : (row < 3 && col >= 3) ? 'bg-orange-50/50' : 'bg-slate-50/50';
+                return { row, col, leversInCell, bgColor };
+            })
+        );
+
         return (
-            <g transform={`translate(${cx},${cy})`}>
-                <circle r="10" fill={color} stroke="#fff" strokeWidth="2" />
-                <text x="0" y="0" dy=".3em" textAnchor="middle" fill="#fff" fontSize="10px" fontWeight="bold">{payload.number}</text>
-            </g>
+            <div className="w-full max-w-lg mx-auto" style={{ overflow: 'visible' }}>
+                <div className="text-center text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Importance →</div>
+                <div className="grid grid-cols-[30px_1fr] grid-rows-[1fr_30px] gap-1 aspect-square relative" style={{ overflow: 'visible' }}>
+                    <div className="flex flex-col justify-around items-end pr-2 text-[10px] font-bold text-slate-500">
+                        <span>4</span><span>3</span><span>2</span><span>1</span>
+                    </div>
+                    <div className="border-l-2 border-b-2 border-[#1A2F2F] grid grid-cols-4 grid-rows-4 rounded-tr-xl" style={{ overflow: 'visible' }}>
+                        {gridCells.map(({ row, col, leversInCell, bgColor }) => (
+                            <div key={`${row}-${col}`} className={`border border-white/40 flex flex-wrap items-center justify-center p-0.5 ${bgColor} transition-colors`} style={{ overflow: 'visible' }}>
+                                {leversInCell.map((l, i) => (
+                                    <div key={i} className="rounded-full shadow-md m-0.5 cursor-help group relative transition-all hover:scale-125 hover:z-50 flex items-center justify-center text-[8px] font-bold text-white shrink-0"
+                                        style={{ width: '22px', height: '22px', backgroundColor: quadrantColor(l.assessment.importance, l.assessment.urgency), border: '2px solid rgba(255,255,255,0.9)', overflow: 'visible' }}>
+                                        {l.number}
+                                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20"
+                                            style={{ zIndex: 9999 }}>
+                                            <div className="font-bold border-b border-white/10 pb-2 mb-2 leading-tight">{l.name}</div>
+                                            <div className="flex justify-between items-center">
+                                                <span className="opacity-70">I:{l.assessment.importance} U:{l.assessment.urgency}</span>
+                                                <span className="bg-white/10 px-2 py-0.5 rounded-md font-bold">Score: {l.assessment.importance * l.assessment.urgency}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                    <div />
+                    <div className="flex justify-around items-start pt-2 text-[10px] font-bold text-slate-500">
+                        <span>1</span><span>2</span><span>3</span><span>4</span>
+                    </div>
+                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[9px] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">
+                        Urgence →
+                    </div>
+                </div>
+            </div>
         );
     };
 
@@ -261,56 +302,6 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                     </div>
                 </div>
 
-                {/* Plan d'action */}
-                <div className="space-y-8" style={{ pageBreakBefore: 'always' }}>
-                    <div className="flex flex-col gap-2 px-4">
-                        <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600">
-                                <CheckCircle2 size={24} />
-                            </div>
-                            <h4 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Mon plan d'action</h4>
-                        </div>
-                        <p className="text-sm text-slate-500 italic ml-13">
-                            Affichage des leviers prioritaires ayant un score (Importance × Urgence) supérieur à 6.
-                        </p>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {assessedLevers.filter(l => (l.assessment.importance * l.assessment.urgency) > 6).length > 0 ? (
-                            assessedLevers.filter(l => (l.assessment.importance * l.assessment.urgency) > 6).map(lever => (
-                                <div key={lever.id} className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col gap-4">
-                                    <div className="flex justify-between items-start">
-                                        <span className="font-bold text-slate-300 text-xs">{lever.number}.</span>
-                                        <span className="text-[10px] font-bold px-2 py-1 bg-slate-100 text-slate-500 rounded-md uppercase">{lever.category}</span>
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="font-bold text-[#1A2F2F] text-sm mb-2">{lever.name}</div>
-                                        <p className="text-[10px] text-slate-500 leading-relaxed line-clamp-3">{lever.details}</p>
-                                    </div>
-                                    <div className="flex gap-4 pt-4 border-t border-slate-50">
-                                        <div className="flex flex-col">
-                                            <span className="text-[9px] text-slate-400 uppercase font-black">Importance</span>
-                                            <span className="font-bold text-xs">{lever.assessment.importance}</span>
-                                        </div>
-                                        <div className="flex flex-col">
-                                            <span className="text-[9px] text-slate-400 uppercase font-black">Urgence</span>
-                                            <span className="font-bold text-xs text-[#BC5B2E]">{lever.assessment.urgency}</span>
-                                        </div>
-                                        <div className="flex flex-col ml-auto">
-                                            <span className="text-[9px] text-slate-400 uppercase font-black">Score</span>
-                                            <span className="font-bold text-xs text-[#1A2F2F]">{lever.assessment.importance * lever.assessment.urgency}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))
-                        ) : (
-                            <div className="col-span-full h-40 border-2 border-dashed border-slate-200 rounded-3xl flex items-center justify-center text-slate-300 text-sm font-bold italic">
-                                Aucun levier n'atteint un score supérieur à 6 pour le moment.
-                            </div>
-                        )}
-                    </div>
-                </div>
-
                 {/* Eisenhower */}
                 <div className="space-y-8" style={{ pageBreakBefore: 'always' }}>
                     <div className="flex items-center gap-3 px-4">
@@ -322,46 +313,7 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <div className="lg:col-span-2 bg-white p-4 md:p-8 rounded-3xl border border-slate-100 shadow-sm">
-                            <div className="h-[350px] md:h-[500px] w-full relative">
-                                <div className="absolute top-4 right-4 text-[10px] font-black text-red-500 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-full border border-red-100 z-10 hidden md:block">Urgent & Important</div>
-                                <div className="absolute top-4 left-4 text-[10px] font-black text-blue-500 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-100 z-10 hidden md:block">Important, non Urgent</div>
-                                <div className="absolute bottom-4 right-4 text-[10px] font-black text-orange-500 uppercase tracking-widest bg-orange-50 px-3 py-1 rounded-full border border-orange-100 z-10 hidden md:block">Urgent, non Important</div>
-                                <div className="absolute bottom-4 left-4 text-[10px] font-black text-slate-400 uppercase tracking-widest bg-slate-50 px-3 py-1 rounded-full border border-slate-100 z-10 hidden md:block">Ni Urgent, ni Important</div>
-
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-                                        <XAxis type="number" dataKey="urgency" name="Urgence" domain={[0.5, 4.5]} ticks={[1, 2, 3, 4]} hide />
-                                        <YAxis type="number" dataKey="importance" name="Importance" domain={[0.5, 4.5]} ticks={[1, 2, 3, 4]} hide />
-                                        <ZAxis type="number" range={[100, 400]} />
-                                        <Tooltip cursor={{ strokeDasharray: '3 3' }}
-                                            content={({ active, payload }) => {
-                                                if (active && payload && payload.length) {
-                                                    const data = payload[0].payload;
-                                                    return (
-                                                        <div className="bg-white p-4 rounded-xl shadow-xl border border-slate-100 max-w-xs">
-                                                            <p className="font-bold text-[#1A2F2F] text-sm mb-1">{data.name}</p>
-                                                            <p className="text-[10px] font-bold text-slate-400 uppercase mb-2">{data.category}</p>
-                                                            <div className="flex gap-4">
-                                                                <div><span className="text-[9px] text-slate-400 uppercase block">Importance</span><span className="font-bold text-sm">{data.importance}</span></div>
-                                                                <div><span className="text-[9px] text-slate-400 uppercase block">Urgence</span><span className="font-bold text-sm text-[#BC5B2E]">{data.urgency}</span></div>
-                                                            </div>
-                                                        </div>
-                                                    );
-                                                }
-                                                return null;
-                                            }}
-                                        />
-                                        <ReferenceLine x={2.5} stroke="#e2e8f0" strokeWidth={2} />
-                                        <ReferenceLine y={2.5} stroke="#e2e8f0" strokeWidth={2} />
-                                        <Scatter name="Leviers" data={assessedLevers.map(l => ({
-                                            ...l, importance: l.assessment.importance, urgency: l.assessment.urgency
-                                        }))} shape={<CustomDot />} />
-                                    </ScatterChart>
-                                </ResponsiveContainer>
-                                
-                                <div className="absolute left-1/2 -bottom-2 -translate-x-1/2 text-[10px] font-black text-slate-400 uppercase tracking-widest">Urgence →</div>
-                                <div className="absolute -left-8 top-1/2 -translate-y-1/2 -rotate-90 text-[10px] font-black text-slate-400 uppercase tracking-widest hidden md:block">Importance →</div>
-                            </div>
+                            <EisenhowerGrid levers={assessedLevers} />
 
                             <div className="mt-12 bg-slate-50 p-6 rounded-2xl border border-slate-100">
                                 <h5 className="text-sm font-bold text-[#1A2F2F] mb-4 uppercase tracking-wider">Lexique des leviers positionnés</h5>
@@ -392,6 +344,56 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                {/* Plan d'action */}
+                <div className="space-y-8" style={{ pageBreakBefore: 'always' }}>
+                    <div className="flex flex-col gap-2 px-4">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600">
+                                <CheckCircle2 size={24} />
+                            </div>
+                            <h4 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Mon plan d'action</h4>
+                        </div>
+                         <p className="text-sm text-slate-500 italic ml-13">
+                            Affichage des leviers prioritaires ayant un score (Importance × Urgence) supérieur ou égal à 4.
+                         </p>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {assessedLevers.filter(l => (l.assessment.importance * l.assessment.urgency) >= 4).length > 0 ? (
+                            assessedLevers.filter(l => (l.assessment.importance * l.assessment.urgency) >= 4).map(lever => (
+                                <div key={lever.id} className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col gap-4">
+                                    <div className="flex justify-between items-start">
+                                        <span className="font-bold text-slate-300 text-xs">{lever.number}.</span>
+                                        <span className="text-[10px] font-bold px-2 py-1 bg-slate-100 text-slate-500 rounded-md uppercase">{lever.category}</span>
+                                    </div>
+                                    <div className="flex-1">
+                                        <div className="font-bold text-[#1A2F2F] text-sm mb-2">{lever.name}</div>
+                                        <p className="text-[10px] text-slate-500 leading-relaxed line-clamp-3">{lever.details}</p>
+                                    </div>
+                                    <div className="flex gap-4 pt-4 border-t border-slate-50">
+                                        <div className="flex flex-col">
+                                            <span className="text-[9px] text-slate-400 uppercase font-black">Importance</span>
+                                            <span className="font-bold text-xs">{lever.assessment.importance}</span>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <span className="text-[9px] text-slate-400 uppercase font-black">Urgence</span>
+                                            <span className="font-bold text-xs text-[#BC5B2E]">{lever.assessment.urgency}</span>
+                                        </div>
+                                        <div className="flex flex-col ml-auto">
+                                            <span className="text-[9px] text-slate-400 uppercase font-black">Score</span>
+                                            <span className="font-bold text-xs text-[#1A2F2F]">{lever.assessment.importance * lever.assessment.urgency}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="col-span-full h-40 border-2 border-dashed border-slate-200 rounded-3xl flex items-center justify-center text-slate-300 text-sm font-bold italic">
+                                Aucun levier n'atteint un score supérieur ou égal à 4 pour le moment.
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
