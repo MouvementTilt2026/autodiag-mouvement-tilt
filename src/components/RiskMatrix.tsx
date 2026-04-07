@@ -207,8 +207,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                             <div className="space-y-6">
                                 {[
                                     { title: "Risques environnementaux", risks: envRisks },
-                                    { title: "Risques internes", subtitle: "RH, RP, Technologique", risks: internalRisks },
-                                    { title: "Risques externes", subtitle: "Financement, Réglementaire, Politique, Bénéficiaires", risks: externalRisks },
+                                    { title: "Chocs systémiques", subtitle: "Financement, Réglementaires, RH, Image, Technologiques, Bénéficiaires", risks: systemicRisks },
                                 ].map((group, idx) => (
                                     <div key={idx}>
                                         <h6 className="text-xs font-bold text-[#9DB280] uppercase tracking-widest mb-2">{group.title}</h6>
@@ -236,8 +235,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                 <div className="space-y-16 mb-16">
                     {[
                         { title: "Matrice 1 : Risques environnementaux", risks: envRisks },
-                        { title: "Matrice 2 : Risques internes", subtitle: "(RH, RP, Technologique)", risks: internalRisks },
-                        { title: "Matrice 3 : Risques externes", subtitle: "(Financement, Réglementaire, Politique, Bénéficiaires)", risks: externalRisks },
+                        { title: "Matrice 2 : Chocs systémiques", subtitle: "(Financement, Réglementaires, RH, Image & Controverses, Technologiques, Bénéficiaires)", risks: systemicRisks },
                     ].map((matrix, idx) => (
                         <div key={idx} className="space-y-6" style={{ breakInside: 'avoid', pageBreakInside: 'avoid' }}>
                             <div className="text-center">
