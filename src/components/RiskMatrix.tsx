@@ -58,10 +58,14 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
         ...risk, number: index + 1, assessment: assessments[risk.id]
     })).filter(r => r.assessment), [assessments]);
 
-    const filteredRiskWithNumbers = useMemo(() => riskWithNumbers.filter(r => !(r.assessment.probability === 1 && r.assessment.impact === 1)), [riskWithNumbers]);
+    // For matrices and charts: exclude G=1 & F=1
+    const filteredRisks = useMemo(() => riskWithNumbers.filter(r => !(r.assessment.probability === 1 && r.assessment.impact === 1)), [riskWithNumbers]);
+    const envRisks = useMemo(() => filteredRisks.filter(r => r.theme === RiskTheme.ENVIRONNEMENTAL), [filteredRisks]);
+    const systemicRisks = useMemo(() => filteredRisks.filter(r => r.theme !== RiskTheme.ENVIRONNEMENTAL), [filteredRisks]);
 
-    const envRisks = useMemo(() => filteredRiskWithNumbers.filter(r => r.theme === RiskTheme.ENVIRONNEMENTAL), [filteredRiskWithNumbers]);
-    const systemicRisks = useMemo(() => filteredRiskWithNumbers.filter(r => r.theme !== RiskTheme.ENVIRONNEMENTAL), [filteredRiskWithNumbers]);
+    // For lexique: show all assessed risks
+    const allEnvRisks = useMemo(() => riskWithNumbers.filter(r => r.theme === RiskTheme.ENVIRONNEMENTAL), [riskWithNumbers]);
+    const allSystemicRisks = useMemo(() => riskWithNumbers.filter(r => r.theme !== RiskTheme.ENVIRONNEMENTAL), [riskWithNumbers]);
 
     const getRiskBrutLabel = (gxf: number) => {
         if (gxf >= 12) return { label: 'Critique', color: '#BC5B2E' };
