@@ -58,8 +58,10 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
         ...risk, number: index + 1, assessment: assessments[risk.id]
     })).filter(r => r.assessment), [assessments]);
 
-    const envRisks = useMemo(() => riskWithNumbers.filter(r => r.theme === RiskTheme.ENVIRONNEMENTAL), [riskWithNumbers]);
-    const systemicRisks = useMemo(() => riskWithNumbers.filter(r => r.theme !== RiskTheme.ENVIRONNEMENTAL), [riskWithNumbers]);
+    const filteredRiskWithNumbers = useMemo(() => riskWithNumbers.filter(r => !(r.assessment.probability === 1 && r.assessment.impact === 1)), [riskWithNumbers]);
+
+    const envRisks = useMemo(() => filteredRiskWithNumbers.filter(r => r.theme === RiskTheme.ENVIRONNEMENTAL), [filteredRiskWithNumbers]);
+    const systemicRisks = useMemo(() => filteredRiskWithNumbers.filter(r => r.theme !== RiskTheme.ENVIRONNEMENTAL), [filteredRiskWithNumbers]);
 
     const getRiskBrutLabel = (gxf: number) => {
         if (gxf >= 12) return { label: 'Critique', color: '#BC5B2E' };
