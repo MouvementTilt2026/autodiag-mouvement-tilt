@@ -302,7 +302,7 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                     </div>
                 </div>
 
-                {/* Plan d'action */}
+                {/* Eisenhower */}
                 <div className="space-y-8" style={{ pageBreakBefore: 'always' }}>
                     <div className="flex flex-col gap-2 px-4">
                         <div className="flex items-center gap-3">
