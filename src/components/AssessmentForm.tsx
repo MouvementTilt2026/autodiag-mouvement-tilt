@@ -36,9 +36,8 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
             case RiskTheme.ENVIRONNEMENTAL: return COLORS.vertAcide;
             case RiskTheme.FINANCEMENT: return COLORS.ocre;
             case RiskTheme.REGLEMENTAIRE: return COLORS.terracotta;
-            case RiskTheme.POLITIQUE: return COLORS.kaki;
             case RiskTheme.RH: return COLORS.amande;
-            case RiskTheme.RP: return COLORS.quartz;
+            case RiskTheme.IMAGE: return COLORS.quartz;
             case RiskTheme.TECHNOLOGIQUE: return COLORS.foret;
             case RiskTheme.BENEFICIAIRES: return COLORS.coquilleOeuf;
             default: return '#cbd5e1';

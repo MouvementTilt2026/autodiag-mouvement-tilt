@@ -58,13 +58,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
     })).filter(r => r.assessment), [assessments]);
 
     const envRisks = useMemo(() => riskWithNumbers.filter(r => r.theme === RiskTheme.ENVIRONNEMENTAL), [riskWithNumbers]);
-    const internalRisks = useMemo(() => riskWithNumbers.filter(r => 
-        r.theme === RiskTheme.RH || r.theme === RiskTheme.RP || r.theme === RiskTheme.TECHNOLOGIQUE
-    ), [riskWithNumbers]);
-    const externalRisks = useMemo(() => riskWithNumbers.filter(r => 
-        r.theme === RiskTheme.FINANCEMENT || r.theme === RiskTheme.REGLEMENTAIRE || 
-        r.theme === RiskTheme.POLITIQUE || r.theme === RiskTheme.BENEFICIAIRES
-    ), [riskWithNumbers]);
+    const systemicRisks = useMemo(() => riskWithNumbers.filter(r => r.theme !== RiskTheme.ENVIRONNEMENTAL), [riskWithNumbers]);
 
     const getRiskBrutLabel = (gxf: number) => {
         if (gxf >= 12) return { label: 'Critique', color: '#BC5B2E' };
