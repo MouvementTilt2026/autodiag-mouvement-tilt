@@ -213,8 +213,8 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                         <div className={`${showLexique ? 'block' : 'hidden'} print:!block px-6 pb-6`}>
                             <div className="space-y-6">
                                 {[
-                                    { title: "Risques environnementaux", risks: envRisks },
-                                    { title: "Chocs systémiques", subtitle: "Financement, Réglementaires, RH, Image, Technologiques, Bénéficiaires", risks: systemicRisks },
+                                    { title: "Risques environnementaux", risks: allEnvRisks },
+                                    { title: "Chocs systémiques", subtitle: "Financement, Réglementaires, RH, Image, Technologiques, Bénéficiaires", risks: allSystemicRisks },
                                 ].map((group, idx) => (
                                     <div key={idx}>
                                         <h6 className="text-xs font-bold text-[#9DB280] uppercase tracking-widest mb-2">{group.title}</h6>
