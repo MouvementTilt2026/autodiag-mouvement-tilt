@@ -270,14 +270,14 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                             </div>
                             <h4 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Mon plan d'action</h4>
                         </div>
-                        <p className="text-sm text-slate-500 italic ml-13">
-                            Affichage des leviers prioritaires ayant un score (Importance × Urgence) supérieur à 6.
-                        </p>
+                         <p className="text-sm text-slate-500 italic ml-13">
+                            Affichage des leviers prioritaires ayant un score (Importance × Urgence) supérieur ou égal à 4.
+                         </p>
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {assessedLevers.filter(l => (l.assessment.importance * l.assessment.urgency) > 6).length > 0 ? (
-                            assessedLevers.filter(l => (l.assessment.importance * l.assessment.urgency) > 6).map(lever => (
+                        {assessedLevers.filter(l => (l.assessment.importance * l.assessment.urgency) >= 4).length > 0 ? (
+                            assessedLevers.filter(l => (l.assessment.importance * l.assessment.urgency) >= 4).map(lever => (
                                 <div key={lever.id} className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col gap-4">
                                     <div className="flex justify-between items-start">
                                         <span className="font-bold text-slate-300 text-xs">{lever.number}.</span>
@@ -305,7 +305,7 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                             ))
                         ) : (
                             <div className="col-span-full h-40 border-2 border-dashed border-slate-200 rounded-3xl flex items-center justify-center text-slate-300 text-sm font-bold italic">
-                                Aucun levier n'atteint un score supérieur à 6 pour le moment.
+                                Aucun levier n'atteint un score supérieur ou égal à 4 pour le moment.
                             </div>
                         )}
                     </div>

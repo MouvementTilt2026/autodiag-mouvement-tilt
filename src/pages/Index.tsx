@@ -9,7 +9,7 @@ import { AppState, RiskAssessment, ActionLeverAssessment } from '@/types';
 import { RISK_CATALOG, ACTION_LEVERS_CATALOG, COLORS } from '@/constants';
 import { Download, Mail, Globe, ArrowRight, CheckCircle2, ShieldCheck, Info, TrendingUp, Users, Rocket, RefreshCw, Target, Compass, Heart, BookOpen, ExternalLink, Leaf, DollarSign, Brain, ChevronDown, ChevronUp } from 'lucide-react';
 import loraineImg from '@/assets/loraine.png';
-import logoTiltImg from '@/assets/logo-tilt.png';
+import logoTiltImg from '@/assets/logo-mouvement-tilt-foret-horizontal.png';
 import alizeImg from '@/assets/alize.png';
 import heloiseImg from '@/assets/heloise.png';
 
@@ -137,8 +137,8 @@ const Intro = ({ onStart }: { onStart: (step?: any) => void }) => (
 
 {/* À propos du Mouvement Tilt */}
                 <div className="mt-24 pt-16 border-t border-slate-100 space-y-12">
-                    <div className="flex items-center gap-4">
-                        <img src={logoTiltImg} alt="Le Mouvement Tilt" className="h-14 w-auto object-contain" />
+                    <div className="flex justify-center">
+                        <img src={logoTiltImg} alt="Le Mouvement Tilt" className="h-20 w-auto object-contain" />
                     </div>
 
                     <CollapsibleAboutAll>
