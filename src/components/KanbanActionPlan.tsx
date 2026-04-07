@@ -352,87 +352,53 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                     </div>
                 </div>
 
-                {/* Eisenhower */}
+                {/* Plan d'action */}
                 <div className="space-y-8" style={{ pageBreakBefore: 'always' }}>
-                    <div className="flex items-center gap-3 px-4">
-                        <div className="w-10 h-10 rounded-xl bg-red-100 flex items-center justify-center text-red-600">
-                            <Zap size={24} />
+                    <div className="flex flex-col gap-2 px-4">
+                        <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600">
+                                <CheckCircle2 size={24} />
+                            </div>
+                            <h4 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Mon plan d'action</h4>
                         </div>
-                        <h4 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Matrice de priorisation (Eisenhower)</h4>
+                         <p className="text-sm text-slate-500 italic ml-13">
+                            Affichage des leviers prioritaires ayant un score (Importance × Urgence) supérieur ou égal à 4.
+                         </p>
                     </div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <div className="lg:col-span-2 bg-white p-4 md:p-8 rounded-3xl border border-slate-100 shadow-sm">
-                            <div className="h-[350px] md:h-[500px] w-full relative">
-                                <div className="absolute top-4 right-4 text-[10px] font-black text-red-500 uppercase tracking-widest bg-red-50 px-3 py-1 rounded-full border border-red-100 z-10 hidden md:block">Urgent & Important</div>
-                                <div className="absolute top-4 left-4 text-[10px] font-black text-blue-500 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-100 z-10 hidden md:block">Important, non Urgent</div>
-                                <div className="absolute bottom-4 right-4 text-[10px] font-black text-orange-500 uppercase tracking-widest bg-orange-50 px-3 py-1 rounded-full border border-orange-100 z-10 hidden md:block">Urgent, non Important</div>
-                                <div className="absolute bottom-4 left-4 text-[10px] font-black text-slate-400 uppercase tracking-widest bg-slate-50 px-3 py-1 rounded-full border border-slate-100 z-10 hidden md:block">Ni Urgent, ni Important</div>
-
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <ScatterChart margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-                                        <XAxis type="number" dataKey="urgency" name="Urgence" domain={[0.5, 4.5]} ticks={[1, 2, 3, 4]} hide />
-                                        <YAxis type="number" dataKey="importance" name="Importance" domain={[0.5, 4.5]} ticks={[1, 2, 3, 4]} hide />
-                                        <ZAxis type="number" range={[100, 400]} />
-                                        <Tooltip cursor={{ strokeDasharray: '3 3' }}
-                                            content={({ active, payload }) => {
-                                                if (active && payload && payload.length) {
-                                                    const data = payload[0].payload;
-                                                    return (
-                                                        <div className="bg-white p-4 rounded-xl shadow-xl border border-slate-100 max-w-xs">
-                                                            <p className="font-bold text-[#1A2F2F] text-sm mb-1">{data.name}</p>
-                                                            <p className="text-[10px] font-bold text-slate-400 uppercase mb-2">{data.category}</p>
-                                                            <div className="flex gap-4">
-                                                                <div><span className="text-[9px] text-slate-400 uppercase block">Importance</span><span className="font-bold text-sm">{data.importance}</span></div>
-                                                                <div><span className="text-[9px] text-slate-400 uppercase block">Urgence</span><span className="font-bold text-sm text-[#BC5B2E]">{data.urgency}</span></div>
-                                                            </div>
-                                                        </div>
-                                                    );
-                                                }
-                                                return null;
-                                            }}
-                                        />
-                                        <ReferenceLine x={2.5} stroke="#e2e8f0" strokeWidth={2} />
-                                        <ReferenceLine y={2.5} stroke="#e2e8f0" strokeWidth={2} />
-                                        <Scatter name="Leviers" data={assessedLevers.map(l => ({
-                                            ...l, importance: l.assessment.importance, urgency: l.assessment.urgency
-                                        }))} shape={<CustomDot />} />
-                                    </ScatterChart>
-                                </ResponsiveContainer>
-                                
-                                <div className="absolute left-1/2 -bottom-2 -translate-x-1/2 text-[10px] font-black text-slate-400 uppercase tracking-widest">Urgence →</div>
-                                <div className="absolute -left-8 top-1/2 -translate-y-1/2 -rotate-90 text-[10px] font-black text-slate-400 uppercase tracking-widest hidden md:block">Importance →</div>
-                            </div>
-
-                            <div className="mt-12 bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                                <h5 className="text-sm font-bold text-[#1A2F2F] mb-4 uppercase tracking-wider">Lexique des leviers positionnés</h5>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
-                                    {assessedLevers.map(l => (
-                                        <div key={l.id} className="flex items-start gap-3 text-sm leading-tight">
-                                            <span className="font-bold text-[#1A2F2F] w-4 shrink-0">{l.number}.</span>
-                                            <span className="text-slate-600">{l.name}</span>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {assessedLevers.filter(l => (l.assessment.importance * l.assessment.urgency) >= 4).length > 0 ? (
+                            assessedLevers.filter(l => (l.assessment.importance * l.assessment.urgency) >= 4).map(lever => (
+                                <div key={lever.id} className="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 flex flex-col gap-4">
+                                    <div className="flex justify-between items-start">
+                                        <span className="font-bold text-slate-300 text-xs">{lever.number}.</span>
+                                        <span className="text-[10px] font-bold px-2 py-1 bg-slate-100 text-slate-500 rounded-md uppercase">{lever.category}</span>
+                                    </div>
+                                    <div className="flex-1">
+                                        <div className="font-bold text-[#1A2F2F] text-sm mb-2">{lever.name}</div>
+                                        <p className="text-[10px] text-slate-500 leading-relaxed line-clamp-3">{lever.details}</p>
+                                    </div>
+                                    <div className="flex gap-4 pt-4 border-t border-slate-50">
+                                        <div className="flex flex-col">
+                                            <span className="text-[9px] text-slate-400 uppercase font-black">Importance</span>
+                                            <span className="font-bold text-xs">{lever.assessment.importance}</span>
                                         </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="space-y-6">
-                            <div className="bg-[#1A2F2F] p-8 rounded-3xl text-white">
-                                <h5 className="font-bold text-xl mb-4">Légende</h5>
-                                <div className="space-y-4">
-                                    {eisenhowerQuadrants.map(quad => (
-                                        <div key={quad.id} className="flex items-start gap-3">
-                                            <div className="w-3 h-3 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: quad.id === 'q1' ? '#ef4444' : quad.id === 'q2' ? '#3b82f6' : quad.id === 'q3' ? '#f97316' : '#94a3b8' }}></div>
-                                            <div>
-                                                <div className="font-bold text-sm">{quad.label}</div>
-                                                <div className="text-[10px] text-slate-400">{quad.desc}</div>
-                                            </div>
+                                        <div className="flex flex-col">
+                                            <span className="text-[9px] text-slate-400 uppercase font-black">Urgence</span>
+                                            <span className="font-bold text-xs text-[#BC5B2E]">{lever.assessment.urgency}</span>
                                         </div>
-                                    ))}
+                                        <div className="flex flex-col ml-auto">
+                                            <span className="text-[9px] text-slate-400 uppercase font-black">Score</span>
+                                            <span className="font-bold text-xs text-[#1A2F2F]">{lever.assessment.importance * lever.assessment.urgency}</span>
+                                        </div>
+                                    </div>
                                 </div>
+                            ))
+                        ) : (
+                            <div className="col-span-full h-40 border-2 border-dashed border-slate-200 rounded-3xl flex items-center justify-center text-slate-300 text-sm font-bold italic">
+                                Aucun levier n'atteint un score supérieur ou égal à 4 pour le moment.
                             </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>
