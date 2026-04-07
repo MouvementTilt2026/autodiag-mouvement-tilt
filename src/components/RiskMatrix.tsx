@@ -21,6 +21,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
 
     const topRisks = useMemo(() => {
         return [...riskData]
+            .filter(a => !(a.probability === 1 && a.impact === 1))
             .sort((a, b) => ((b.probability * b.impact) / b.maturity) - ((a.probability * a.impact) / a.maturity))
             .slice(0, 10);
     }, [riskData]);
@@ -28,7 +29,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
     const themeData = useMemo(() => {
         return Object.values(RiskTheme).map(theme => {
             const themeRisks = RISK_CATALOG.filter(r => r.theme === theme);
-            const themeAssessments = themeRisks.map(tr => assessments[tr.id]).filter(Boolean);
+            const themeAssessments = themeRisks.map(tr => assessments[tr.id]).filter(Boolean).filter(a => !(a.probability === 1 && a.impact === 1));
             if (themeAssessments.length === 0) return { name: theme, score: 0, gxf: 0, count: 0 };
             const avgScore = themeAssessments.reduce((acc, curr) => acc + ((curr.probability * curr.impact) / curr.maturity), 0) / themeAssessments.length;
             const avgGxF = themeAssessments.reduce((acc, curr) => acc + (curr.probability * curr.impact), 0) / themeAssessments.length;
@@ -39,7 +40,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
     const maturityByTheme = useMemo(() => {
         return Object.values(RiskTheme).map(theme => {
             const themeRisks = RISK_CATALOG.filter(r => r.theme === theme);
-            const themeAssessments = themeRisks.map(tr => assessments[tr.id]).filter(Boolean);
+            const themeAssessments = themeRisks.map(tr => assessments[tr.id]).filter(Boolean).filter(a => !(a.probability === 1 && a.impact === 1));
             if (themeAssessments.length === 0) return null;
             const avgMaturity = themeAssessments.reduce((acc, curr) => acc + curr.maturity, 0) / themeAssessments.length;
             return { name: theme.replace('Choc ', ''), maturity: Math.round(avgMaturity * 10) / 10, count: themeAssessments.length };
