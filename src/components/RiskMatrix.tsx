@@ -113,7 +113,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                         return (
                                             <div key={i} className="rounded-full shadow-md m-0.5 cursor-help group relative transition-all hover:scale-125 hover:z-50 flex items-center justify-center text-[8px] font-bold text-white shrink-0"
                                                 style={{ width: `${dotSize}px`, height: `${dotSize}px`,
-                                                    backgroundColor: criticality > 10 ? '#A82850' : criticality > 6 ? '#D4952E' : criticality > 2 ? '#9BB88A' : '#6DAE75',
+                                                    backgroundColor: '#6b7280',
                                                     border: '2px solid rgba(255,255,255,0.9)', overflow: 'visible' }}>
                                                 {r.number}
                                                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20"
