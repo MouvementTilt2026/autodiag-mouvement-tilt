@@ -256,16 +256,16 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     {/* Légendes */}
                     <div className="flex flex-col items-center gap-3 pt-6">
                         <div className="flex flex-wrap items-center gap-4 p-3 bg-slate-50 rounded-xl border border-slate-100 w-full max-w-md">
-                            <span className="text-[9px] font-bold text-slate-400 uppercase">Couleur = score de criticité :</span>
+                            <span className="text-[9px] font-bold text-slate-400 uppercase">Fond des cases :</span>
                             <div className="flex items-center gap-4 flex-wrap">
                                 {[
-                                    { color: '#9DB280', label: 'Vert : faible (≤2)' },
-                                    { color: '#D09639', label: 'Orange : modéré (>2-6)' },
-                                    { color: '#E18392', label: 'Rose : élevé (>6-10)' },
-                                    { color: '#BC5B2E', label: 'Rouge : critique (>10)' },
+                                    { color: '#DEF6E1', label: 'Faible' },
+                                    { color: '#C9DCB0', label: 'Modéré' },
+                                    { color: '#F7BD61', label: 'Élevé' },
+                                    { color: '#CF3266', label: 'Critique' },
                                 ].map((l, i) => (
                                     <div key={i} className="flex items-center gap-1.5">
-                                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: l.color }}></div>
+                                        <div className="w-3 h-3 rounded" style={{ backgroundColor: l.color }}></div>
                                         <span className="text-[9px] font-bold text-slate-600">{l.label}</span>
                                     </div>
                                 ))}

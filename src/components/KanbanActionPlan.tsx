@@ -311,7 +311,7 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                         <h4 className="text-xl md:text-2xl font-bold text-[#1A2F2F]">Matrice de priorisation (Eisenhower)</h4>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div className="space-y-8">
                         <div className="bg-white p-4 md:p-8 rounded-3xl border border-slate-100 shadow-sm">
                             <EisenhowerGrid levers={assessedLevers} />
                         </div>
