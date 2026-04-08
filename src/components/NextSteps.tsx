@@ -46,13 +46,13 @@ const NextSteps: React.FC<NextStepsProps> = ({ riskAssessments = {}, actionLever
                     </div>
 
                     <div className="flex flex-col items-center text-center p-8 bg-slate-50 rounded-3xl border border-slate-100 hover:shadow-lg transition-all group">
-                        <div className="w-14 h-14 bg-[#E18392] text-white rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <div className="w-14 h-14 bg-[#E07C4E] text-white rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                             <MessageSquareHeart size={24} />
                         </div>
                         <h3 className="font-bold text-[#1A2F2F] mb-3 text-base">Votre avis nous intéresse</h3>
                         <p className="text-sm text-slate-500 mb-6 flex-1">Aidez-nous à améliorer cet outil en répondant à notre court questionnaire.</p>
                         <a href="https://haphfh3nbbo.typeform.com/to/wnrow7h0" target="_blank" rel="noreferrer"
-                            className="w-full py-3 bg-[#F394A3] text-white rounded-xl font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2">
+                            className="w-full py-3 bg-[#E07C4E] text-white rounded-xl font-bold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2">
                             Donner mon avis <ArrowRightCircle size={16} />
                         </a>
                     </div>
