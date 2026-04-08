@@ -104,7 +104,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     {[4, 3, 2, 1].map((row) => (
                         [1, 2, 3, 4].map((col) => {
                             const risksInCell = risks.filter(r => r.assessment.impact === row && r.assessment.probability === col);
-                            const bgColor = row * col >= 12 ? 'bg-[#BC5B2E]/20' : row * col >= 6 ? 'bg-[#D09639]/20' : 'bg-[#C3FD97]/20';
+                            const bgColor = row * col >= 12 ? 'bg-[#CF3266]/30' : row * col >= 8 ? 'bg-[#F7BD61]/30' : row * col >= 4 ? 'bg-[#C9DCB0]/30' : 'bg-[#DEF6E1]/30';
                             return (
                                 <div key={`${row}-${col}`} className={`border border-white/40 flex flex-wrap items-center justify-center p-0.5 ${bgColor} transition-colors`} style={{ overflow: 'visible' }}>
                                     {risksInCell.map((r: any, i: number) => {
@@ -113,7 +113,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                                         return (
                                             <div key={i} className="rounded-full shadow-md m-0.5 cursor-help group relative transition-all hover:scale-125 hover:z-50 flex items-center justify-center text-[8px] font-bold text-white shrink-0"
                                                 style={{ width: `${dotSize}px`, height: `${dotSize}px`,
-                                                    backgroundColor: criticality > 10 ? '#BC5B2E' : criticality > 6 ? '#E18392' : criticality > 2 ? '#D09639' : '#9DB280',
+                                                    backgroundColor: criticality > 10 ? '#A82850' : criticality > 6 ? '#D4952E' : criticality > 2 ? '#9BB88A' : '#6DAE75',
                                                     border: '2px solid rgba(255,255,255,0.9)', overflow: 'visible' }}>
                                                 {r.number}
                                                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 hidden group-hover:block w-48 p-3 bg-[#1A2F2F] text-white text-[10px] rounded-xl shadow-2xl ring-1 ring-white/20"
@@ -311,7 +311,6 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                             return (
                                 <div className="mt-6 p-4 rounded-2xl border-2 flex items-center gap-4" style={{ borderColor: color, backgroundColor: `${color}10` }}>
                                     <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0" style={{ backgroundColor: color }}>
-                                        {globalGxF}
                                     </div>
                                     <div>
                                         <p className="text-sm font-bold text-[#1A2F2F]">Risque brut global : <span style={{ color }}>{label}</span></p>
@@ -349,7 +348,6 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                             return (
                                 <div className="mt-6 p-4 rounded-2xl border-2 flex items-center gap-4" style={{ borderColor: color, backgroundColor: `${color}10` }}>
                                     <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0" style={{ backgroundColor: color }}>
-                                        {globalMaturity}
                                     </div>
                                     <div>
                                         <p className="text-sm font-bold text-[#1A2F2F]">Maturité globale : <span style={{ color }}>{label}</span></p>
@@ -393,7 +391,6 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                             return (
                                 <div className="mt-6 p-4 rounded-2xl border-2 flex items-center gap-4" style={{ borderColor: color, backgroundColor: `${color}10` }}>
                                     <div className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg shrink-0" style={{ backgroundColor: color }}>
-                                        {globalCriticality}
                                     </div>
                                     <div>
                                         <p className="text-sm font-bold text-[#1A2F2F]">Criticité globale : <span style={{ color }}>{label}</span></p>

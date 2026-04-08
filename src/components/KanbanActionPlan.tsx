@@ -312,37 +312,36 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <div className="lg:col-span-2 bg-white p-4 md:p-8 rounded-3xl border border-slate-100 shadow-sm">
+                        <div className="bg-white p-4 md:p-8 rounded-3xl border border-slate-100 shadow-sm">
                             <EisenhowerGrid levers={assessedLevers} />
+                        </div>
+                    </div>
 
-                            <div className="mt-12 bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                                <h5 className="text-sm font-bold text-[#1A2F2F] mb-4 uppercase tracking-wider">Lexique des leviers positionnés</h5>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
-                                    {assessedLevers.map(l => (
-                                        <div key={l.id} className="flex items-start gap-3 text-sm leading-tight">
-                                            <span className="font-bold text-[#1A2F2F] w-4 shrink-0">{l.number}.</span>
-                                            <span className="text-slate-600">{l.name}</span>
-                                        </div>
-                                    ))}
-                                </div>
+                    {/* Légende between matrix and lexique */}
+                    <div className="flex flex-col items-center gap-3">
+                        <div className="flex flex-wrap items-center gap-4 p-3 bg-slate-50 rounded-xl border border-slate-100 w-full max-w-md">
+                            <span className="text-[9px] font-bold text-slate-400 uppercase">Couleur = quadrant :</span>
+                            <div className="flex items-center gap-4 flex-wrap">
+                                {eisenhowerQuadrants.map(quad => (
+                                    <div key={quad.id} className="flex items-center gap-1.5">
+                                        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: quad.id === 'q1' ? '#ef4444' : quad.id === 'q2' ? '#3b82f6' : quad.id === 'q3' ? '#f97316' : '#94a3b8' }}></div>
+                                        <span className="text-[9px] font-bold text-slate-600">{quad.label} — {quad.desc}</span>
+                                    </div>
+                                ))}
                             </div>
                         </div>
+                    </div>
 
-                        <div className="space-y-6">
-                            <div className="bg-[#1A2F2F] p-8 rounded-3xl text-white">
-                                <h5 className="font-bold text-xl mb-4">Légende</h5>
-                                <div className="space-y-4">
-                                    {eisenhowerQuadrants.map(quad => (
-                                        <div key={quad.id} className="flex items-start gap-3">
-                                            <div className="w-3 h-3 rounded-full mt-1.5 shrink-0" style={{ backgroundColor: quad.id === 'q1' ? '#ef4444' : quad.id === 'q2' ? '#3b82f6' : quad.id === 'q3' ? '#f97316' : '#94a3b8' }}></div>
-                                            <div>
-                                                <div className="font-bold text-sm">{quad.label}</div>
-                                                <div className="text-[10px] text-slate-400">{quad.desc}</div>
-                                            </div>
-                                        </div>
-                                    ))}
+                    {/* Lexique */}
+                    <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <h5 className="text-sm font-bold text-[#1A2F2F] mb-4 uppercase tracking-wider">Lexique des leviers positionnés</h5>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+                            {assessedLevers.map(l => (
+                                <div key={l.id} className="flex items-start gap-3 text-sm leading-tight">
+                                    <span className="font-bold text-[#1A2F2F] w-4 shrink-0">{l.number}.</span>
+                                    <span className="text-slate-600">{l.name}</span>
                                 </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>
