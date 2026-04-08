@@ -94,8 +94,11 @@ const KanbanActionPlan: React.FC<KanbanActionPlanProps> = ({ assessments, onUpda
 
         return (
             <div className="w-full max-w-lg mx-auto" style={{ overflow: 'visible' }}>
-                <div className="text-center text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Importance →</div>
+                <div className="text-center text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Urgence →</div>
                 <div className="grid grid-cols-[30px_1fr] grid-rows-[1fr_30px] gap-1 aspect-square relative" style={{ overflow: 'visible' }}>
+                    <div className="absolute -left-10 top-1/2 -translate-y-1/2 -rotate-90 text-[9px] font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap hidden md:block">
+                        Importance
+                    </div>
                     <div className="flex flex-col justify-around items-end pr-2 text-[10px] font-bold text-slate-500">
                         <span>4</span><span>3</span><span>2</span><span>1</span>
                     </div>
