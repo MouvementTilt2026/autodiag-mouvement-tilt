@@ -14,8 +14,7 @@ interface RiskMatrixProps {
 }
 
 const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
-    const [showComprehension, setShowComprehension] = useState(false);
-    const [showLexique, setShowLexique] = useState(false);
+    const [showGuide, setShowGuide] = useState(false);
 
     const riskData = Object.values(assessments) as RiskAssessment[];
 
