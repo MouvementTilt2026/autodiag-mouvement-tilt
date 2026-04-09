@@ -152,8 +152,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     <div className="flex items-center gap-2">
                         <button 
                             onClick={() => {
-                                setShowComprehension(true);
-                                setShowLexique(true);
+                                setShowGuide(true);
                                 setTimeout(() => window.print(), 300);
                             }}
                             className="flex items-center gap-2 px-5 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0 no-print"
