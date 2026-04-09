@@ -280,7 +280,7 @@ const AssessmentForm: React.FC<AssessmentFormProps> = ({ assessments, onUpdate, 
                                     : 'bg-white text-slate-500 border-slate-100 hover:border-slate-200'
                                 }`}
                             >
-                                {cat}
+                                {cat} ({RISK_CATALOG.filter(r => r.category === cat).length})
                             </button>
                         ))}
                     </div>
