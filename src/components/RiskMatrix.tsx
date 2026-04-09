@@ -14,8 +14,7 @@ interface RiskMatrixProps {
 }
 
 const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
-    const [showComprehension, setShowComprehension] = useState(false);
-    const [showLexique, setShowLexique] = useState(false);
+    const [showGuide, setShowGuide] = useState(false);
 
     const riskData = Object.values(assessments) as RiskAssessment[];
 
@@ -153,8 +152,7 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                     <div className="flex items-center gap-2">
                         <button 
                             onClick={() => {
-                                setShowComprehension(true);
-                                setShowLexique(true);
+                                setShowGuide(true);
                                 setTimeout(() => window.print(), 300);
                             }}
                             className="flex items-center gap-2 px-5 py-3 bg-[#1A2F2F] text-white rounded-xl font-bold hover:bg-[#335353] transition-all shadow-lg text-sm shrink-0 no-print"
@@ -171,69 +169,64 @@ const RiskMatrix: React.FC<RiskMatrixProps> = ({ assessments, onNext }) => {
                 </div>
 
                 {/* Comprendre la matrice + Lexique - collapsible on screen, always visible in print */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+                <div className="mb-16">
                     <div className="bg-[#E1E4D1]/30 rounded-3xl border border-[#9DB280]/20 overflow-hidden">
                         <button 
-                            onClick={() => setShowComprehension(!showComprehension)}
+                            onClick={() => setShowGuide(!showGuide)}
                             className="w-full p-6 flex items-center justify-between text-left no-print"
                         >
-                            <h3 className="text-lg font-bold text-[#1A2F2F] flex items-center gap-2">
-                                <Info size={18} className="text-[#9DB280]" /> Comprendre la matrice
+                            <h3 className="text-base font-bold text-[#1A2F2F] flex items-center gap-2">
+                                <Info size={18} className="text-[#9DB280]" /> À lire : Comprendre les matrices et lexique des risques positionnés
                             </h3>
-                            <ChevronDown size={20} className={`text-slate-400 transition-transform ${showComprehension ? 'rotate-180' : ''}`} />
+                            <ChevronDown size={20} className={`text-slate-400 transition-transform ${showGuide ? 'rotate-180' : ''}`} />
                         </button>
-                        <div className={`${showComprehension ? 'block' : 'hidden'} print:!block px-6 pb-6`}>
-                            <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
-                                <p>La matrice croise la <strong>Gravité</strong> (axe vertical) et la <strong>Fréquence</strong> (axe horizontal).</p>
-                                <p>Chaque point représente un risque identifié. Sa <strong>couleur</strong> indique sa criticité finale (G × F / M) :</p>
-                                <ul className="list-disc pl-5 space-y-1">
-                                    <li><span className="font-bold text-[#9DB280]">Vert</span> : faible (≤ 2). Risque maîtrisé.</li>
-                                    <li><span className="font-bold text-[#D09639]">Orange</span> : modéré (&gt; 2 à 6). Risque à surveiller.</li>
-                                    <li><span className="font-bold text-[#E18392]">Rose</span> : élevé (&gt; 6 à 10). Action nécessaire.</li>
-                                    <li><span className="font-bold text-[#BC5B2E]">Rouge</span> : critique (&gt; 10). Priorité absolue.</li>
-                                </ul>
-                                <p>La <strong>taille du point</strong> reflète votre maturité : plus le point est gros, moins vous êtes mature face à ce risque (1 = critique, 4 = sécurisé).</p>
+                        <div className={`${showGuide ? 'block' : 'hidden'} print:!block px-6 pb-6`}>
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 className="text-sm font-bold text-[#1A2F2F] uppercase tracking-wider mb-3 flex items-center gap-2">
+                                        Comprendre la matrice
+                                    </h4>
+                                    <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
+                                        <p>La matrice croise la <strong>Gravité</strong> (axe vertical) et la <strong>Fréquence</strong> (axe horizontal).</p>
+                                        <p>Chaque point représente un risque identifié. Sa <strong>couleur</strong> indique sa criticité finale (G × F / M) :</p>
+                                        <ul className="list-disc pl-5 space-y-1">
+                                            <li><span className="font-bold text-[#9DB280]">Vert</span> : faible (≤ 2). Risque maîtrisé.</li>
+                                            <li><span className="font-bold text-[#D09639]">Orange</span> : modéré (&gt; 2 à 6). Risque à surveiller.</li>
+                                            <li><span className="font-bold text-[#E18392]">Rose</span> : élevé (&gt; 6 à 10). Action nécessaire.</li>
+                                            <li><span className="font-bold text-[#BC5B2E]">Rouge</span> : critique (&gt; 10). Priorité absolue.</li>
+                                        </ul>
+                                        <p>La <strong>taille du point</strong> reflète votre maturité : plus le point est gros, moins vous êtes mature face à ce risque (1 = critique, 4 = sécurisé).</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 className="text-sm font-bold text-[#1A2F2F] uppercase tracking-wider mb-3">Lexique des risques positionnés</h4>
+                                    <div className="space-y-6">
+                                        {[
+                                            { title: "Risques environnementaux", risks: allEnvRisks },
+                                            { title: "Chocs systémiques", subtitle: "Financement, Réglementaires, RH, Image, Technologiques, Bénéficiaires", risks: allSystemicRisks },
+                                        ].map((group, idx) => (
+                                            <div key={idx}>
+                                                <h6 className="text-xs font-bold text-[#9DB280] uppercase tracking-widest mb-2">{group.title}</h6>
+                                                {group.subtitle && <p className="text-[10px] text-slate-400 mb-2">{group.subtitle}</p>}
+                                                <div className="space-y-1">
+                                                    {group.risks.map(r => (
+                                                        <div key={r.id} className="flex items-start gap-2 text-sm leading-tight py-1 border-b border-slate-200/50 last:border-0">
+                                                            <span className="font-bold text-[#1A2F2F] shrink-0 w-5">{r.number}.</span>
+                                                            <span className="text-slate-600">{r.name}</span>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        {/* Print-only: always show title */}
+                        {/* Print-only: always show */}
                         <div className="hidden print:block p-6">
                             <h3 className="text-lg font-bold text-[#1A2F2F] flex items-center gap-2 mb-4">
-                                <Info size={18} className="text-[#9DB280]" /> Comprendre la matrice
+                                <Info size={18} className="text-[#9DB280]" /> Comprendre les matrices et lexique des risques positionnés
                             </h3>
-                        </div>
-                    </div>
-                    <div className="bg-slate-50 rounded-3xl border border-slate-100 overflow-hidden">
-                        <button 
-                            onClick={() => setShowLexique(!showLexique)}
-                            className="w-full p-6 flex items-center justify-between text-left no-print"
-                        >
-                            <h5 className="text-sm font-bold text-[#1A2F2F] uppercase tracking-wider">Lexique des risques positionnés</h5>
-                            <ChevronDown size={20} className={`text-slate-400 transition-transform ${showLexique ? 'rotate-180' : ''}`} />
-                        </button>
-                        <div className={`${showLexique ? 'block' : 'hidden'} print:!block px-6 pb-6`}>
-                            <div className="space-y-6">
-                                {[
-                                    { title: "Risques environnementaux", risks: allEnvRisks },
-                                    { title: "Chocs systémiques", subtitle: "Financement, Réglementaires, RH, Image, Technologiques, Bénéficiaires", risks: allSystemicRisks },
-                                ].map((group, idx) => (
-                                    <div key={idx}>
-                                        <h6 className="text-xs font-bold text-[#9DB280] uppercase tracking-widest mb-2">{group.title}</h6>
-                                        {group.subtitle && <p className="text-[10px] text-slate-400 mb-2">{group.subtitle}</p>}
-                                        <div className="space-y-1">
-                                            {group.risks.map(r => (
-                                                <div key={r.id} className="flex items-start gap-2 text-sm leading-tight py-1 border-b border-slate-200/50 last:border-0">
-                                                    <span className="font-bold text-[#1A2F2F] shrink-0 w-5">{r.number}.</span>
-                                                    <span className="text-slate-600">{r.name}</span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                        {/* Print-only: always show title */}
-                        <div className="hidden print:block p-6">
-                            <h5 className="text-sm font-bold text-[#1A2F2F] uppercase tracking-wider mb-4">Lexique des risques positionnés</h5>
                         </div>
                     </div>
                 </div>
