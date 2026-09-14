@@ -420,9 +420,6 @@ const Index: React.FC = () => {
                             <Globe size={16} className="text-[#335353]" /> mouvement-tilt.com
                         </a>
                         <span className="text-slate-400 text-xs">Date : {new Date().toLocaleDateString('fr-FR')}</span>
-                        <a href="https://autodiag-mouvement-tilt.lovable.app" target="_blank" rel="noreferrer" className="text-slate-400 text-xs hover:text-[#1A2F2F] transition-colors">
-                            source : autodiag-mouvement-tilt.lovable.app
-                        </a>
                     </div>
                     <div className="flex items-center gap-4">
                         <div className="font-bold text-[#1A2F2F] tracking-tight hidden md:block">
