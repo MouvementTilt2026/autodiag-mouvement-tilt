@@ -1,73 +1,47 @@
-# Welcome to your Lovable project
+# Autodiag "Robust'Asso"
 
-## Project info
+Recrées entièrement cette application en te basant sur les 10 fichiers de code fournis. 
+Tu dois respecter scrupuleusement la logique, le design et les fonctionnalités définis dans ces sources.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Informations complémentaires : 
 
-## How can I edit this code?
+1. Pour l'architecture et le design system : 
+- Stack : Utilise Vite + React + TypeScript.
+- Design : Utilise Tailwind CSS exclusivement. Applique la police Poppins (depuis index.html).
+- Fidélité : Respecte rigoureusement les types de types.ts et les variables de constants.ts (couleurs, libellés).
+- Responsivité : L'application doit être Mobile-First et parfaitement fluide sur tous les écrans..
 
-There are several ways of editing your application.
+2. Pour les fonctionnalités spécifiques & les export PDF : 
+- Système d'Export : Implémente l'export via la fonction native window.print().
+- Ajoute des règles CSS @media print pour masquer la Sidebar et les boutons d'action lors de l'impression.
+- Force l'impression des couleurs d'arrière-plan (print-color-adjust: exact) pour que la RiskMatrix conserve ses couleurs sur le papier.
+- Assure-toi que le contenu s'adapte au format A4 sans être tronqué.
 
-**Use Lovable**
+3. Pour l'expérience utilisateur : 
+- Les transitions entre les onglets doivent être fluides.
+- Assure la persistance des données saisies dans les formulaires durant la session.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+Consigne : Ne simplifie pas le code source. Utilise les interfaces TypeScript fournies pour garantir la cohérence des données.
 
-Changes made via Lovable will be committed automatically to this repo.
+This project was built with [Lovable](https://lovable.dev).
 
-**Use your preferred IDE**
+**Live app**: https://autodiag-mouvement-tilt.lovable.app
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## Build with Lovable
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/63fafadc-ffc1-424b-8998-9c53178a6d53).
 
-Follow these steps:
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+
+## Development
+
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+git clone <this-repository-url>
+cd <repository-name>
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
